@@ -1,0 +1,48 @@
+---
+import { NEGOZIO } from '../data/negozio';
+---
+<form class="form-contatti" data-telefono={NEGOZIO.telefono}>
+  <input type="hidden" name="access_key" value={NEGOZIO.web3formsKey} />
+  <input type="hidden" name="subject" value="Nuova richiesta dal sito Arredamenti Guerini" />
+  <input type="checkbox" name="botcheck" class="honeypot" tabindex="-1" autocomplete="off" />
+
+  <label>
+    Nome e cognome
+    <input type="text" name="name" required autocomplete="name" />
+  </label>
+  <label>
+    Telefono o email
+    <input type="text" name="recapito" required autocomplete="tel" />
+  </label>
+  <label>
+    Come possiamo aiutarti?
+    <textarea name="message" rows="5" required></textarea>
+  </label>
+
+  <button type="submit" class="bottone">Invia richiesta</button>
+  <p class="esito" role="status" hidden></p>
+</form>
+
+<script>
+  const form = document.querySelector<HTMLFormElement>('.form-contatti')!;
+  const esito = form.querySelector<HTMLElement>('.esito')!;
+
+  form.addEventListener('submit', async (evento) => {
+    evento.preventDefault();
+    esito.hidden = false;
+    esito.textContent = 'Invio in corso…';
+    try {
+      const risposta = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify(Object.fromEntries(new FormData(form))),
+      });
+      const dati = await risposta.json();
+      if (!dati.success) throw new Error(dati.message);
+      esito.textContent = 'Richiesta inviata! Ti ricontatteremo al più presto.';
+      form.reset();
+    } catch {
+      esito.textContent = `Invio non riuscito. Chiamaci al ${form.dataset.telefono} o scrivici su WhatsApp.`;
+    }
+  });
+</script>

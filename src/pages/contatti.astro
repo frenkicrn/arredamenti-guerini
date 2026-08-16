@@ -1,0 +1,51 @@
+---
+import Layout from '../layouts/Layout.astro';
+import FormContatti from '../components/FormContatti.astro';
+import { NEGOZIO } from '../data/negozio';
+---
+<Layout
+  titolo="Contatti"
+  descrizione="Contatta Arredamenti Guerini a Sale Marasino: telefono, WhatsApp, email, orari di apertura e modulo per richiedere un preventivo."
+>
+  <section class="sezione contenitore">
+    <h1>Contatti</h1>
+
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2.5rem;">
+      <div>
+        <h2>Scrivici</h2>
+        <p>Richiedi un preventivo o un appuntamento: ti rispondiamo al più presto.</p>
+        <FormContatti />
+      </div>
+
+      <div>
+        <h2>Dove siamo</h2>
+        <p>
+          {NEGOZIO.indirizzo.via}, {NEGOZIO.indirizzo.cap} {NEGOZIO.indirizzo.comune} ({NEGOZIO.indirizzo.provincia})<br />
+          Telefono: <a href={`tel:${NEGOZIO.telefono.replaceAll(' ', '')}`}>{NEGOZIO.telefono}</a><br />
+          WhatsApp: <a href={`https://wa.me/${NEGOZIO.whatsapp.replace(/[^\d]/g, '')}`}>scrivici</a><br />
+          Email: <a href={`mailto:${NEGOZIO.email}`}>{NEGOZIO.email}</a>
+        </p>
+        <iframe
+          src={NEGOZIO.mapsEmbedUrl}
+          title={`Mappa: ${NEGOZIO.nome}`}
+          width="100%"
+          height="300"
+          style="border: 0; border-radius: var(--raggio);"
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+        ></iframe>
+
+        <h2>Orari di apertura</h2>
+        <ul>
+          {NEGOZIO.orari.map((o) => (
+            <li><strong>{o.giorni}</strong>: {o.orario}</li>
+          ))}
+        </ul>
+
+        <p>
+          Seguici su <a href={NEGOZIO.facebook}>Facebook</a>{NEGOZIO.instagram && <> e <a href={NEGOZIO.instagram}>Instagram</a></>} per le ultime novità.
+        </p>
+      </div>
+    </div>
+  </section>
+</Layout>

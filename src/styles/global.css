@@ -1,0 +1,199 @@
+/* Design token — palette calda da mobilificio (legno/crema) */
+:root {
+  --sfondo: #faf7f2;
+  --superficie: #ffffff;
+  --testo: #2b2520;
+  --testo-tenue: #6b5f53;
+  --accento: #8a6240;
+  --accento-scuro: #6d4c31;
+  --bordo: #e6ddd1;
+  --raggio: 10px;
+  --contenitore: 1100px;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  background: var(--sfondo);
+  color: var(--testo);
+  line-height: 1.6;
+}
+
+h1, h2, h3 {
+  font-family: Georgia, 'Times New Roman', serif;
+  line-height: 1.2;
+  font-weight: 600;
+}
+
+img { max-width: 100%; height: auto; display: block; }
+a { color: var(--accento-scuro); }
+
+.contenitore {
+  max-width: var(--contenitore);
+  margin-inline: auto;
+  padding-inline: 1.25rem;
+}
+
+.sezione { padding-block: 3rem; }
+.sezione h2 { font-size: 1.75rem; margin-top: 0; }
+
+.bottone {
+  display: inline-block;
+  background: var(--accento);
+  color: #fff;
+  padding: 0.65rem 1.4rem;
+  border-radius: var(--raggio);
+  border: none;
+  font-size: 1rem;
+  text-decoration: none;
+  cursor: pointer;
+}
+.bottone:hover { background: var(--accento-scuro); }
+
+.badge {
+  display: inline-block;
+  background: #2e6e46;
+  color: #fff;
+  font-size: 0.75rem;
+  padding: 0.15rem 0.6rem;
+  border-radius: 99px;
+}
+
+.griglia-schede {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 1.25rem;
+}
+
+/* Header */
+.sito-header {
+  background: var(--superficie);
+  border-bottom: 1px solid var(--bordo);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+.header-riga {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem 1.5rem;
+  padding-block: 0.85rem;
+}
+.logo { font-size: 1.25rem; text-decoration: none; color: var(--testo); }
+.logo strong { color: var(--accento); }
+.sito-header nav { display: flex; flex-wrap: wrap; gap: 1.25rem; }
+.sito-header nav a { text-decoration: none; color: var(--testo-tenue); }
+.sito-header nav a[aria-current='page'] { color: var(--accento-scuro); font-weight: 600; }
+
+/* Footer */
+.sito-footer {
+  background: #2b2520;
+  color: #d8cfc4;
+  margin-top: 3rem;
+  padding-block: 2.5rem;
+  font-size: 0.95rem;
+}
+.sito-footer a { color: #f0e8dd; }
+.footer-colonne {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 2rem;
+}
+.sito-footer h3 { color: #fff; font-size: 1.05rem; margin-top: 0; }
+.sito-footer ul { list-style: none; padding: 0; margin: 0; }
+
+/* Scheda prodotto */
+.scheda-prodotto {
+  background: var(--superficie);
+  border: 1px solid var(--bordo);
+  border-radius: var(--raggio);
+  overflow: hidden;
+}
+.scheda-foto {
+  display: block;
+  width: 100%;
+  padding: 0;
+  border: none;
+  cursor: zoom-in;
+  background: none;
+}
+.scheda-foto img { aspect-ratio: 4 / 3; object-fit: cover; width: 100%; }
+.scheda-info { padding: 0.9rem 1rem 1.1rem; }
+.scheda-info h3 { margin: 0 0 0.25rem; font-size: 1.1rem; }
+.scheda-info .marchio { margin: 0 0 0.4rem; color: var(--testo-tenue); font-size: 0.9rem; }
+
+/* Filtri gallery */
+.filtri {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-block: 1.5rem;
+}
+.filtri button {
+  background: var(--superficie);
+  border: 1px solid var(--bordo);
+  border-radius: 99px;
+  padding: 0.4rem 1rem;
+  cursor: pointer;
+  font-size: 0.95rem;
+  color: var(--testo-tenue);
+}
+.filtri button.attivo {
+  background: var(--accento);
+  border-color: var(--accento);
+  color: #fff;
+}
+
+/* Lightbox */
+dialog.lightbox {
+  border: none;
+  border-radius: var(--raggio);
+  padding: 0;
+  max-width: min(92vw, 1000px);
+  background: var(--superficie);
+}
+dialog.lightbox::backdrop { background: rgba(20, 15, 10, 0.75); }
+dialog.lightbox img { max-height: 80vh; object-fit: contain; margin-inline: auto; }
+dialog.lightbox p { margin: 0; padding: 0.75rem 1rem; text-align: center; }
+
+/* Form */
+.form-contatti { display: grid; gap: 1rem; max-width: 480px; }
+.form-contatti label { display: grid; gap: 0.3rem; font-weight: 600; }
+.form-contatti input,
+.form-contatti textarea {
+  font: inherit;
+  padding: 0.6rem 0.8rem;
+  border: 1px solid var(--bordo);
+  border-radius: var(--raggio);
+  background: var(--superficie);
+}
+.form-contatti .honeypot { position: absolute; left: -9999px; }
+.form-contatti .esito { font-weight: 600; }
+
+/* Hero */
+.hero { position: relative; color: #fff; }
+.hero img { width: 100%; height: min(70vh, 560px); object-fit: cover; }
+.hero-testo {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-content: center;
+  text-align: center;
+  background: rgba(25, 18, 12, 0.45);
+  padding: 1.5rem;
+}
+.hero-testo h1 { font-size: clamp(1.9rem, 5vw, 3.2rem); margin: 0 0 0.5rem; }
+.hero-testo p { font-size: 1.15rem; margin: 0 0 1.5rem; }
+
+/* Banner consegna */
+.banner-consegna {
+  background: var(--accento);
+  color: #fff;
+  text-align: center;
+  padding: 0.7rem 1.25rem;
+  font-size: 0.95rem;
+}

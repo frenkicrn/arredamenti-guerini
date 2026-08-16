@@ -1,0 +1,26 @@
+---
+import { Image } from 'astro:assets';
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+  prodotto: CollectionEntry<'prodotti'>;
+}
+const { prodotto } = Astro.props;
+const { titolo, categoria, marchio, foto, prontaConsegna } = prodotto.data;
+---
+<article class="scheda-prodotto" data-categoria={categoria}>
+  <button type="button" class="scheda-foto" aria-label={`Ingrandisci foto: ${titolo}`}>
+    <Image
+      src={foto}
+      alt={titolo}
+      widths={[400, 800, 1200]}
+      sizes="(max-width: 700px) 100vw, 33vw"
+      loading="lazy"
+    />
+  </button>
+  <div class="scheda-info">
+    <h3>{titolo}</h3>
+    {marchio && <p class="marchio">{marchio}</p>}
+    {prontaConsegna && <span class="badge">Pronta consegna</span>}
+  </div>
+</article>

@@ -1,0 +1,36 @@
+---
+import { NEGOZIO } from '../data/negozio';
+const anno = new Date().getFullYear();
+---
+<footer class="sito-footer">
+  <div class="contenitore footer-colonne">
+    <div>
+      <h3>{NEGOZIO.nome}</h3>
+      <p>
+        {NEGOZIO.indirizzo.via}<br />
+        {NEGOZIO.indirizzo.cap} {NEGOZIO.indirizzo.comune} ({NEGOZIO.indirizzo.provincia})
+      </p>
+    </div>
+    <div>
+      <h3>Contatti</h3>
+      <ul>
+        <li><a href={`tel:${NEGOZIO.telefono.replaceAll(' ', '')}`}>{NEGOZIO.telefono}</a></li>
+        <li><a href={`https://wa.me/${NEGOZIO.whatsapp.replace(/[^\d]/g, '')}`}>WhatsApp</a></li>
+        <li><a href={`mailto:${NEGOZIO.email}`}>{NEGOZIO.email}</a></li>
+        <li><a href={NEGOZIO.facebook}>Facebook</a></li>
+        {NEGOZIO.instagram && <li><a href={NEGOZIO.instagram}>Instagram</a></li>}
+      </ul>
+    </div>
+    <div>
+      <h3>Orari</h3>
+      <ul>
+        {NEGOZIO.orari.map((o) => (
+          <li>{o.giorni}: {o.orario}</li>
+        ))}
+      </ul>
+    </div>
+  </div>
+  <div class="contenitore" style="margin-top: 2rem; font-size: 0.85rem;">
+    © {anno} {NEGOZIO.nome} — {NEGOZIO.consegna}
+  </div>
+</footer>

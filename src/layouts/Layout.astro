@@ -29,6 +29,21 @@ const jsonLd = {
     addressCountry: 'IT',
   },
   sameAs: [NEGOZIO.facebook, NEGOZIO.instagram].filter(Boolean),
+  openingHoursSpecification: [
+    // DA CONFERMARE COL CLIENTE (derivato dagli orari placeholder in negozio.ts)
+    {
+      '@type': 'OpeningHoursSpecification',
+      dayOfWeek: ['Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
+      opens: '09:00',
+      closes: '12:00',
+    },
+    {
+      '@type': 'OpeningHoursSpecification',
+      dayOfWeek: ['Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
+      opens: '15:00',
+      closes: '19:00',
+    },
+  ],
 };
 ---
 <!doctype html>

@@ -29,6 +29,9 @@ Sito statico costruito con [Astro](https://astro.build), pensato per Cloudflare 
 - [ ] Foto reali dei prodotti (sostituire i placeholder in `src/assets/prodotti/`)
 - [ ] Testo "Chi siamo" definitivo, eventuale logo del negozio, profilo Instagram
 - [ ] Loghi dei marchi (dai press kit ufficiali) per la pagina Chi siamo
+- [ ] Coordinate geografiche per il JSON-LD (`geo`)
+- [ ] Immagine og:image per le condivisioni social (quando arrivano le foto reali)
+- [ ] Favicon/logo definitivo del negozio
 
 ## Form contatti (Web3Forms)
 
@@ -44,7 +47,10 @@ Sito statico costruito con [Astro](https://astro.build), pensato per Cloudflare 
    Connect to Git → selezionare il repo.
 3. Impostazioni build: framework preset **Astro**, build command `npm run build`,
    output directory `dist`.
-4. Ogni push su `main` pubblica automaticamente. URL gratuito: `<progetto>.pages.dev`.
+4. Se il build fallisce per la versione di Node, impostare la variabile
+   d'ambiente NODE_VERSION=22 nelle impostazioni del progetto Pages (il file
+   .nvmrc nel repo la imposta già per gli ambienti che lo leggono).
+5. Ogni push su `main` pubblica automaticamente. URL gratuito: `<progetto>.pages.dev`.
 
 ## Dominio .it (quando si è pronti)
 

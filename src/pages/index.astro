@@ -10,12 +10,14 @@ const inEvidenza = (await getCollection('prodotti', (p) => p.data.inEvidenza)).s
 ---
 <Layout titolo="Home" descrizione={NEGOZIO.descrizione}>
   <section class="hero">
-    <Image src={heroFoto} alt="Showroom di Arredamenti Guerini" widths={[800, 1400, 2000]} sizes="100vw" loading="eager" />
-    <div class="hero-testo">
-      <div>
+    <div class="contenitore hero-griglia">
+      <div class="hero-testo">
         <h1>{NEGOZIO.nome}</h1>
         <p>{NEGOZIO.claim}</p>
-        <a class="bottone" href="/prodotti/">Scopri i prodotti</a>
+        <a class="bottone bottone--chiaro" href="/prodotti/">Scopri i prodotti</a>
+      </div>
+      <div class="hero-cornice">
+        <Image src={heroFoto} alt={`Showroom di ${NEGOZIO.nome}`} widths={[800, 1400, 2000]} sizes="(max-width: 800px) 100vw, 50vw" loading="eager" />
       </div>
     </div>
   </section>
@@ -33,7 +35,7 @@ const inEvidenza = (await getCollection('prodotti', (p) => p.data.inEvidenza)).s
     <div class="griglia-schede">
       {inEvidenza.map((p) => <SchedaProdotto prodotto={p} />)}
     </div>
-    <p style="margin-top: 1.5rem;">
+    <p class="spazio-sopra">
       <a class="bottone" href="/prodotti/">Vedi tutti i prodotti</a>
     </p>
   </section>
@@ -44,9 +46,9 @@ const inEvidenza = (await getCollection('prodotti', (p) => p.data.inEvidenza)).s
       {NEGOZIO.indirizzo.via}, {NEGOZIO.indirizzo.cap} {NEGOZIO.indirizzo.comune} ({NEGOZIO.indirizzo.provincia})
       — <a href={`tel:${NEGOZIO.telefono.replaceAll(' ', '')}`}>{NEGOZIO.telefono}</a>
     </p>
-    <p>
+    <p class="azioni">
       <a class="bottone" href="/contatti/">Contattaci</a>
-      <a class="bottone" href={`https://wa.me/${NEGOZIO.whatsapp.replace(/[^\d]/g, '')}`}>Scrivici su WhatsApp</a>
+      <a class="bottone bottone--secondario" href={`https://wa.me/${NEGOZIO.whatsapp.replace(/[^\d]/g, '')}`}>Scrivici su WhatsApp</a>
     </p>
   </section>
 </Layout>

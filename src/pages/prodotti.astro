@@ -15,9 +15,9 @@ const prodotti = await getCollection('prodotti');
     <p>{NEGOZIO.consegna}.</p>
 
     <div class="filtri" role="group" aria-label="Filtra per categoria">
-      <button type="button" class="attivo" data-filtro="tutti">Tutti</button>
+      <button type="button" class="attivo" aria-pressed="true" data-filtro="tutti">Tutti</button>
       {CATEGORIE.map((c) => (
-        <button type="button" data-filtro={c.slug}>{c.nome}</button>
+        <button type="button" aria-pressed="false" data-filtro={c.slug}>{c.nome}</button>
       ))}
     </div>
 
@@ -27,6 +27,7 @@ const prodotti = await getCollection('prodotti');
   </section>
 
   <dialog class="lightbox">
+    <button type="button" class="lightbox-chiudi" aria-label="Chiudi">✕</button>
     <img src="" alt="" />
     <p></p>
   </dialog>
@@ -38,7 +39,10 @@ const prodotti = await getCollection('prodotti');
   const schede = document.querySelectorAll<HTMLElement>('.scheda-prodotto');
   bottoni.forEach((bottone) => {
     bottone.addEventListener('click', () => {
-      bottoni.forEach((b) => b.classList.toggle('attivo', b === bottone));
+      bottoni.forEach((b) => {
+        b.classList.toggle('attivo', b === bottone);
+        b.setAttribute('aria-pressed', String(b === bottone));
+      });
       const filtro = bottone.dataset.filtro;
       schede.forEach((scheda) => {
         scheda.toggleAttribute(
@@ -62,5 +66,10 @@ const prodotti = await getCollection('prodotti');
       lightbox.showModal();
     });
   });
-  lightbox.addEventListener('click', () => lightbox.close());
+  lightbox
+    .querySelector('.lightbox-chiudi')!
+    .addEventListener('click', () => lightbox.close());
+  lightbox.addEventListener('click', (evento) => {
+    if (evento.target === lightbox) lightbox.close();
+  });
 </script>

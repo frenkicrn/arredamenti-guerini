@@ -1,7 +1,7 @@
 export const SERVIZI = [
   {
     nome: 'Progettazione',
-    descrizione: 'Progettiamo i tuoi spazi su misura, con rendering e consigli d\'arredo.',
+    descrizione: 'Progettiamo i tuoi spazi su misura, con rendering e consigli d’arredo.',
   },
   {
     nome: 'Rilievo misure',
@@ -9,7 +9,7 @@ export const SERVIZI = [
   },
   {
     nome: 'Montaggio',
-    descrizione: 'Consegna e montaggio a regola d\'arte da parte dei nostri tecnici.',
+    descrizione: 'Consegna e montaggio a regola d’arte da parte dei nostri tecnici.',
   },
   {
     nome: 'Pagamenti personalizzati',

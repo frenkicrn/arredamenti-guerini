@@ -1,0 +1,373 @@
+/* ============================================================
+   Arredamenti Guerini — direzione estetica "Bottega sul lago"
+   Legno (noce) + acqua del lago d'Iseo (verde lago) su carta calda.
+   Display: Bitter (slab serif, solidità artigiana)
+   Testo:   Karla (grottesca umanista, calda)
+   Tutte le coppie testo/sfondo verificate ≥ 4.5:1 (WCAG AA).
+   ============================================================ */
+
+:root {
+  /* Palette */
+  --carta: #f4f0e6;          /* fondo pagina */
+  --superficie: #fcfaf4;     /* card, passe-partout delle cornici */
+  --inchiostro: #26211a;     /* testo */
+  --inchiostro-tenue: #5c5344;
+  --verde-lago: #2c4a42;     /* primario: bottoni, hero, badge */
+  --verde-fondale: #24403a;  /* header */
+  --verde-notte: #1c2f2a;    /* footer, ombra piena delle cornici */
+  --noce: #7d4e2a;           /* accento legno: link, filetti, banner */
+  --noce-chiaro: #d9a86e;    /* dettagli su fondi scuri */
+  --bordo: #ddd4c2;
+  /* Tipografia */
+  --font-display: 'Bitter Variable', Georgia, serif;
+  --font-testo: 'Karla Variable', system-ui, sans-serif;
+  /* Misure */
+  --raggio: 3px;
+  --contenitore: 1100px;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: var(--font-testo);
+  font-size: 1.0625rem;
+  background: var(--carta);
+  color: var(--inchiostro);
+  line-height: 1.65;
+}
+
+::selection { background: var(--verde-lago); color: var(--carta); }
+
+h1, h2, h3 {
+  font-family: var(--font-display);
+  line-height: 1.15;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+img { max-width: 100%; height: auto; display: block; }
+a { color: var(--noce); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+a:hover { color: var(--verde-lago); }
+
+:focus-visible { outline: 2px solid var(--noce); outline-offset: 2px; }
+.sito-header :focus-visible,
+.hero :focus-visible,
+.sito-footer :focus-visible { outline-color: var(--noce-chiaro); }
+
+.contenitore {
+  max-width: var(--contenitore);
+  margin-inline: auto;
+  padding-inline: 1.25rem;
+}
+
+.sezione { padding-block: 3.25rem; }
+.sezione h1 { font-size: clamp(1.9rem, 3.5vw, 2.5rem); margin: 0 0 1rem; }
+.sezione h2 { font-size: clamp(1.45rem, 2.5vw, 1.9rem); margin-top: 0; }
+
+/* Filetto di noce sopra i titoli di sezione: il segno della bottega */
+.sezione h1::before,
+.sezione h2::before {
+  content: '';
+  display: block;
+  width: 2.5rem;
+  height: 3px;
+  background: var(--noce);
+  margin-bottom: 0.8rem;
+}
+.centrato h1::before,
+.centrato h2::before { margin-inline: auto; }
+
+/* Utilità */
+.centrato { text-align: center; }
+.spazio-sopra { margin-top: 1.5rem; }
+.azioni { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-block: 1rem 0; }
+.centrato .azioni { justify-content: center; }
+
+/* Bottoni */
+.bottone {
+  display: inline-block;
+  background: var(--verde-lago);
+  color: var(--superficie);
+  padding: 0.7rem 1.5rem;
+  border-radius: var(--raggio);
+  border: 1px solid var(--verde-lago);
+  font: inherit;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  text-decoration: none;
+  cursor: pointer;
+}
+.bottone:hover { background: var(--verde-notte); border-color: var(--verde-notte); color: var(--superficie); }
+.bottone--secondario {
+  background: transparent;
+  border-color: var(--noce);
+  color: var(--noce);
+}
+.bottone--secondario:hover { background: var(--noce); border-color: var(--noce); color: var(--superficie); }
+.bottone--chiaro {
+  background: var(--carta);
+  border-color: var(--carta);
+  color: var(--verde-lago);
+}
+.bottone--chiaro:hover { background: var(--noce-chiaro); border-color: var(--noce-chiaro); color: var(--verde-notte); }
+
+.badge {
+  display: inline-block;
+  background: var(--verde-lago);
+  color: var(--superficie);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 0.2rem 0.65rem;
+  border-radius: var(--raggio);
+}
+
+.griglia-schede {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 1.5rem;
+}
+
+/* Header */
+.sito-header {
+  background: var(--verde-fondale);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+.header-riga {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem 1.5rem;
+  padding-block: 0.9rem;
+}
+.logo {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  font-weight: 600;
+  text-decoration: none;
+  color: var(--carta);
+}
+.logo:hover { color: var(--noce-chiaro); }
+.logo strong { color: var(--noce-chiaro); font-weight: 700; }
+.sito-header nav { display: flex; flex-wrap: wrap; gap: 1.5rem; }
+.sito-header nav a {
+  text-decoration: none;
+  color: #cfc9ba;
+  padding-block: 0.2rem;
+  border-bottom: 2px solid transparent;
+}
+.sito-header nav a:hover { color: var(--carta); }
+.sito-header nav a[aria-current='page'] {
+  color: var(--carta);
+  font-weight: 700;
+  border-bottom-color: var(--noce-chiaro);
+}
+
+/* Hero: quadro incorniciato su fondo verde lago */
+.hero { background: var(--verde-lago); color: var(--carta); }
+.hero-griglia {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: clamp(2rem, 5vw, 4rem);
+  align-items: center;
+  padding-block: clamp(3rem, 7vw, 5.5rem);
+}
+.hero-testo h1 {
+  font-size: clamp(2.1rem, 5vw, 3.3rem);
+  margin: 0 0 0.75rem;
+  color: var(--carta);
+}
+.hero-testo p {
+  font-size: clamp(1.1rem, 1.8vw, 1.3rem);
+  color: #d9d3c4;
+  margin: 0 0 1.75rem;
+  max-width: 34ch;
+}
+.hero-cornice img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border: 10px solid var(--superficie);
+  box-shadow: 14px 14px 0 var(--verde-notte);
+}
+@media (max-width: 800px) {
+  .hero-griglia { grid-template-columns: 1fr; }
+  .hero-cornice { order: -1; }
+}
+
+/* Banner consegna */
+.banner-consegna {
+  background: var(--noce);
+  color: var(--superficie);
+  text-align: center;
+  padding: 0.75rem 1.25rem;
+  font-size: 0.95rem;
+  letter-spacing: 0.02em;
+}
+
+/* Footer */
+.sito-footer {
+  background: var(--verde-notte);
+  color: #d5cfc0;
+  border-top: 4px solid var(--noce);
+  margin-top: 3.5rem;
+  padding-block: 2.75rem;
+  font-size: 0.95rem;
+}
+.sito-footer a { color: #f0e8d8; }
+.sito-footer a:hover { color: var(--noce-chiaro); }
+.footer-colonne {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 2rem;
+}
+.sito-footer h3 { color: var(--carta); font-size: 1.05rem; margin-top: 0; }
+.sito-footer ul { list-style: none; padding: 0; margin: 0; }
+.footer-legale {
+  margin-top: 2.5rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid rgba(244, 240, 230, 0.18);
+  font-size: 0.85rem;
+}
+
+/* Scheda prodotto */
+.scheda-prodotto {
+  background: var(--superficie);
+  border: 1px solid var(--bordo);
+  border-radius: var(--raggio);
+  overflow: hidden;
+}
+.scheda-foto {
+  display: block;
+  width: 100%;
+  padding: 0;
+  border: none;
+  cursor: zoom-in;
+  background: none;
+}
+.scheda-foto img { aspect-ratio: 4 / 3; object-fit: cover; width: 100%; }
+.scheda-info { padding: 1rem 1.1rem 1.2rem; border-top: 1px solid var(--bordo); }
+.scheda-info h3 { margin: 0 0 0.3rem; font-size: 1.12rem; }
+.scheda-info .marchio,
+.scheda-testo .marchio {
+  margin: 0 0 0.5rem;
+  color: var(--inchiostro-tenue);
+  font-size: 0.9rem;
+  letter-spacing: 0.02em;
+}
+
+/* Schede di solo testo (servizi e marchi in Chi siamo) */
+.scheda-testo {
+  background: var(--superficie);
+  border: 1px solid var(--bordo);
+  border-left: 3px solid var(--noce);
+  border-radius: var(--raggio);
+  padding: 1.1rem 1.25rem;
+}
+.scheda-testo h3 { margin: 0 0 0.35rem; font-size: 1.12rem; }
+.scheda-testo p { margin: 0; }
+
+@media (prefers-reduced-motion: no-preference) {
+  .scheda-prodotto { transition: transform 0.18s ease, box-shadow 0.18s ease; }
+  .scheda-prodotto:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 22px rgba(38, 33, 26, 0.12);
+  }
+}
+
+/* Filtri gallery */
+.filtri {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-block: 1.5rem;
+}
+.filtri button {
+  background: var(--superficie);
+  border: 1px solid var(--bordo);
+  border-radius: var(--raggio);
+  padding: 0.45rem 1rem;
+  cursor: pointer;
+  font: inherit;
+  font-size: 0.95rem;
+  color: var(--inchiostro-tenue);
+}
+.filtri button:hover { border-color: var(--noce); color: var(--noce); }
+.filtri button.attivo {
+  background: var(--verde-lago);
+  border-color: var(--verde-lago);
+  color: var(--superficie);
+  font-weight: 700;
+}
+
+/* Lightbox */
+dialog.lightbox {
+  border: none;
+  border-radius: var(--raggio);
+  padding: 0;
+  max-width: min(92vw, 1000px);
+  background: var(--superficie);
+}
+dialog.lightbox::backdrop { background: rgba(28, 47, 42, 0.82); }
+dialog.lightbox img { max-height: 80vh; object-fit: contain; margin-inline: auto; }
+dialog.lightbox p {
+  margin: 0;
+  padding: 0.85rem 1rem;
+  text-align: center;
+  font-family: var(--font-display);
+}
+.lightbox-chiudi {
+  position: absolute;
+  top: 0.6rem;
+  right: 0.6rem;
+  width: 2.4rem;
+  height: 2.4rem;
+  border: none;
+  border-radius: 50%;
+  background: rgba(38, 33, 26, 0.72);
+  color: var(--carta);
+  font-size: 1.1rem;
+  line-height: 1;
+  cursor: pointer;
+}
+.lightbox-chiudi:hover { background: var(--verde-notte); }
+
+/* Form */
+.form-contatti { display: grid; gap: 1rem; max-width: 480px; }
+.form-contatti label { display: grid; gap: 0.3rem; font-weight: 700; }
+.form-contatti input,
+.form-contatti textarea {
+  font: inherit;
+  font-weight: 400;
+  padding: 0.65rem 0.85rem;
+  border: 1px solid var(--bordo);
+  border-radius: var(--raggio);
+  background: var(--superficie);
+  color: var(--inchiostro);
+}
+.form-contatti input:focus,
+.form-contatti textarea:focus {
+  border-color: var(--verde-lago);
+  outline: 2px solid var(--verde-lago);
+  outline-offset: 0;
+}
+.form-contatti .honeypot { position: absolute; left: -9999px; }
+.form-contatti .esito { font-weight: 700; }
+
+/* Contatti */
+.griglia-contatti {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2.5rem;
+}
+.mappa {
+  display: block;
+  border: 8px solid var(--superficie);
+  box-shadow: 0 0 0 1px var(--bordo);
+  border-radius: var(--raggio);
+}

@@ -1,0 +1,21 @@
+---
+const pathname = Astro.url.pathname.replace(/\/$/, '') || '/';
+const voci = [
+  { href: '/', testo: 'Home' },
+  { href: '/prodotti', testo: 'Prodotti' },
+  { href: '/chi-siamo', testo: 'Chi siamo' },
+  { href: '/contatti', testo: 'Contatti' },
+];
+---
+<header class="sito-header">
+  <div class="contenitore header-riga">
+    <a href="/" class="logo">Arredamenti <strong>Guerini</strong></a>
+    <nav aria-label="Principale">
+      {voci.map((v) => (
+        <a href={v.href === '/' ? '/' : v.href + '/'} aria-current={pathname === v.href ? 'page' : undefined}>
+          {v.testo}
+        </a>
+      ))}
+    </nav>
+  </div>
+</header>

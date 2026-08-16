@@ -1,0 +1,54 @@
+---
+import { getCollection } from 'astro:content';
+import { Image } from 'astro:assets';
+import Layout from '../layouts/Layout.astro';
+import SchedaProdotto from '../components/SchedaProdotto.astro';
+import { NEGOZIO } from '../data/negozio';
+import heroFoto from '../assets/prodotti/hero-showroom.jpg';
+
+const inEvidenza = (await getCollection('prodotti', (p) => p.data.inEvidenza)).slice(0, 4);
+---
+<Layout titolo="Home" descrizione={NEGOZIO.descrizione}>
+  <section class="hero">
+    <div class="contenitore hero-griglia">
+      <div class="hero-testo">
+        <h1>{NEGOZIO.nome}</h1>
+        <p>{NEGOZIO.claim}</p>
+        <a class="bottone bottone--chiaro" href="/prodotti/">Scopri i prodotti</a>
+      </div>
+      <div class="hero-cornice">
+        <Image src={heroFoto} alt={`Showroom di ${NEGOZIO.nome}`} widths={[800, 1400, 2000]} sizes="(max-width: 800px) 100vw, 50vw" loading="eager" />
+      </div>
+    </div>
+  </section>
+
+  <div class="banner-consegna">{NEGOZIO.consegna}</div>
+
+  <section class="sezione contenitore">
+    <h2>Il negozio</h2>
+    <p>{NEGOZIO.descrizione}</p>
+    <a href="/chi-siamo/">Scopri i nostri servizi e i marchi che trattiamo →</a>
+  </section>
+
+  <section class="sezione contenitore">
+    <h2>In evidenza</h2>
+    <div class="griglia-schede">
+      {inEvidenza.map((p) => <SchedaProdotto prodotto={p} />)}
+    </div>
+    <p class="spazio-sopra">
+      <a class="bottone" href="/prodotti/">Vedi tutti i prodotti</a>
+    </p>
+  </section>
+
+  <section class="sezione contenitore">
+    <h2>Vieni a trovarci</h2>
+    <p>
+      {NEGOZIO.indirizzo.via}, {NEGOZIO.indirizzo.cap} {NEGOZIO.indirizzo.comune} ({NEGOZIO.indirizzo.provincia})
+      — <a href={`tel:${NEGOZIO.telefono.replaceAll(' ', '')}`}>{NEGOZIO.telefono}</a>
+    </p>
+    <p class="azioni">
+      <a class="bottone" href="/contatti/">Contattaci</a>
+      <a class="bottone bottone--secondario" href={`https://wa.me/${NEGOZIO.whatsapp.replace(/[^\d]/g, '')}`}>Scrivici su WhatsApp</a>
+    </p>
+  </section>
+</Layout>

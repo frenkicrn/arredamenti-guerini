@@ -1,0 +1,69 @@
+---
+import '@fontsource-variable/bitter';
+import '@fontsource-variable/karla';
+import '../styles/global.css';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { NEGOZIO } from '../data/negozio';
+
+interface Props {
+  titolo: string;
+  descrizione: string;
+}
+const { titolo, descrizione } = Astro.props;
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FurnitureStore',
+  name: NEGOZIO.nome,
+  description: NEGOZIO.descrizione,
+  telephone: NEGOZIO.telefono,
+  email: NEGOZIO.email,
+  url: Astro.site?.toString(),
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: NEGOZIO.indirizzo.via,
+    postalCode: NEGOZIO.indirizzo.cap,
+    addressLocality: NEGOZIO.indirizzo.comune,
+    addressRegion: NEGOZIO.indirizzo.provincia,
+    addressCountry: 'IT',
+  },
+  sameAs: [NEGOZIO.facebook, NEGOZIO.instagram].filter(Boolean),
+  openingHoursSpecification: [
+    // DA CONFERMARE COL CLIENTE (derivato dagli orari placeholder in negozio.ts)
+    {
+      '@type': 'OpeningHoursSpecification',
+      dayOfWeek: ['Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
+      opens: '09:00',
+      closes: '12:00',
+    },
+    {
+      '@type': 'OpeningHoursSpecification',
+      dayOfWeek: ['Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
+      opens: '15:00',
+      closes: '19:00',
+    },
+  ],
+};
+---
+<!doctype html>
+<html lang="it">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{titolo} · Arredamenti Guerini</title>
+    <meta name="description" content={descrizione} />
+    <meta property="og:title" content={`${titolo} · Arredamenti Guerini`} />
+    <meta property="og:description" content={descrizione} />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="it_IT" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+  </head>
+  <body>
+    <Header />
+    <main><slot /></main>
+    <Footer />
+  </body>
+</html>

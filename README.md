@@ -47,9 +47,10 @@ Sito statico costruito con [Astro](https://astro.build), pensato per Cloudflare 
    Connect to Git → selezionare il repo.
 3. Impostazioni build: framework preset **Astro**, build command `npm run build`,
    output directory `dist`.
-4. Se il build fallisce per la versione di Node, impostare la variabile
-   d'ambiente NODE_VERSION=22 nelle impostazioni del progetto Pages (il file
-   .nvmrc nel repo la imposta già per gli ambienti che lo leggono).
+4. Serve Node ≥ 24 (con npm ≥ 11: il lockfile è generato da npm 11 e npm 10
+   non lo accetta). Il file .nvmrc nel repo lo imposta già; se il build
+   fallisce, impostare la variabile d'ambiente NODE_VERSION=24 nelle
+   impostazioni del progetto Pages.
 5. Ogni push su `main` pubblica automaticamente. URL gratuito: `<progetto>.pages.dev`.
 
 ## Dominio .it (quando si è pronti)

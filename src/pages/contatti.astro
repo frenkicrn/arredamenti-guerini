@@ -10,7 +10,7 @@ import { NEGOZIO } from '../data/negozio';
   <section class="sezione contenitore">
     <h1>Contatti</h1>
 
-    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2.5rem;">
+    <div class="griglia-contatti">
       <div>
         <h2>Scrivici</h2>
         <p>Richiedi un preventivo o un appuntamento: ti rispondiamo al più presto.</p>
@@ -26,11 +26,11 @@ import { NEGOZIO } from '../data/negozio';
           Email: <a href={`mailto:${NEGOZIO.email}`}>{NEGOZIO.email}</a>
         </p>
         <iframe
+          class="mappa"
           src={NEGOZIO.mapsEmbedUrl}
           title={`Mappa: ${NEGOZIO.nome}`}
           width="100%"
           height="300"
-          style="border: 0; border-radius: var(--raggio);"
           loading="lazy"
           referrerpolicy="no-referrer-when-downgrade"
         ></iframe>

@@ -4,7 +4,7 @@ import { NEGOZIO } from '../data/negozio';
 <form class="form-contatti" data-telefono={NEGOZIO.telefono}>
   <input type="hidden" name="access_key" value={NEGOZIO.web3formsKey} />
   <input type="hidden" name="subject" value="Nuova richiesta dal sito Arredamenti Guerini" />
-  <input type="checkbox" name="botcheck" class="honeypot" tabindex="-1" autocomplete="off" />
+  <input type="checkbox" name="botcheck" class="honeypot" tabindex="-1" autocomplete="off" aria-hidden="true" />
 
   <label>
     Nome e cognome

@@ -2,7 +2,7 @@ export const NEGOZIO = {
   nome: 'Arredamenti Guerini snc',
   claim: 'Arrediamo la tua casa dal progetto al montaggio',
   descrizione:
-    'Negozio di arredamenti a Sale Marasino, sul lago d\'Iseo: cucine, camere, divani, materassi e soggiorni dei migliori marchi, con progettazione e montaggio compresi in zona Brescia.',
+    'Negozio di arredamenti a Sale Marasino, sul lago d’Iseo: cucine, camere, divani, materassi e soggiorni dei migliori marchi, con progettazione e montaggio compresi in zona Brescia.',
   indirizzo: {
     via: 'Via Roma 1', // DA CONFERMARE COL CLIENTE
     cap: '25057',

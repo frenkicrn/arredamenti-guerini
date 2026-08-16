@@ -1,0 +1,52 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { NEGOZIO } from '../data/negozio';
+import { SERVIZI, NOTA_SERVIZI } from '../data/servizi';
+import { MARCHI } from '../data/marchi';
+---
+<Layout
+  titolo="Chi siamo"
+  descrizione="Arredamenti Guerini: servizi di progettazione, rilievo misure e montaggio, e i marchi che trattiamo — Scavolini, Gruppo Colombini e altri."
+>
+  <section class="sezione contenitore">
+    <h1>Chi siamo</h1>
+    <!-- TESTO PROVVISORIO: da sostituire con la storia fornita dal cliente -->
+    <p>
+      {NEGOZIO.nome} è il punto di riferimento per l'arredamento a
+      {NEGOZIO.indirizzo.comune} e sul lago d'Iseo: da anni accompagniamo le
+      famiglie della zona nella scelta di cucine, camere, divani e soggiorni,
+      seguendo ogni progetto dalla prima idea al montaggio finale.
+    </p>
+  </section>
+
+  <section class="sezione contenitore">
+    <h2>I nostri servizi</h2>
+    <div class="griglia-schede">
+      {SERVIZI.map((s) => (
+        <article class="scheda-prodotto">
+          <div class="scheda-info">
+            <h3>{s.nome}</h3>
+            <p>{s.descrizione}</p>
+          </div>
+        </article>
+      ))}
+    </div>
+    <p style="margin-top: 1rem;"><strong>{NOTA_SERVIZI}</strong>. {NEGOZIO.consegna}.</p>
+  </section>
+
+  <section class="sezione contenitore">
+    <h2>I nostri marchi</h2>
+    <div class="griglia-schede">
+      {MARCHI.map((m) => (
+        <article class="scheda-prodotto">
+          <div class="scheda-info">
+            <h3>{m.nome}</h3>
+            <p class="marchio">{m.prodotti}</p>
+          </div>
+        </article>
+      ))}
+    </div>
+    <!-- Quando il cliente fornisce/approva i loghi, sostituire i nomi testuali
+         con immagini in src/assets/marchi/ e aggiungere logo?: image() allo schema -->
+  </section>
+</Layout>

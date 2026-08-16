@@ -1,0 +1,66 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../layouts/Layout.astro';
+import SchedaProdotto from '../components/SchedaProdotto.astro';
+import { CATEGORIE, NEGOZIO } from '../data/negozio';
+
+const prodotti = await getCollection('prodotti');
+---
+<Layout
+  titolo="Prodotti"
+  descrizione="Cucine, camere, divani, materassi, soggiorni ed elettrodomestici in esposizione da Arredamenti Guerini a Sale Marasino."
+>
+  <section class="sezione contenitore">
+    <h1>I nostri prodotti</h1>
+    <p>{NEGOZIO.consegna}.</p>
+
+    <div class="filtri" role="group" aria-label="Filtra per categoria">
+      <button type="button" class="attivo" data-filtro="tutti">Tutti</button>
+      {CATEGORIE.map((c) => (
+        <button type="button" data-filtro={c.slug}>{c.nome}</button>
+      ))}
+    </div>
+
+    <div class="griglia-schede">
+      {prodotti.map((p) => <SchedaProdotto prodotto={p} />)}
+    </div>
+  </section>
+
+  <dialog class="lightbox">
+    <img src="" alt="" />
+    <p></p>
+  </dialog>
+</Layout>
+
+<script>
+  // Filtro per categoria
+  const bottoni = document.querySelectorAll<HTMLButtonElement>('[data-filtro]');
+  const schede = document.querySelectorAll<HTMLElement>('.scheda-prodotto');
+  bottoni.forEach((bottone) => {
+    bottone.addEventListener('click', () => {
+      bottoni.forEach((b) => b.classList.toggle('attivo', b === bottone));
+      const filtro = bottone.dataset.filtro;
+      schede.forEach((scheda) => {
+        scheda.toggleAttribute(
+          'hidden',
+          filtro !== 'tutti' && scheda.dataset.categoria !== filtro
+        );
+      });
+    });
+  });
+
+  // Lightbox
+  const lightbox = document.querySelector<HTMLDialogElement>('dialog.lightbox')!;
+  const lightboxImg = lightbox.querySelector('img')!;
+  const lightboxTesto = lightbox.querySelector('p')!;
+  schede.forEach((scheda) => {
+    scheda.querySelector('.scheda-foto')?.addEventListener('click', () => {
+      const img = scheda.querySelector('img')!;
+      lightboxImg.src = img.currentSrc || img.src;
+      lightboxImg.alt = img.alt;
+      lightboxTesto.textContent = scheda.querySelector('h3')!.textContent;
+      lightbox.showModal();
+    });
+  });
+  lightbox.addEventListener('click', () => lightbox.close());
+</script>

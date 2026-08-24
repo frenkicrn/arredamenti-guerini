@@ -20,7 +20,7 @@ export const CATEGORIE: Categoria[] = [
     slug: 'camere',
     nome: 'Camere',
     etichetta: 'camere e camerette',
-    titoloSeo: 'Camere e camerette a Sale Marasino (Lago d\'Iseo) | Arredamenti Guerini',
+    titoloSeo: 'Camere e camerette a Sale Marasino (Lago d’Iseo) | Arredamenti Guerini',
     descrizioneSeo:
       'Camere matrimoniali, camerette e letti imbottiti a Sale Marasino (BS). Progettazione, rilievo misure e montaggio compresi in zona Brescia.',
     intro:
@@ -32,7 +32,7 @@ export const CATEGORIE: Categoria[] = [
     slug: 'cucine',
     nome: 'Cucine',
     etichetta: 'cucine su misura',
-    titoloSeo: 'Cucine Scavolini a Sale Marasino e sul Lago d\'Iseo | Arredamenti Guerini',
+    titoloSeo: 'Cucine Scavolini a Sale Marasino e sul Lago d’Iseo | Arredamenti Guerini',
     descrizioneSeo:
       'Cucine Scavolini componibili e su misura a Sale Marasino (BS): progetto, rilievo misure e montaggio compresi in zona Brescia.',
     intro:
@@ -44,7 +44,7 @@ export const CATEGORIE: Categoria[] = [
     slug: 'divani',
     nome: 'Divani',
     etichetta: 'divani e poltrone',
-    titoloSeo: 'Divani e poltrone relax a Sale Marasino (Lago d\'Iseo) | Arredamenti Guerini',
+    titoloSeo: 'Divani e poltrone relax a Sale Marasino (Lago d’Iseo) | Arredamenti Guerini',
     descrizioneSeo:
       'Divani Biel e poltrone elettriche Vitarelax a Sale Marasino (BS). Provali in negozio: consegna e montaggio compresi in zona Brescia.',
     intro:
@@ -56,7 +56,7 @@ export const CATEGORIE: Categoria[] = [
     slug: 'materassi',
     nome: 'Materassi',
     etichetta: 'riposo su misura',
-    titoloSeo: 'Materassi e reti a Sale Marasino (Lago d\'Iseo) | Arredamenti Guerini',
+    titoloSeo: 'Materassi e reti a Sale Marasino (Lago d’Iseo) | Arredamenti Guerini',
     descrizioneSeo:
       'Materassi e reti Cuorflex a Sale Marasino (BS): consulenza in negozio per scegliere il sistema letto giusto. Alcuni articoli in pronta consegna.',
     intro:
@@ -80,7 +80,7 @@ export const CATEGORIE: Categoria[] = [
     slug: 'elettrodomestici',
     nome: 'Elettrodomestici',
     etichetta: 'incasso abbinato',
-    titoloSeo: 'Elettrodomestici da incasso a Sale Marasino (Lago d\'Iseo) | Arredamenti Guerini',
+    titoloSeo: 'Elettrodomestici da incasso a Sale Marasino (Lago d’Iseo) | Arredamenti Guerini',
     descrizioneSeo:
       'Elettrodomestici da incasso abbinati alla tua cucina Scavolini, a Sale Marasino (BS): scelta, consegna e installazione con il resto della composizione.',
     intro:

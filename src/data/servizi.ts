@@ -18,7 +18,7 @@ export const SERVIZI: Servizio[] = [
   {
     slug: 'rilievo-misure',
     nome: 'Rilievo misure',
-    breve: 'Veniamo noi a misurare la stanza prima dell\'ordine.',
+    breve: 'Veniamo noi a misurare la stanza prima dell’ordine.',
     descrizione:
       'Prima di ordinare veniamo a casa tua a prendere le misure: pareti, prese, finestre, pendenze. È il passaggio che evita sorprese al montaggio ed è compreso nel servizio in zona Brescia.',
   },
@@ -27,7 +27,7 @@ export const SERVIZI: Servizio[] = [
     nome: 'Montaggio',
     breve: 'Consegna e montaggio con la nostra squadra.',
     descrizione:
-      'Consegniamo e montiamo con la nostra squadra, che conosce il progetto dall\'inizio. A fine lavoro la stanza è pronta da usare.',
+      'Consegniamo e montiamo con la nostra squadra, che conosce il progetto dall’inizio. A fine lavoro la stanza è pronta da usare.',
   },
   {
     slug: 'pagamenti-personalizzati',

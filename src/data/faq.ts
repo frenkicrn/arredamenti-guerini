@@ -12,12 +12,12 @@ export const FAQ: Voce[] = [
   {
     domanda: 'In quale zona consegnate e montate?',
     risposta:
-      'Consegna, rilievo misure e montaggio sono compresi in zona Brescia, Lago d\'Iseo e dintorni. Per altre zone contattaci: valutiamo insieme.',
+      'Consegna, rilievo misure e montaggio sono compresi in zona Brescia, Lago d’Iseo e dintorni. Per altre zone contattaci: valutiamo insieme.',
   },
   {
     domanda: 'Come funziona il rilievo misure?',
     risposta:
-      'Fissiamo un appuntamento e veniamo noi a misurare la stanza prima dell\'ordine, così il progetto è fatto sulle dimensioni reali della tua casa.',
+      'Fissiamo un appuntamento e veniamo noi a misurare la stanza prima dell’ordine, così il progetto è fatto sulle dimensioni reali della tua casa.',
   },
   {
     domanda: 'Quali forme di pagamento accettate?',

@@ -1,29 +1,45 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import FormContatti from '../components/FormContatti.astro';
+import Faq from '../components/Faq.astro';
 import { NEGOZIO } from '../data/negozio';
+import { FAQ } from '../data/faq';
+
+const wa = `https://wa.me/${NEGOZIO.whatsapp.replace(/[^\d]/g, '')}`;
+const faqJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: FAQ.map((v) => ({
+    '@type': 'Question',
+    name: v.domanda,
+    acceptedAnswer: { '@type': 'Answer', text: v.risposta },
+  })),
+};
 ---
 <Layout
-  titolo="Contatti"
-  descrizione="Contatta Arredamenti Guerini a Sale Marasino: telefono, WhatsApp, email, orari di apertura e modulo per richiedere un preventivo."
+  titoloCompleto
+  titolo="Contatti e orari · Arredamenti Guerini, Sale Marasino (BS)"
+  descrizione="Richiedi un preventivo o vieni in negozio a Sale Marasino: telefono, WhatsApp, indicazioni, orari di apertura e risposte alle domande frequenti."
 >
   <section class="sezione contenitore">
     <h1>Contatti</h1>
-
     <div class="griglia-contatti">
       <div>
-        <h2>Scrivici</h2>
-        <p>Richiedi un preventivo o un appuntamento: ti rispondiamo al più presto.</p>
+        <h2>Richiedi un preventivo</h2>
+        <p>Raccontaci la stanza e cosa vorresti: ti rispondiamo per fissare un appuntamento o un rilievo misure.</p>
         <FormContatti />
       </div>
 
-      <div>
+      <div id="dove-siamo">
         <h2>Dove siamo</h2>
         <p>
           {NEGOZIO.indirizzo.via}, {NEGOZIO.indirizzo.cap} {NEGOZIO.indirizzo.comune} ({NEGOZIO.indirizzo.provincia})<br />
           Telefono: <a href={`tel:${NEGOZIO.telefono.replaceAll(' ', '')}`}>{NEGOZIO.telefono}</a><br />
-          WhatsApp: <a href={`https://wa.me/${NEGOZIO.whatsapp.replace(/[^\d]/g, '')}`}>scrivici</a><br />
+          WhatsApp: <a href={wa}>Scrivici su WhatsApp</a><br />
           Email: <a href={`mailto:${NEGOZIO.email}`}>{NEGOZIO.email}</a>
+        </p>
+        <p class="azioni">
+          <a class="bottone" href={NEGOZIO.mapsDirectionsUrl} rel="noopener">Indicazioni</a>
         </p>
         <iframe
           class="mappa"
@@ -41,11 +57,14 @@ import { NEGOZIO } from '../data/negozio';
             <li><strong>{o.giorni}</strong>: {o.orario}</li>
           ))}
         </ul>
-
-        <p>
-          Seguici su <a href={NEGOZIO.facebook}>Facebook</a>{NEGOZIO.instagram && <> e <a href={NEGOZIO.instagram}>Instagram</a></>} per le ultime novità.
-        </p>
+        <p>Seguici su <a href={NEGOZIO.facebook}>Facebook</a>{NEGOZIO.instagram && <> e <a href={NEGOZIO.instagram}>Instagram</a></>} per le novità in negozio.</p>
       </div>
     </div>
+  </section>
+
+  <section class="sezione--stretta contenitore">
+    <h2>Domande frequenti</h2>
+    <Faq voci={FAQ} />
+    <script type="application/ld+json" set:html={JSON.stringify(faqJsonLd)} />
   </section>
 </Layout>

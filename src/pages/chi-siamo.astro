@@ -1,47 +1,28 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import CtaFinale from '../components/CtaFinale.astro';
 import { NEGOZIO } from '../data/negozio';
-import { SERVIZI, NOTA_SERVIZI } from '../data/servizi';
-import { MARCHI } from '../data/marchi';
 ---
 <Layout
-  titolo="Chi siamo"
-  descrizione="Arredamenti Guerini: servizi di progettazione, rilievo misure e montaggio, e i marchi che trattiamo — Scavolini, Gruppo Colombini e altri."
+  titoloCompleto
+  titolo="Chi siamo · Negozio di arredamento di famiglia a Sale Marasino | Arredamenti Guerini"
+  descrizione="Arredamenti Guerini è un negozio di arredamento a conduzione familiare a Sale Marasino, sul Lago d’Iseo: showroom, consulenza e montaggio compresi in zona Brescia."
 >
   <section class="sezione contenitore">
-    <h1>Chi siamo</h1>
-    <!-- TESTO PROVVISORIO: da sostituire con la storia fornita dal cliente -->
-    <p>
-      {NEGOZIO.nome} è il punto di riferimento per l’arredamento a {NEGOZIO.indirizzo.comune} e sul lago d’Iseo: da anni accompagniamo le
-      famiglie della zona nella scelta di cucine, camere, divani e soggiorni,
-      seguendo ogni progetto dalla prima idea al montaggio finale.
-    </p>
+    <h1>Una bottega di famiglia sul Lago d’Iseo</h1>
+    <!-- TESTO DA CONFERMARE COL CLIENTE: anno di apertura, chi gestisce il negozio, generazioni -->
+    <p class="intro">Siamo un negozio di arredamento a conduzione familiare a {NEGOZIO.indirizzo.comune}, sul Lago d’Iseo. Le case della zona le conosciamo una per una: ecco perché prima di proporre un mobile veniamo a misurare la stanza.</p>
+
+    <h2>Come vi accogliamo</h2>
+    <p>In negozio trovi cucine, camere, divani e materassi in esposizione, da toccare e provare, e cataloghi e campioni dei marchi che trattiamo. Ci sediamo con te, ascoltiamo come vivi la casa e disegniamo insieme la soluzione: senza fretta e con un preventivo chiaro.</p>
+
+    <h2>Perché sceglierci</h2>
+    <ul>
+      <li><strong>Marchi che conosciamo bene</strong> — pochi e scelti: <a href="/marchi/">li vedi qui</a>.</li>
+      <li><strong>Servizi compresi</strong> — progettazione, rilievo misure e montaggio in zona Brescia: <a href="/servizi/">come lavoriamo</a>.</li>
+      <li><strong>Una persona di riferimento</strong> — chi ti accoglie in negozio segue il tuo progetto fino al montaggio.</li>
+    </ul>
   </section>
 
-  <section class="sezione contenitore">
-    <h2>I nostri servizi</h2>
-    <div class="griglia-schede">
-      {SERVIZI.map((s) => (
-        <article class="scheda-testo">
-          <h3>{s.nome}</h3>
-          <p>{s.descrizione}</p>
-        </article>
-      ))}
-    </div>
-    <p class="spazio-sopra"><strong>{NOTA_SERVIZI}</strong>. {NEGOZIO.consegna}.</p>
-  </section>
-
-  <section class="sezione contenitore">
-    <h2>I nostri marchi</h2>
-    <div class="griglia-schede">
-      {MARCHI.map((m) => (
-        <article class="scheda-testo">
-          <h3>{m.nome}</h3>
-          <p class="marchio">{m.prodotti}</p>
-        </article>
-      ))}
-    </div>
-    <!-- Quando il cliente fornisce/approva i loghi, sostituire i nomi testuali
-         con immagini in src/assets/marchi/ e aggiungere logo?: image() allo schema -->
-  </section>
+  <CtaFinale titolo="Passa a conoscerci" testo="Lo showroom è a Sale Marasino, sul lago: vieni quando vuoi negli orari di apertura, o fissiamo un appuntamento." />
 </Layout>

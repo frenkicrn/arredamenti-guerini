@@ -1,8 +1,9 @@
 export const NEGOZIO = {
   nome: 'Arredamenti Guerini snc',
-  claim: 'Arrediamo la tua casa dal progetto al montaggio',
+  claim: 'Arrediamo la tua casa, dal progetto al montaggio',
+  claimBreve: 'Mobili e cucine a Sale Marasino, sul Lago d\'Iseo',
   descrizione:
-    'Negozio di arredamenti a Sale Marasino, sul lago d’Iseo: cucine, camere, divani, materassi e soggiorni dei migliori marchi, con progettazione e montaggio compresi in zona Brescia.',
+    'Negozio di arredamento a conduzione familiare a Sale Marasino, sul Lago d\'Iseo: cucine, camere, divani, materassi e soggiorni dei marchi che conosciamo bene, con progettazione, rilievo misure e montaggio compresi in zona Brescia.',
   indirizzo: {
     via: 'Via Roma 1', // DA CONFERMARE COL CLIENTE
     cap: '25057',
@@ -16,6 +17,8 @@ export const NEGOZIO = {
   instagram: '', // DA CONFERMARE COL CLIENTE (vuoto = link non mostrato)
   mapsEmbedUrl:
     'https://www.google.com/maps?q=Arredamenti+Guerini+Sale+Marasino&output=embed',
+  mapsDirectionsUrl:
+    'https://www.google.com/maps/dir/?api=1&destination=Arredamenti+Guerini+Sale+Marasino',
   orari: [
     { giorni: 'Lunedì', orario: 'Chiuso' }, // DA CONFERMARE COL CLIENTE
     { giorni: 'Martedì – Sabato', orario: '9:00–12:00 · 15:00–19:00' },
@@ -25,12 +28,3 @@ export const NEGOZIO = {
     'Consegna a partire da 1 mese · alcuni articoli in pronta consegna',
   web3formsKey: 'INSERIRE_CHIAVE_WEB3FORMS', // DA CONFERMARE COL CLIENTE
 };
-
-export const CATEGORIE = [
-  { slug: 'camere', nome: 'Camere' },
-  { slug: 'cucine', nome: 'Cucine' },
-  { slug: 'divani', nome: 'Divani' },
-  { slug: 'materassi', nome: 'Materassi' },
-  { slug: 'soggiorno', nome: 'Mobili soggiorno' },
-  { slug: 'elettrodomestici', nome: 'Elettrodomestici' },
-] as const;

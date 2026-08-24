@@ -2,7 +2,8 @@
 import { getCollection } from 'astro:content';
 import Layout from '../layouts/Layout.astro';
 import SchedaProdotto from '../components/SchedaProdotto.astro';
-import { CATEGORIE, NEGOZIO } from '../data/negozio';
+import { NEGOZIO } from '../data/negozio';
+import { CATEGORIE } from '../data/categorie';
 
 const prodotti = await getCollection('prodotti');
 ---

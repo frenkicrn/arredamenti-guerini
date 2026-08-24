@@ -1,0 +1,44 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+import Breadcrumb from '../../components/Breadcrumb.astro';
+import CardMarchio from '../../components/CardMarchio.astro';
+import GalleriaProdotti from '../../components/GalleriaProdotti.astro';
+import CtaFinale from '../../components/CtaFinale.astro';
+import { CATEGORIE, type Categoria } from '../../data/categorie';
+import { MARCHI } from '../../data/marchi';
+
+export function getStaticPaths() {
+  return CATEGORIE.map((categoria) => ({ params: { categoria: categoria.slug }, props: { categoria } }));
+}
+
+interface Props {
+  categoria: Categoria;
+}
+const { categoria } = Astro.props;
+const prodotti = await getCollection('prodotti', (p) => p.data.categoria === categoria.slug);
+const marchi = MARCHI.filter((m) => categoria.marchi.includes(m.slug));
+---
+<Layout titoloCompleto titolo={categoria.titoloSeo} descrizione={categoria.descrizioneSeo}>
+  <section class="sezione contenitore">
+    <Breadcrumb voci={[{ nome: 'Home', href: '/' }, { nome: 'Prodotti', href: '/prodotti/' }, { nome: categoria.nome }]} />
+    <h1>{categoria.nome} a Sale Marasino e sul Lago d’Iseo</h1>
+    <p class="intro">{categoria.intro}</p>
+
+    <h2>I marchi per {categoria.nome.toLowerCase()}</h2>
+    <div class="griglia-marchi">
+      {marchi.map((m) => <CardMarchio marchio={m} />)}
+    </div>
+  </section>
+
+  <section class="sezione--stretta contenitore">
+    <h2>In esposizione</h2>
+    {prodotti.length > 0 ? (
+      <GalleriaProdotti prodotti={prodotti} />
+    ) : (
+      <p class="vuoto">Le foto di questa categoria arrivano presto. Nel frattempo vieni in negozio: la selezione è in esposizione.</p>
+    )}
+  </section>
+
+  <CtaFinale titolo={`Un preventivo per ${categoria.nome.toLowerCase()}?`} testo="Raccontaci la stanza e le misure che hai, o fissiamo un appuntamento per venire a misurare noi." />
+</Layout>

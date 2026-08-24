@@ -29,11 +29,18 @@ const voci = [
   const bottone = document.querySelector<HTMLButtonElement>('.menu-bottone')!;
   const menu = document.getElementById('menu-mobile')!;
   const chiudi = menu.querySelector<HTMLButtonElement>('.menu-chiudi')!;
+  const fuori = [
+    document.querySelector('.header-riga'),
+    document.querySelector('main'),
+    document.querySelector('.sito-footer'),
+    document.querySelector('.barra-mobile'),
+  ];
 
   function imposta(aperto: boolean) {
     menu.hidden = !aperto;
     bottone.setAttribute('aria-expanded', String(aperto));
     document.body.classList.toggle('menu-aperto', aperto);
+    fuori.forEach((el) => el?.toggleAttribute('inert', aperto));
     (aperto ? chiudi : bottone).focus();
   }
   bottone.addEventListener('click', () => imposta(menu.hidden));

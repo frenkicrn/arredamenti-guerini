@@ -1,0 +1,37 @@
+---
+// Hero.astro
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+import Quota from './Quota.astro';
+import { NEGOZIO } from '../data/negozio';
+
+interface Props {
+  titolo: string;
+  sottotitolo: string;
+  foto: ImageMetadata;
+  altFoto: string;
+  meta?: string[];
+}
+const { titolo, sottotitolo, foto, altFoto, meta = [] } = Astro.props;
+---
+<section class="hero">
+  <div class="contenitore hero-griglia">
+    <div class="hero-testo">
+      <div class="hero-quota"><Quota da="progetto" a="montaggio" /></div>
+      <h1>{titolo}</h1>
+      <p>{sottotitolo}</p>
+      <div class="azioni">
+        <a class="bottone bottone--chiaro" href="/contatti/">Richiedi un preventivo</a>
+        <a class="bottone bottone--contorno-chiaro" href="/contatti/#dove-siamo">Vieni in negozio</a>
+      </div>
+    </div>
+    <div class="hero-cornice">
+      <Image src={foto} alt={altFoto} widths={[800, 1400, 2000]} sizes="(max-width: 800px) 100vw, 50vw" loading="eager" />
+    </div>
+  </div>
+</section>
+{meta.length > 0 && (
+  <ul class="meta-riga">
+    {meta.map((m) => <li>{m}</li>)}
+  </ul>
+)}

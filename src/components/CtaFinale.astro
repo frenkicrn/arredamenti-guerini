@@ -1,0 +1,25 @@
+---
+// CtaFinale.astro — chiusura di ogni pagina con i tre verbi del sito.
+import { NEGOZIO } from '../data/negozio';
+
+interface Props {
+  titolo?: string;
+  testo?: string;
+}
+const {
+  titolo = 'Parliamo del tuo progetto',
+  testo = 'Passa in negozio a Sale Marasino, chiamaci o scrivici: ti ascoltiamo e ti diciamo come possiamo aiutarti.',
+} = Astro.props;
+const wa = `https://wa.me/${NEGOZIO.whatsapp.replace(/[^\d]/g, '')}`;
+---
+<section class="cta-finale">
+  <div class="contenitore">
+    <h2>{titolo}</h2>
+    <p>{testo}</p>
+    <div class="azioni">
+      <a class="bottone bottone--chiaro" href="/contatti/">Richiedi un preventivo</a>
+      <a class="bottone bottone--contorno-chiaro" href="/contatti/#dove-siamo">Vieni in negozio</a>
+      <a class="bottone bottone--contorno-chiaro" href={wa}>Scrivici su WhatsApp</a>
+    </div>
+  </div>
+</section>

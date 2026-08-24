@@ -1,0 +1,66 @@
+---
+// GalleriaProdotti.astro — griglia prodotti + lightbox (+ filtri opzionali). Unico punto con questo JS.
+import type { CollectionEntry } from 'astro:content';
+import SchedaProdotto from './SchedaProdotto.astro';
+import { CATEGORIE } from '../data/categorie';
+
+interface Props {
+  prodotti: CollectionEntry<'prodotti'>[];
+  filtri?: boolean;
+}
+const { prodotti, filtri = false } = Astro.props;
+---
+{filtri && (
+  <div class="filtri" role="group" aria-label="Filtra per categoria">
+    <button type="button" class="attivo" aria-pressed="true" data-filtro="tutti">Tutti</button>
+    {CATEGORIE.map((c) => (
+      <button type="button" aria-pressed="false" data-filtro={c.slug}>{c.nome}</button>
+    ))}
+  </div>
+)}
+
+<div class="griglia-schede">
+  {prodotti.map((p) => <SchedaProdotto prodotto={p} />)}
+</div>
+
+<dialog class="lightbox">
+  <button type="button" class="lightbox-chiudi" aria-label="Chiudi">✕</button>
+  <img src="" alt="" />
+  <p></p>
+</dialog>
+
+<script>
+  // Filtro per categoria (solo se i bottoni esistono)
+  const bottoni = document.querySelectorAll<HTMLButtonElement>('[data-filtro]');
+  const schede = document.querySelectorAll<HTMLElement>('.scheda-prodotto');
+  bottoni.forEach((bottone) => {
+    bottone.addEventListener('click', () => {
+      bottoni.forEach((b) => {
+        b.classList.toggle('attivo', b === bottone);
+        b.setAttribute('aria-pressed', String(b === bottone));
+      });
+      const filtro = bottone.dataset.filtro;
+      schede.forEach((scheda) => {
+        scheda.toggleAttribute('hidden', filtro !== 'tutti' && scheda.dataset.categoria !== filtro);
+      });
+    });
+  });
+
+  // Lightbox
+  const lightbox = document.querySelector<HTMLDialogElement>('dialog.lightbox')!;
+  const lightboxImg = lightbox.querySelector('img')!;
+  const lightboxTesto = lightbox.querySelector('p')!;
+  schede.forEach((scheda) => {
+    scheda.querySelector('.scheda-foto')?.addEventListener('click', () => {
+      const img = scheda.querySelector('img')!;
+      lightboxImg.src = img.currentSrc || img.src;
+      lightboxImg.alt = img.alt;
+      lightboxTesto.textContent = scheda.querySelector('h3')!.textContent;
+      lightbox.showModal();
+    });
+  });
+  lightbox.querySelector('.lightbox-chiudi')!.addEventListener('click', () => lightbox.close());
+  lightbox.addEventListener('click', (evento) => {
+    if (evento.target === lightbox) lightbox.close();
+  });
+</script>

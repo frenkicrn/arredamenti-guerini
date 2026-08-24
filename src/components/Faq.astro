@@ -1,0 +1,17 @@
+---
+// Faq.astro — <details> nativo, zero JS.
+import type { Voce } from '../data/faq';
+
+interface Props {
+  voci: Voce[];
+}
+const { voci } = Astro.props;
+---
+<div class="faq">
+  {voci.map((v) => (
+    <details>
+      <summary>{v.domanda}</summary>
+      <p>{v.risposta}</p>
+    </details>
+  ))}
+</div>

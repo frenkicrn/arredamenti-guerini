@@ -1,0 +1,14 @@
+---
+// ServizioVoce.astro
+import type { Servizio } from '../data/servizi';
+
+interface Props {
+  servizio: Servizio;
+  breve?: boolean;
+}
+const { servizio, breve = false } = Astro.props;
+---
+<article class:list={['servizio-voce', { 'servizio-voce--breve': breve }]} id={breve ? undefined : servizio.slug}>
+  <h3>{servizio.nome}</h3>
+  <p>{breve ? servizio.breve : servizio.descrizione}</p>
+</article>

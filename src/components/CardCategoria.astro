@@ -1,0 +1,21 @@
+---
+// CardCategoria.astro
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+import type { Categoria } from '../data/categorie';
+
+interface Props {
+  categoria: Categoria;
+}
+const { categoria } = Astro.props;
+
+const immagini = import.meta.glob<{ default: ImageMetadata }>('../assets/prodotti/*.jpg', { eager: true });
+const foto = immagini[`../assets/prodotti/${categoria.foto}.jpg`].default;
+---
+<a class="card-categoria" href={`/prodotti/${categoria.slug}/`}>
+  <Image src={foto} alt={`${categoria.nome}: esempio di arredo esposto da Arredamenti Guerini a Sale Marasino`} widths={[400, 800]} sizes="(max-width: 700px) 100vw, 33vw" loading="lazy" />
+  <div class="card-categoria__testo">
+    <h3>{categoria.nome}</h3>
+    <p class="card-categoria__etichetta">{categoria.etichetta}</p>
+  </div>
+</a>

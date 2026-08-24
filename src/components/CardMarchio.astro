@@ -1,0 +1,25 @@
+---
+// CardMarchio.astro — compatta (nome + prodotti) o estesa (logo, descrizione, categorie)
+import type { Marchio } from '../data/marchi';
+import { CATEGORIE } from '../data/categorie';
+
+interface Props {
+  marchio: Marchio;
+  estesa?: boolean;
+}
+const { marchio, estesa = false } = Astro.props;
+const categorie = CATEGORIE.filter((c) => marchio.categorie.includes(c.slug));
+---
+<article class:list={['card-marchio', { 'card-marchio--estesa': estesa }]}>
+  {estesa && <div class="card-marchio__logo" aria-hidden="true">{marchio.nome}</div>}
+  <h3>{marchio.nome}</h3>
+  <p class="marchio">{marchio.prodotti}</p>
+  {estesa && <p>{marchio.descrizione}</p>}
+  {estesa && (
+    <ul class="card-marchio__categorie" aria-label="Categorie">
+      {categorie.map((c) => (
+        <li><a href={`/prodotti/${c.slug}/`}>{c.nome}</a></li>
+      ))}
+    </ul>
+  )}
+</article>

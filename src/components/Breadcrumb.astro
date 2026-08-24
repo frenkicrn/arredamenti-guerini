@@ -1,0 +1,26 @@
+---
+// Breadcrumb.astro — percorso + JSON-LD BreadcrumbList
+interface Props {
+  voci: { nome: string; href?: string }[];
+}
+const { voci } = Astro.props;
+const base = Astro.site?.toString().replace(/\/$/, '') ?? '';
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: voci.map((v, i) => ({
+    '@type': 'ListItem',
+    position: i + 1,
+    name: v.nome,
+    ...(v.href ? { item: base + v.href } : {}),
+  })),
+};
+---
+<nav class="breadcrumb" aria-label="Percorso">
+  <ol>
+    {voci.map((v) => (
+      <li>{v.href ? <a href={v.href}>{v.nome}</a> : <span aria-current="page">{v.nome}</span>}</li>
+    ))}
+  </ol>
+</nav>
+<script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />

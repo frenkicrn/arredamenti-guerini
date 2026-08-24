@@ -1,54 +1,67 @@
 ---
-import { getCollection } from 'astro:content';
-import { Image } from 'astro:assets';
 import Layout from '../layouts/Layout.astro';
-import SchedaProdotto from '../components/SchedaProdotto.astro';
+import Hero from '../components/Hero.astro';
+import CardCategoria from '../components/CardCategoria.astro';
+import CardMarchio from '../components/CardMarchio.astro';
+import ServizioVoce from '../components/ServizioVoce.astro';
+import CtaFinale from '../components/CtaFinale.astro';
+import Righello from '../components/Righello.astro';
 import { NEGOZIO } from '../data/negozio';
+import { CATEGORIE } from '../data/categorie';
+import { MARCHI } from '../data/marchi';
+import { SERVIZI, NOTA_SERVIZI } from '../data/servizi';
 import heroFoto from '../assets/prodotti/hero-showroom.jpg';
-
-const inEvidenza = (await getCollection('prodotti', (p) => p.data.inEvidenza)).slice(0, 4);
 ---
-<Layout titolo="Home" descrizione={NEGOZIO.descrizione}>
-  <section class="hero">
-    <div class="contenitore hero-griglia">
-      <div class="hero-testo">
-        <h1>{NEGOZIO.nome}</h1>
-        <p>{NEGOZIO.claim}</p>
-        <a class="bottone bottone--chiaro" href="/prodotti/">Scopri i prodotti</a>
-      </div>
-      <div class="hero-cornice">
-        <Image src={heroFoto} alt={`Showroom di ${NEGOZIO.nome}`} widths={[800, 1400, 2000]} sizes="(max-width: 800px) 100vw, 50vw" loading="eager" />
-      </div>
+<Layout
+  titoloCompleto
+  titolo="Arredamenti Guerini · Mobili e cucine a Sale Marasino (Lago d'Iseo)"
+  descrizione="Negozio di arredamento a conduzione familiare a Sale Marasino, sul Lago d'Iseo: cucine Scavolini, camere, divani, materassi. Progetto, misure e montaggio compresi."
+>
+  <Hero
+    titolo="Arrediamo la tua casa, dal progetto al montaggio"
+    sottotitolo="Un negozio di famiglia a Sale Marasino, sul Lago d'Iseo: veniamo a misurare, disegniamo la stanza con te e montiamo tutto noi."
+    foto={heroFoto}
+    altFoto={`Lo showroom di ${NEGOZIO.nome} a Sale Marasino, con cucine e soggiorni in esposizione`}
+    meta={['Consegna a partire da 1 mese', 'Alcuni articoli in pronta consegna', NOTA_SERVIZI]}
+  />
+
+  <section class="sezione contenitore">
+    <h2>Come lavoriamo</h2>
+    <div class="griglia-servizi">
+      {SERVIZI.map((s) => <ServizioVoce servizio={s} breve />)}
+    </div>
+    <p class="spazio-sopra"><a href="/servizi/">Scopri tutti i servizi →</a></p>
+  </section>
+
+  <section class="sezione contenitore">
+    <h2>Cosa trovi in negozio</h2>
+    <div class="griglia-categorie">
+      {CATEGORIE.map((c) => <CardCategoria categoria={c} />)}
     </div>
   </section>
 
-  <div class="banner-consegna">{NEGOZIO.consegna}</div>
-
   <section class="sezione contenitore">
-    <h2>Il negozio</h2>
-    <p>{NEGOZIO.descrizione}</p>
-    <a href="/chi-siamo/">Scopri i nostri servizi e i marchi che trattiamo →</a>
-  </section>
-
-  <section class="sezione contenitore">
-    <h2>In evidenza</h2>
-    <div class="griglia-schede">
-      {inEvidenza.map((p) => <SchedaProdotto prodotto={p} />)}
+    <h2>I marchi che trattiamo</h2>
+    <div class="griglia-marchi">
+      {MARCHI.map((m) => <CardMarchio marchio={m} />)}
     </div>
-    <p class="spazio-sopra">
-      <a class="bottone" href="/prodotti/">Vedi tutti i prodotti</a>
-    </p>
+    <p class="spazio-sopra"><a href="/marchi/">Tutti i marchi, uno per uno →</a></p>
   </section>
 
   <section class="sezione contenitore">
     <h2>Vieni a trovarci</h2>
-    <p>
-      {NEGOZIO.indirizzo.via}, {NEGOZIO.indirizzo.cap} {NEGOZIO.indirizzo.comune} ({NEGOZIO.indirizzo.provincia})
-      — <a href={`tel:${NEGOZIO.telefono.replaceAll(' ', '')}`}>{NEGOZIO.telefono}</a>
-    </p>
+    <Righello />
+    <p>{NEGOZIO.indirizzo.via}, {NEGOZIO.indirizzo.cap} {NEGOZIO.indirizzo.comune} ({NEGOZIO.indirizzo.provincia}) — <a href={`tel:${NEGOZIO.telefono.replaceAll(' ', '')}`}>{NEGOZIO.telefono}</a></p>
+    <ul>
+      {NEGOZIO.orari.map((o) => (
+        <li><strong>{o.giorni}</strong>: {o.orario}</li>
+      ))}
+    </ul>
     <p class="azioni">
-      <a class="bottone" href="/contatti/">Contattaci</a>
-      <a class="bottone bottone--secondario" href={`https://wa.me/${NEGOZIO.whatsapp.replace(/[^\d]/g, '')}`}>Scrivici su WhatsApp</a>
+      <a class="bottone" href={NEGOZIO.mapsDirectionsUrl} rel="noopener">Indicazioni per il negozio</a>
+      <a class="bottone bottone--secondario" href="/contatti/#dove-siamo">Orari e mappa</a>
     </p>
   </section>
+
+  <CtaFinale />
 </Layout>

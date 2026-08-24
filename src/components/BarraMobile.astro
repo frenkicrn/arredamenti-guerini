@@ -1,0 +1,10 @@
+---
+import { NEGOZIO } from '../data/negozio';
+const tel = `tel:${NEGOZIO.telefono.replaceAll(' ', '')}`;
+const wa = `https://wa.me/${NEGOZIO.whatsapp.replace(/[^\d]/g, '')}`;
+---
+<nav class="barra-mobile" aria-label="Azioni rapide">
+  <a href={tel}>Chiama</a>
+  <a href={wa}>WhatsApp</a>
+  <a href={NEGOZIO.mapsDirectionsUrl} rel="noopener">Indicazioni</a>
+</nav>

@@ -6,10 +6,21 @@ const anno = new Date().getFullYear();
   <div class="contenitore footer-colonne">
     <div>
       <h3>{NEGOZIO.nome}</h3>
+      <p>{NEGOZIO.claimBreve}</p>
       <p>
         {NEGOZIO.indirizzo.via}<br />
         {NEGOZIO.indirizzo.cap} {NEGOZIO.indirizzo.comune} ({NEGOZIO.indirizzo.provincia})
       </p>
+    </div>
+    <div>
+      <h3>Esplora</h3>
+      <ul>
+        <li><a href="/prodotti/">Prodotti</a></li>
+        <li><a href="/marchi/">Marchi</a></li>
+        <li><a href="/servizi/">Servizi</a></li>
+        <li><a href="/chi-siamo/">Chi siamo</a></li>
+        <li><a href="/contatti/">Contatti</a></li>
+      </ul>
     </div>
     <div>
       <h3>Contatti</h3>
@@ -30,7 +41,5 @@ const anno = new Date().getFullYear();
       </ul>
     </div>
   </div>
-  <div class="contenitore footer-legale">
-    © {anno} {NEGOZIO.nome} — {NEGOZIO.consegna}
-  </div>
+  <div class="contenitore footer-legale">© {anno} {NEGOZIO.nome}</div>
 </footer>

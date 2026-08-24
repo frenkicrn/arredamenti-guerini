@@ -1,0 +1,27 @@
+---
+import { NEGOZIO } from '../data/negozio';
+
+interface Props {
+  voci: { href: string; testo: string }[];
+  pathname: string;
+}
+const { voci, pathname } = Astro.props;
+const tel = `tel:${NEGOZIO.telefono.replaceAll(' ', '')}`;
+const wa = `https://wa.me/${NEGOZIO.whatsapp.replace(/[^\d]/g, '')}`;
+---
+<div id="menu-mobile" class="menu-mobile" role="dialog" aria-modal="true" aria-label="Menu" hidden>
+  <div class="menu-mobile__testa">
+    <a href="/" class="logo">Arredamenti <strong>Guerini</strong></a>
+    <button type="button" class="menu-chiudi">Chiudi</button>
+  </div>
+  <nav aria-label="Principale (mobile)">
+    {voci.map((v) => (
+      <a href={v.href + '/'} aria-current={pathname.startsWith(v.href) ? 'page' : undefined}>{v.testo}</a>
+    ))}
+  </nav>
+  <div class="menu-contatti">
+    <a class="bottone bottone--chiaro" href="/contatti/">Richiedi un preventivo</a>
+    <a href={tel}>Chiama: {NEGOZIO.telefono}</a>
+    <a href={wa}>Scrivici su WhatsApp</a>
+  </div>
+</div>

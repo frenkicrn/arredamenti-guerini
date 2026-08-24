@@ -1,8 +1,11 @@
 ---
+import MenuMobile from './MenuMobile.astro';
+
 const pathname = Astro.url.pathname.replace(/\/$/, '') || '/';
 const voci = [
-  { href: '/', testo: 'Home' },
   { href: '/prodotti', testo: 'Prodotti' },
+  { href: '/marchi', testo: 'Marchi' },
+  { href: '/servizi', testo: 'Servizi' },
   { href: '/chi-siamo', testo: 'Chi siamo' },
   { href: '/contatti', testo: 'Contatti' },
 ];
@@ -10,12 +13,32 @@ const voci = [
 <header class="sito-header">
   <div class="contenitore header-riga">
     <a href="/" class="logo">Arredamenti <strong>Guerini</strong></a>
-    <nav aria-label="Principale">
+    <nav class="nav-desktop" aria-label="Principale">
       {voci.map((v) => (
-        <a href={v.href === '/' ? '/' : v.href + '/'} aria-current={pathname === v.href ? 'page' : undefined}>
-          {v.testo}
-        </a>
+        <a href={v.href + '/'} aria-current={pathname.startsWith(v.href) ? 'page' : undefined}>{v.testo}</a>
       ))}
+      <a class="bottone bottone--chiaro header-cta" href="/contatti/">Richiedi un preventivo</a>
     </nav>
+    <button type="button" class="menu-bottone" aria-expanded="false" aria-controls="menu-mobile">Menu</button>
   </div>
+  <MenuMobile voci={voci} pathname={pathname} />
 </header>
+
+<script>
+  // Menu mobile: unico JS di navigazione del sito.
+  const bottone = document.querySelector<HTMLButtonElement>('.menu-bottone')!;
+  const menu = document.getElementById('menu-mobile')!;
+  const chiudi = menu.querySelector<HTMLButtonElement>('.menu-chiudi')!;
+
+  function imposta(aperto: boolean) {
+    menu.hidden = !aperto;
+    bottone.setAttribute('aria-expanded', String(aperto));
+    document.body.classList.toggle('menu-aperto', aperto);
+    (aperto ? chiudi : bottone).focus();
+  }
+  bottone.addEventListener('click', () => imposta(menu.hidden));
+  chiudi.addEventListener('click', () => imposta(false));
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && !menu.hidden) imposta(false);
+  });
+</script>

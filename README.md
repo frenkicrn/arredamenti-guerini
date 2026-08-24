@@ -24,6 +24,7 @@ generate da `src/data/categorie.ts`.
   file `.md` in `src/content/prodotti/` (vedi i file esistenti per il formato).
   Categorie valide: `camere`, `cucine`, `divani`, `materassi`, `soggiorno`,
   `elettrodomestici`. Il prodotto compare in /prodotti/ e nella sua categoria.
+  Il campo `inEvidenza` è oggi inutilizzato (riservato a una futura sezione "in evidenza").
 - **Telefono, orari, indirizzo, social, link mappa:** `src/data/negozio.ts`.
 - **Categorie (testi SEO, intro, marchi collegati, foto):** `src/data/categorie.ts`.
 - **Marchi, servizi, FAQ:** `src/data/marchi.ts`, `src/data/servizi.ts`, `src/data/faq.ts`.
@@ -40,7 +41,7 @@ generate da `src/data/categorie.ts`.
 - [ ] Conferma marchio "Gruppo Colombini" (nella lista cliente: "Gruppo colombiani")
 - [ ] Foto reali dei prodotti (sostituire i placeholder in `src/assets/prodotti/`)
 - [ ] Testo "Chi siamo" definitivo, eventuale logo del negozio, profilo Instagram
-- [ ] Loghi dei marchi (dai press kit ufficiali) per la pagina Chi siamo
+- [ ] Loghi dei marchi (dai press kit ufficiali) per la pagina Marchi (`/marchi/`)
 - [ ] Coordinate geografiche per il JSON-LD (`geo`)
 - [ ] Immagine og:image per le condivisioni social (quando arrivano le foto reali)
 - [ ] Favicon/logo definitivo del negozio

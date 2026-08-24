@@ -81,15 +81,19 @@ a:hover { color: var(--verde-lago); }
   padding-inline: 1.25rem;
 }
 
+[id] { scroll-margin-top: 5rem; }
+
 .sezione { padding-block: var(--spazio-5); }
 .sezione--stretta { padding-block: var(--spazio-4); }
 .sezione h1 { margin: 0 0 var(--spazio-2); }
 .sezione h2 { margin: 0 0 var(--spazio-3); }
+.sezione--stretta h2 { margin: 0 0 var(--spazio-3); }
 .intro { font-size: 1.15rem; max-width: 62ch; margin: 0 0 var(--spazio-3); color: var(--inchiostro-tenue); }
 
 /* Filetto di noce sopra i titoli di sezione */
 .sezione h1::before,
-.sezione h2::before {
+.sezione h2::before,
+.sezione--stretta h2::before {
   content: '';
   display: block;
   width: 2.5rem;
@@ -294,6 +298,7 @@ a:hover { color: var(--verde-lago); }
 .menu-contatti { display: grid; gap: 0.5rem; margin-top: auto; }
 .menu-contatti a { color: var(--noce-chiaro); }
 body.menu-aperto { overflow: hidden; }
+body.menu-aperto .barra-mobile { display: none; }
 
 @media (max-width: 899px) {
   .header-cta { display: none; }
@@ -329,6 +334,7 @@ body.menu-aperto { overflow: hidden; }
 .barra-mobile a:hover { background: rgba(244, 240, 230, 0.08); }
 @media (min-width: 900px) {
   .barra-mobile { display: none; }
+  .menu-mobile { display: none; }
 }
 @media (max-width: 899px) {
   body { padding-bottom: var(--barra-mobile-h); }
@@ -495,7 +501,7 @@ body.menu-aperto { overflow: hidden; }
   margin-top: var(--spazio-4);
 }
 .cta-finale h2 { color: var(--carta); margin: 0 0 0.5rem; }
-.cta-finale h2::before { background: var(--noce-chiaro); }
+.cta-finale h2::before { content: ''; display: block; width: 2.5rem; height: 3px; background: var(--noce-chiaro); margin-bottom: 0.8rem; }
 .cta-finale p { margin: 0 0 var(--spazio-3); color: #d9d3c4; max-width: 50ch; }
 .cta-finale .azioni { margin: 0; }
 

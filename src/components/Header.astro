@@ -17,7 +17,7 @@ const voci = [
       {voci.map((v) => (
         <a href={v.href + '/'} aria-current={pathname.startsWith(v.href) ? 'page' : undefined}>{v.testo}</a>
       ))}
-      <a class="bottone bottone--chiaro header-cta" href="/contatti/">Richiedi un preventivo</a>
+      <a class="bottone header-cta" href="/contatti/">Richiedi un preventivo</a>
     </nav>
     <button type="button" class="menu-bottone" aria-expanded="false" aria-controls="menu-mobile">Menu</button>
   </div>

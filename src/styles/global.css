@@ -1,42 +1,46 @@
 /* ============================================================
-   Arredamenti Guerini — direzione "Bottega sul lago", evoluzione.
-   Legno (noce) + acqua del lago d'Iseo (verde lago) su carta calda.
-   Display: Bitter (slab serif)  ·  Testo: Karla (grottesca umanista)
-   Firma: "la misura" — tacche di metro e quote dimensionali.
-   Coppie testo/sfondo ≥ 4.5:1 (WCAG AA).
+   Arredamenti Guerini — direzione "Sala espositiva".
+   Pulita, luminosa, calda: carta chiara, un solo accento (noce),
+   tipografia editoriale (Cormorant Garamond + Manrope).
+   Dispositivo strutturale: l'"eyebrow" — un'etichetta da reparto
+   che introduce ogni sezione, come i cartellini in uno showroom.
+   Coppie testo/sfondo verificate ≥ 4.5:1 (WCAG AA).
    ============================================================ */
 
 :root {
   /* Palette */
-  --carta: #f4f0e6;
-  --superficie: #fcfaf4;
-  --inchiostro: #26211a;
-  --inchiostro-tenue: #5c5344;
-  --verde-lago: #2c4a42;
-  --verde-fondale: #24403a;
-  --verde-notte: #1c2f2a;
-  --noce: #7d4e2a;
-  --noce-chiaro: #d9a86e;
-  --bordo: #ddd4c2;
+  --carta: #faf8f4;              /* fondo pagina */
+  --avorio: #f3efe8;             /* fasce di sezione alternate */
+  --sabbia: #e8dfd2;              /* superfici piene, placeholder foto */
+  --superficie: #ffffff;          /* card su fondo avorio */
+  --bordo: #cfc6b8;               /* filetti chiari */
+  --bordo-scuro: rgba(250, 248, 244, 0.16); /* filetti su fondo scuro */
+  --inchiostro: #2a2622;          /* testo principale; fondo scuro (footer, hero, cta) */
+  --inchiostro-tenue: #6b635a;    /* testo secondario su chiaro */
+  --inchiostro-tenue-inverso: #c9c2b6; /* testo secondario su scuro */
+  --noce: #7c5d3e;                /* riempimento bottoni/UI, focus */
+  --noce-scuro: #5f4730;          /* hover del riempimento */
+  --noce-testo: #6b4e30;          /* accento come testo/link su chiaro */
+  --noce-chiaro: #c9a574;         /* accento come testo/link su scuro */
   /* Tipografia */
-  --font-display: 'Bitter Variable', Georgia, serif;
-  --font-testo: 'Karla Variable', system-ui, sans-serif;
-  --t-display-1: clamp(2.2rem, 5vw, 3.4rem);
-  --t-display-2: clamp(1.7rem, 3.2vw, 2.4rem);
-  --t-display-3: clamp(1.2rem, 2vw, 1.45rem);
+  --font-display: 'Cormorant Garamond Variable', Georgia, serif;
+  --font-testo: 'Manrope Variable', system-ui, sans-serif;
+  --t-display-1: clamp(2.6rem, 5.4vw, 4.4rem);
+  --t-display-2: clamp(1.8rem, 3.1vw, 2.5rem);
+  --t-display-3: clamp(1.2rem, 1.8vw, 1.4rem);
   --t-testo-1: 1.0625rem;
   --t-testo-2: 0.95rem;
-  --t-testo-3: 0.8rem;
+  --t-testo-3: 0.78rem;
   /* Spaziature */
   --spazio-1: 0.5rem;
   --spazio-2: 1rem;
   --spazio-3: 1.5rem;
   --spazio-4: 2.5rem;
-  --spazio-5: 4rem;
+  --spazio-5: 4.5rem;
   --spazio-6: 6rem;
   /* Misure */
-  --raggio: 3px;
-  --contenitore: 1100px;
+  --raggio: 0px;
+  --contenitore: 1180px;
   --barra-mobile-h: 3.75rem;
 }
 
@@ -51,24 +55,23 @@ body {
   line-height: 1.65;
 }
 
-::selection { background: var(--verde-lago); color: var(--carta); }
+::selection { background: var(--noce); color: var(--carta); }
 
 h1, h2, h3 {
   font-family: var(--font-display);
-  line-height: 1.15;
+  line-height: 1.12;
   font-weight: 600;
   letter-spacing: -0.01em;
 }
 h1 { font-size: var(--t-display-1); }
 h2 { font-size: var(--t-display-2); }
-h3 { font-size: var(--t-display-3); }
+h3 { font-size: var(--t-display-3); font-weight: 600; }
 
 img { max-width: 100%; height: auto; display: block; }
-a { color: var(--noce); text-decoration-thickness: 1px; text-underline-offset: 3px; }
-a:hover { color: var(--verde-lago); }
+a { color: var(--noce-testo); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+a:hover { color: var(--inchiostro); }
 
 :focus-visible { outline: 2px solid var(--noce); outline-offset: 2px; }
-.sito-header :focus-visible,
 .hero :focus-visible,
 .menu-mobile :focus-visible,
 .barra-mobile :focus-visible,
@@ -78,7 +81,7 @@ a:hover { color: var(--verde-lago); }
 .contenitore {
   max-width: var(--contenitore);
   margin-inline: auto;
-  padding-inline: 1.25rem;
+  padding-inline: 1.5rem;
 }
 
 [id] { scroll-margin-top: 5rem; }
@@ -86,23 +89,34 @@ a:hover { color: var(--verde-lago); }
 .sezione { padding-block: var(--spazio-5); }
 .sezione--stretta { padding-block: var(--spazio-4); }
 .sezione h1 { margin: 0 0 var(--spazio-2); }
-.sezione h2 { margin: 0 0 var(--spazio-3); }
-.sezione--stretta h2 { margin: 0 0 var(--spazio-3); }
+.sezione h2 { margin: 0 0 var(--spazio-2); }
+.sezione--stretta h2 { margin: 0 0 var(--spazio-2); }
 .intro { font-size: 1.15rem; max-width: 62ch; margin: 0 0 var(--spazio-3); color: var(--inchiostro-tenue); }
+.correlate { margin: 0; font-size: var(--t-testo-2); color: var(--inchiostro-tenue); }
+.correlate a { font-weight: 700; }
 
-/* Filetto di noce sopra i titoli di sezione */
-.sezione h1::before,
-.sezione h2::before,
-.sezione--stretta h2::before {
-  content: '';
-  display: block;
-  width: 2.5rem;
-  height: 3px;
-  background: var(--noce);
-  margin-bottom: 0.8rem;
+/* Fasce alternate di sezione (avorio) */
+.sezione--avorio { background: var(--avorio); }
+
+/* ---------- Eyebrow: l'etichetta da reparto ----------
+   Il dispositivo strutturale del sito: introduce ogni sezione
+   come il cartellino di un reparto in showroom. Sempre testo
+   reale (mai un numero decorativo), sempre prima del titolo. */
+.eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  margin: 0 0 0.85rem;
+  font-family: var(--font-testo);
+  font-size: var(--t-testo-3);
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--noce-testo);
 }
-.centrato h1::before,
-.centrato h2::before { margin-inline: auto; }
+.eyebrow::before { content: ''; width: 28px; height: 1px; background: currentColor; flex-shrink: 0; }
+.eyebrow--chiara { color: var(--noce-chiaro); }
+.centrato .eyebrow { justify-content: center; }
 
 /* Utilità */
 .centrato { text-align: center; }
@@ -113,85 +127,45 @@ a:hover { color: var(--verde-lago); }
   padding: var(--spazio-4);
   text-align: center;
   border: 1px dashed var(--bordo);
-  border-radius: var(--raggio);
   color: var(--inchiostro-tenue);
 }
 
-/* ---------- Firma: la misura ----------
-   Il righello riprende la gerarchia di un metro da falegname:
-   tacca maggiore (cm), tacca media (mezzo cm), tacca minore (mm),
-   in proporzione 8 : 4 : 1 — non un semplice tratteggio a due livelli. */
-.righello {
-  height: 14px;
-  margin-block: var(--spazio-2);
-  color: var(--noce);
-  border-bottom: 1px solid currentColor;
-  background:
-    repeating-linear-gradient(to right, currentColor 0 1px, transparent 1px 48px) left bottom / 100% 14px no-repeat,
-    repeating-linear-gradient(to right, currentColor 0 1px, transparent 1px 24px) left bottom / 100% 9px no-repeat,
-    repeating-linear-gradient(to right, currentColor 0 1px, transparent 1px 6px) left bottom / 100% 5px no-repeat;
-}
-.quota {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  margin: 0 0 var(--spazio-3);
-  font-family: var(--font-display);
-  font-size: var(--t-testo-2);
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-}
-.quota__linea {
-  flex: 1;
-  height: 1px;
-  background: currentColor;
-  position: relative;
-  min-width: 3rem;
-}
-.quota__linea::before,
-.quota__linea::after {
-  content: '';
-  position: absolute;
-  top: -5px;
-  width: 1px;
-  height: 11px;
-  background: currentColor;
-}
-.quota__linea::before { left: 0; }
-.quota__linea::after { right: 0; }
-
-/* ---------- Bottoni e badge ---------- */
+/* ---------- Bottoni e badge ----------
+   .bottone            → riempimento noce, testo carta: primario su fondo chiaro
+   .bottone--chiaro     → riempimento carta, testo inchiostro: primario su fondo scuro
+   .bottone--secondario → contorno noce: secondario su fondo chiaro
+   .bottone--contorno-chiaro → contorno carta: secondario su fondo scuro */
 .bottone {
   display: inline-block;
-  background: var(--verde-lago);
-  color: var(--superficie);
-  padding: 0.7rem 1.5rem;
+  background: var(--noce);
+  color: var(--carta);
+  padding: 0.75rem 1.6rem;
   border-radius: var(--raggio);
-  border: 1px solid var(--verde-lago);
+  border: 1px solid var(--noce);
   font: inherit;
+  font-size: var(--t-testo-2);
   font-weight: 700;
-  letter-spacing: 0.01em;
+  letter-spacing: 0.03em;
   text-decoration: none;
   cursor: pointer;
 }
-.bottone:hover { background: var(--verde-notte); border-color: var(--verde-notte); color: var(--superficie); }
-.bottone--secondario { background: transparent; border-color: var(--noce); color: var(--noce); }
-.bottone--secondario:hover { background: var(--noce); border-color: var(--noce); color: var(--superficie); }
-.bottone--chiaro { background: var(--carta); border-color: var(--carta); color: var(--verde-lago); }
-.bottone--chiaro:hover { background: var(--noce-chiaro); border-color: var(--noce-chiaro); color: var(--verde-notte); }
-.bottone--contorno-chiaro { background: transparent; border-color: var(--noce-chiaro); color: var(--carta); }
-.bottone--contorno-chiaro:hover { background: var(--noce-chiaro); border-color: var(--noce-chiaro); color: var(--verde-notte); }
+.bottone:hover { background: var(--noce-scuro); border-color: var(--noce-scuro); color: var(--carta); }
+.bottone--secondario { background: transparent; border-color: var(--noce); color: var(--noce-testo); }
+.bottone--secondario:hover { background: var(--noce); border-color: var(--noce); color: var(--carta); }
+.bottone--chiaro { background: var(--carta); border-color: var(--carta); color: var(--inchiostro); }
+.bottone--chiaro:hover { background: var(--noce-chiaro); border-color: var(--noce-chiaro); color: var(--inchiostro); }
+.bottone--contorno-chiaro { background: transparent; border-color: var(--bordo-scuro); color: var(--carta); }
+.bottone--contorno-chiaro:hover { background: rgba(250, 248, 244, 0.08); border-color: var(--carta); }
 
 .badge {
   display: inline-block;
-  background: var(--verde-lago);
-  color: var(--superficie);
-  font-size: 0.72rem;
+  background: var(--inchiostro);
+  color: var(--carta);
+  font-size: 0.68rem;
   font-weight: 700;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.09em;
   text-transform: uppercase;
-  padding: 0.2rem 0.65rem;
-  border-radius: var(--raggio);
+  padding: 0.25rem 0.65rem;
 }
 
 /* ---------- Griglie ---------- */
@@ -203,13 +177,16 @@ a:hover { color: var(--verde-lago); }
   gap: var(--spazio-3);
 }
 .griglia-schede { grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); }
-.griglia-categorie { grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); }
-.griglia-marchi { grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); }
-.griglia-servizi { grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); }
+.griglia-categorie { grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; }
+@media (min-width: 700px) { .griglia-categorie { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 1040px) { .griglia-categorie { grid-template-columns: repeat(4, 1fr); } }
+.griglia-marchi { grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 0 2.5rem; }
+.griglia-servizi { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 2.5rem 2rem; counter-reset: voce; }
 
 /* ---------- Header ---------- */
 .sito-header {
-  background: var(--verde-fondale);
+  background: var(--carta);
+  border-bottom: 1px solid var(--bordo);
   position: sticky;
   top: 0;
   z-index: 10;
@@ -219,53 +196,84 @@ a:hover { color: var(--verde-lago); }
   align-items: center;
   justify-content: space-between;
   gap: var(--spazio-2) var(--spazio-3);
-  padding-block: 0.9rem;
+  padding-block: 1rem;
 }
 .logo {
   font-family: var(--font-display);
-  font-size: 1.3rem;
+  font-size: 1.5rem;
   font-weight: 600;
   text-decoration: none;
-  color: var(--carta);
   white-space: nowrap;
 }
-.logo:hover { color: var(--noce-chiaro); }
-.logo strong { color: var(--noce-chiaro); font-weight: 700; }
-.nav-desktop { display: flex; flex-wrap: wrap; align-items: center; gap: 1.25rem; }
+.sito-header .logo { color: var(--inchiostro); }
+.sito-header .logo:hover { color: var(--noce-testo); }
+.sito-header .logo strong { color: var(--noce-testo); font-weight: 700; }
+.nav-desktop { display: flex; flex-wrap: wrap; align-items: center; gap: 1.5rem; }
 .nav-desktop a:not(.bottone) {
   text-decoration: none;
-  color: #cfc9ba;
+  font-size: var(--t-testo-2);
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: var(--inchiostro-tenue);
   padding-block: 0.2rem;
   border-bottom: 2px solid transparent;
 }
-.nav-desktop a:not(.bottone):hover { color: var(--carta); }
+.nav-desktop a:not(.bottone):hover { color: var(--inchiostro); }
 .nav-desktop a[aria-current='page'] {
-  color: var(--carta);
-  font-weight: 700;
-  border-bottom-color: var(--noce-chiaro);
+  color: var(--inchiostro);
+  border-bottom-color: var(--noce);
 }
-.header-cta { padding: 0.5rem 1.1rem; margin-left: 0.5rem; }
+.header-cta { padding: 0.55rem 1.2rem; margin-left: 0.5rem; }
+
+/* Mega menu "Prodotti": rivelato via hover/focus, nessuna ombra
+   (coerente col resto del sito) — solo bordo e sfondo pieno a
+   separarlo dal contenuto sotto. */
+.nav-prodotti { position: relative; }
+.mega-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  margin-top: 0.75rem;
+  min-width: 340px;
+  padding: 1.1rem 1.25rem;
+  background: var(--superficie);
+  border: 1px solid var(--bordo);
+  opacity: 0;
+  visibility: hidden;
+  z-index: 30;
+}
+.nav-prodotti:hover .mega-menu,
+.nav-prodotti:focus-within .mega-menu {
+  opacity: 1;
+  visibility: visible;
+}
+.mega-menu__lista { list-style: none; margin: 0 0 0.85rem; padding: 0; display: grid; grid-template-columns: repeat(2, 1fr); gap: 0 1.5rem; }
+.mega-menu__lista a { display: block; padding: 0.5rem 0.15rem; text-decoration: none; border-bottom: 1px solid var(--bordo); }
+.mega-menu__nome { display: block; font-weight: 700; color: var(--inchiostro); font-size: var(--t-testo-2); }
+.mega-menu__etichetta { display: block; font-size: var(--t-testo-3); color: var(--inchiostro-tenue); text-transform: uppercase; letter-spacing: 0.03em; }
+.mega-menu__lista a:hover .mega-menu__nome,
+.mega-menu__lista a:hover .mega-menu__etichetta { color: var(--noce-testo); }
+.mega-menu__tutti { display: inline-block; font-weight: 700; font-size: var(--t-testo-2); text-decoration: none; }
 .menu-bottone {
   display: none;
   font: inherit;
   font-weight: 700;
   background: transparent;
-  color: var(--carta);
-  border: 1px solid var(--noce-chiaro);
-  border-radius: var(--raggio);
+  color: var(--inchiostro);
+  border: 1px solid var(--bordo);
   padding: 0.45rem 0.9rem;
   cursor: pointer;
 }
-.menu-bottone:hover { background: var(--noce-chiaro); color: var(--verde-notte); }
+.menu-bottone:hover { border-color: var(--inchiostro); }
 
 /* Menu mobile (pannello a tutto schermo, mostrato/nascosto con [hidden]) */
 .menu-mobile {
   position: fixed;
   inset: 0;
   z-index: 20;
-  background: var(--verde-notte);
+  background: var(--inchiostro);
   color: var(--carta);
-  padding: var(--spazio-3) 1.25rem var(--spazio-5);
+  padding: var(--spazio-3) 1.5rem var(--spazio-5);
   display: flex;
   flex-direction: column;
   gap: var(--spazio-3);
@@ -273,29 +281,60 @@ a:hover { color: var(--verde-lago); }
 }
 .menu-mobile[hidden] { display: none; }
 .menu-mobile__testa { display: flex; justify-content: space-between; align-items: center; }
+.menu-mobile .logo { color: var(--carta); }
+.menu-mobile .logo strong { color: var(--noce-chiaro); }
 .menu-chiudi {
   font: inherit;
   font-weight: 700;
   background: transparent;
   color: var(--carta);
-  border: 1px solid var(--noce-chiaro);
-  border-radius: var(--raggio);
+  border: 1px solid var(--bordo-scuro);
   padding: 0.45rem 0.9rem;
   cursor: pointer;
 }
-.menu-chiudi:hover { background: var(--noce-chiaro); color: var(--verde-notte); }
+.menu-chiudi:hover { border-color: var(--noce-chiaro); color: var(--noce-chiaro); }
 .menu-mobile nav { display: grid; gap: 0.25rem; }
 .menu-mobile nav a {
   font-family: var(--font-display);
-  font-size: 1.6rem;
+  font-size: 1.7rem;
+  font-weight: 600;
   color: var(--carta);
   text-decoration: none;
   padding: 0.6rem 0;
-  border-bottom: 1px solid rgba(244, 240, 230, 0.15);
+  border-bottom: 1px solid var(--bordo-scuro);
 }
 .menu-mobile nav a:hover { color: var(--noce-chiaro); }
 .menu-mobile nav a[aria-current='page'] { color: var(--noce-chiaro); }
-.menu-contatti { display: grid; gap: 0.5rem; margin-top: auto; }
+.menu-mobile__prodotti { border-bottom: 1px solid var(--bordo-scuro); }
+.menu-mobile__prodotti summary {
+  font-family: var(--font-display);
+  font-size: 1.7rem;
+  font-weight: 600;
+  color: var(--carta);
+  cursor: pointer;
+  padding: 0.6rem 0;
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.menu-mobile__prodotti summary::-webkit-details-marker { display: none; }
+.menu-mobile__prodotti summary::after { content: '+'; color: var(--noce-chiaro); font-weight: 700; }
+.menu-mobile__prodotti[open] summary::after { content: '−'; }
+.menu-mobile__prodotti summary:hover { color: var(--noce-chiaro); }
+.menu-mobile .menu-mobile__categorie { display: grid; gap: 0.1rem; padding: 0 0 0.85rem; }
+.menu-mobile .menu-mobile__categorie a {
+  font-family: var(--font-testo);
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--inchiostro-tenue-inverso);
+  border-bottom: none;
+  padding: 0.5rem 0.1rem;
+}
+.menu-mobile .menu-mobile__categorie a:hover,
+.menu-mobile .menu-mobile__categorie a[aria-current='page'] { color: var(--noce-chiaro); }
+.menu-mobile .menu-mobile__tutti { font-weight: 700; color: var(--noce-chiaro); margin-top: 0.3rem; }
+.menu-contatti { display: grid; gap: 0.6rem; margin-top: auto; font-size: var(--t-testo-2); }
 .menu-contatti a { color: var(--noce-chiaro); }
 body.menu-aperto { overflow: hidden; }
 body.menu-aperto .barra-mobile { display: none; }
@@ -317,8 +356,8 @@ body.menu-aperto .barra-mobile { display: none; }
   height: var(--barra-mobile-h);
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  background: var(--verde-notte);
-  border-top: 2px solid var(--noce-chiaro);
+  background: var(--inchiostro);
+  border-top: 1px solid var(--noce-chiaro);
 }
 .barra-mobile a {
   display: grid;
@@ -327,11 +366,12 @@ body.menu-aperto .barra-mobile { display: none; }
   color: var(--noce-chiaro);
   font-weight: 700;
   font-size: var(--t-testo-2);
+  letter-spacing: 0.02em;
   text-decoration: none;
-  border-right: 1px solid rgba(244, 240, 230, 0.15);
+  border-right: 1px solid var(--bordo-scuro);
 }
 .barra-mobile a:last-child { border-right: none; }
-.barra-mobile a:hover { background: rgba(244, 240, 230, 0.08); }
+.barra-mobile a:hover { background: rgba(250, 248, 244, 0.06); }
 @media (min-width: 900px) {
   .barra-mobile { display: none; }
   .menu-mobile { display: none; }
@@ -340,103 +380,145 @@ body.menu-aperto .barra-mobile { display: none; }
   body { padding-bottom: var(--barra-mobile-h); }
 }
 
-/* ---------- Hero ---------- */
-.hero { background: var(--verde-lago); color: var(--carta); }
-.hero-griglia {
-  display: grid;
-  grid-template-columns: 1.1fr 1fr;
-  gap: clamp(2rem, 5vw, 4rem);
-  align-items: center;
-  padding-block: clamp(3rem, 7vw, 5.5rem);
+/* ---------- Hero ----------
+   Foto a piena pagina con velo scuro in basso per leggibilità;
+   le parentesi d'angolo (cornice) sono l'unico dettaglio "firma"
+   del sito: richiamano il cartellino di un pezzo in esposizione,
+   usate una sola volta, qui, e da nessun'altra parte. */
+.hero {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  min-height: clamp(540px, 78vh, 740px);
+  overflow: hidden;
+  background: var(--inchiostro);
 }
-.hero-quota { color: var(--noce-chiaro); }
-.hero-testo h1 { margin: 0 0 0.75rem; color: var(--carta); }
-.hero-testo p:not(.quota) {
-  font-size: clamp(1.1rem, 1.8vw, 1.3rem);
-  color: #d9d3c4;
-  margin: 0 0 1.75rem;
-  max-width: 36ch;
+.hero__foto { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.hero::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(24, 21, 18, 0.86) 0%, rgba(24, 21, 18, 0.42) 40%, rgba(24, 21, 18, 0.05) 66%, transparent 80%);
 }
-.hero-cornice img {
-  width: 100%;
-  aspect-ratio: 4 / 3;
-  object-fit: cover;
-  border: 10px solid var(--superficie);
-  box-shadow: 14px 14px 0 var(--verde-notte);
+.hero__contenuto {
+  position: relative;
+  z-index: 3;
+  max-width: 640px;
+  padding: clamp(1.75rem, 4vw, 2.75rem) clamp(1.75rem, 4vw, 2.75rem) clamp(2.5rem, 6vw, 4.5rem);
+}
+.hero__cornice { position: absolute; inset: 0; pointer-events: none; }
+.hero__cornice::before,
+.hero__cornice::after { content: ''; position: absolute; width: 46px; height: 46px; border-color: var(--noce-chiaro); }
+.hero__cornice::before { top: 0; left: 0; border-top: 2px solid; border-left: 2px solid; }
+.hero__cornice::after { bottom: 0; right: 0; border-bottom: 2px solid; border-right: 2px solid; }
+.hero__contenuto h1 { color: var(--carta); margin: 0 0 0.9rem; }
+.hero__sottotitolo {
+  font-size: clamp(1.05rem, 1.7vw, 1.2rem);
+  color: var(--inchiostro-tenue-inverso);
+  margin: 0 0 1.85rem;
+  max-width: 46ch;
 }
 .meta-riga {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 0.4rem 1.5rem;
-  padding: 0.85rem 1.25rem;
-  background: var(--superficie);
+  gap: 0.4rem 1.75rem;
+  padding: 0.9rem 1.25rem;
+  background: var(--carta);
   border-bottom: 1px solid var(--bordo);
-  font-size: var(--t-testo-2);
+  font-size: var(--t-testo-3);
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
   color: var(--inchiostro-tenue);
   list-style: none;
   margin: 0;
 }
-.meta-riga li::before { content: '—'; color: var(--noce); margin-right: 0.5rem; }
-@media (max-width: 800px) {
-  .hero-griglia { grid-template-columns: 1fr; }
-  .hero-cornice { order: -1; }
-}
+.meta-riga li::before { content: '·'; color: var(--noce-testo); margin-right: 0.6rem; font-weight: 700; }
 
-/* ---------- Card categoria (foto + nome + etichetta a quota) ---------- */
+/* ---------- Card categoria (foto a piena card, testo in velo) ---------- */
 .card-categoria {
   position: relative;
   display: block;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  background: var(--sabbia);
   color: inherit;
   text-decoration: none;
-  background: var(--superficie);
-  border: 1px solid var(--bordo);
-  border-radius: var(--raggio);
-  overflow: hidden;
 }
-.card-categoria img { aspect-ratio: 4 / 3; object-fit: cover; width: 100%; }
-.card-categoria__testo { padding: 1rem 1.1rem 1.2rem; border-top: 1px solid var(--bordo); }
-.card-categoria__testo h3 { margin: 0 0 0.35rem; }
+.card-categoria__foto { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.card-categoria::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(24, 21, 18, 0.8) 0%, rgba(24, 21, 18, 0.28) 40%, transparent 65%);
+}
+.card-categoria__testo { position: absolute; left: 0; right: 0; bottom: 0; z-index: 1; padding: 1.1rem 1.25rem 1.25rem; }
+.card-categoria__testo h3 { margin: 0 0 0.3rem; color: var(--carta); font-size: 1.25rem; }
 .card-categoria__etichetta {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
   margin: 0;
   font-size: var(--t-testo-3);
-  letter-spacing: 0.08em;
+  font-weight: 600;
+  letter-spacing: 0.07em;
   text-transform: uppercase;
-  color: var(--noce);
+  color: var(--noce-chiaro);
 }
-.card-categoria__etichetta::before,
-.card-categoria__etichetta::after {
-  content: '';
-  height: 1px;
-  width: 1.25rem;
-  background: currentColor;
-}
-.card-categoria:hover h3 { color: var(--noce); }
+.card-categoria:hover .card-categoria__testo h3 { color: var(--carta); }
 
-/* ---------- Card marchio ---------- */
+/* ---------- Approfondimento categoria ----------
+   Testo + foto alternati sinistra/destra, sul modello turra.it.
+   Ogni pagina categoria ne ha 2: la foto usa .order per invertire
+   il lato senza toccare l'ordine nel markup (sorgente = accessibilità). */
+.approfondimento {
+  display: grid;
+  gap: var(--spazio-3) var(--spazio-4);
+  align-items: center;
+  padding-block: var(--spazio-4);
+  border-top: 1px solid var(--bordo);
+}
+.approfondimento__foto { aspect-ratio: 4 / 3; overflow: hidden; background: var(--sabbia); }
+.approfondimento__foto img { width: 100%; height: 100%; object-fit: cover; }
+.approfondimento__testo h3 { margin: 0 0 0.6rem; }
+.approfondimento__testo p { margin: 0; color: var(--inchiostro-tenue); }
+@media (min-width: 780px) {
+  .approfondimento { grid-template-columns: 1fr 1fr; }
+  .approfondimento--inversa .approfondimento__foto { order: 2; }
+}
+
+/* ---------- Sezione "In esposizione" ridimensionata ----------
+   Lo showroom è piccolo: qui il peso visivo resta contenuto
+   (eyebrow al posto di un h2, griglia più stretta) rispetto alla
+   sezione marchi/approfondimento che la precede. */
+.sezione--vetrina { padding-block: var(--spazio-4); }
+.vetrina-nota { margin: 0 0 var(--spazio-2); max-width: 52ch; color: var(--inchiostro-tenue); font-size: var(--t-testo-2); }
+.sezione--vetrina .griglia-schede { max-width: 760px; grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); gap: 1rem; }
+.sezione--vetrina .vuoto { max-width: 760px; padding: var(--spazio-3); }
+
+/* ---------- Card marchio ----------
+   Compatta (Home): riga d'indice con filetto inferiore.
+   Estesa (pagina Marchi): scheda con spazio per il logo. */
 .card-marchio {
+  padding: 1.1rem 0;
+  border-bottom: 1px solid var(--bordo);
+}
+.card-marchio h3 { margin: 0 0 0.25rem; }
+.card-marchio .marchio { margin: 0; color: var(--inchiostro-tenue); font-size: var(--t-testo-2); }
+.card-marchio--estesa {
   background: var(--superficie);
   border: 1px solid var(--bordo);
-  border-left: 3px solid var(--noce);
-  border-radius: var(--raggio);
-  padding: 1.1rem 1.25rem;
+  padding: 1.25rem 1.4rem;
 }
-.card-marchio h3 { margin: 0 0 0.3rem; }
-.card-marchio .marchio { margin: 0; color: var(--inchiostro-tenue); font-size: var(--t-testo-2); }
 .card-marchio--estesa .card-marchio__logo {
   display: grid;
   place-content: center;
   aspect-ratio: 16 / 9;
   margin-bottom: var(--spazio-2);
-  background: var(--carta);
+  background: var(--avorio);
   border: 1px solid var(--bordo);
   font-family: var(--font-display);
   font-size: 1.4rem;
   font-weight: 700;
-  color: var(--verde-lago);
+  color: var(--inchiostro);
   text-align: center;
   padding: 0.5rem;
 }
@@ -444,49 +526,61 @@ body.menu-aperto .barra-mobile { display: none; }
 .card-marchio__categorie { margin: 0.75rem 0 0; padding: 0; list-style: none; display: flex; flex-wrap: wrap; gap: 0.4rem; }
 .card-marchio__categorie a {
   font-size: var(--t-testo-3);
-  letter-spacing: 0.06em;
+  font-weight: 600;
+  letter-spacing: 0.05em;
   text-transform: uppercase;
   text-decoration: none;
   border: 1px solid var(--bordo);
-  border-radius: 99px;
-  padding: 0.15rem 0.6rem;
+  padding: 0.2rem 0.65rem;
+  color: var(--inchiostro-tenue);
 }
-.card-marchio__categorie a:hover { border-color: var(--verde-lago); background: var(--carta); }
+.card-marchio__categorie a:hover { border-color: var(--noce); color: var(--noce-testo); }
 
-/* ---------- Servizi ---------- */
-.servizio-voce {
-  background: var(--superficie);
-  border: 1px solid var(--bordo);
-  border-radius: var(--raggio);
-  padding: 1.25rem 1.35rem;
-}
+/* ---------- Servizi: indice numerato ----------
+   La numerazione ha senso qui: sono i passaggi reali del lavoro
+   (progetto → misure → montaggio → pagamento), nell'ordine in cui
+   avvengono — non un ornamento. Vale sia in versione breve (Home) sia
+   estesa (pagina Servizi): stesso device, stesso ordine reale. */
+.servizio-voce { border-top: 1px solid var(--bordo); padding-top: 1.25rem; counter-increment: voce; }
 .servizio-voce h3 { margin: 0 0 0.5rem; }
-.servizio-voce p { margin: 0; }
-.servizio-voce--breve h3 { font-size: 1.05rem; }
+.servizio-voce p { margin: 0; color: var(--inchiostro-tenue); }
+.servizio-voce::before {
+  content: counter(voce, decimal-leading-zero);
+  display: block;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 1.05rem;
+  color: var(--noce-testo);
+  margin-bottom: 0.5rem;
+}
+
+/* ---------- Motivi (Chi siamo): indice non numerato ----------
+   Stesso linguaggio grafico di .servizio-voce (filetto sopra, h3+testo)
+   ma senza numerazione: qui non c'è un ordine di processo da rispettare. */
+.griglia-motivi { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 2rem; margin-top: var(--spazio-2); }
+.motivo { border-top: 1px solid var(--bordo); padding-top: 1.1rem; }
+.motivo h3 { margin: 0 0 0.4rem; font-size: 1.1rem; }
+.motivo p { margin: 0; color: var(--inchiostro-tenue); }
 
 /* ---------- FAQ ---------- */
 .faq { display: grid; gap: 0.5rem; max-width: 760px; }
-.faq details {
-  background: var(--superficie);
-  border: 1px solid var(--bordo);
-  border-radius: var(--raggio);
-  padding: 0 1.1rem;
-}
+.faq details { border-bottom: 1px solid var(--bordo); }
 .faq summary {
   cursor: pointer;
   font-family: var(--font-display);
+  font-size: 1.1rem;
   font-weight: 600;
-  padding: 0.9rem 0;
+  padding: 1rem 0;
   list-style: none;
   display: flex;
   justify-content: space-between;
   gap: 1rem;
 }
 .faq summary::-webkit-details-marker { display: none; }
-.faq summary:hover { color: var(--verde-lago); }
-.faq summary::after { content: '+'; color: var(--noce); font-weight: 700; }
+.faq summary:hover { color: var(--noce-testo); }
+.faq summary::after { content: '+'; color: var(--noce-testo); font-weight: 700; flex-shrink: 0; }
 .faq details[open] summary::after { content: '−'; }
-.faq details p { margin: 0 0 1rem; }
+.faq details p { margin: 0 0 1.1rem; color: var(--inchiostro-tenue); }
 
 /* ---------- Breadcrumb ---------- */
 .breadcrumb ol { list-style: none; display: flex; flex-wrap: wrap; gap: 0.4rem; padding: 0; margin: 0 0 var(--spazio-2); font-size: var(--t-testo-2); }
@@ -495,43 +589,38 @@ body.menu-aperto .barra-mobile { display: none; }
 
 /* ---------- CTA finale ---------- */
 .cta-finale {
-  background: var(--verde-lago);
+  background: var(--inchiostro);
   color: var(--carta);
   padding-block: var(--spazio-5);
   margin-top: var(--spazio-4);
 }
-.cta-finale h2 { color: var(--carta); margin: 0 0 0.5rem; }
-.cta-finale h2::before { content: ''; display: block; width: 2.5rem; height: 3px; background: var(--noce-chiaro); margin-bottom: 0.8rem; }
-.cta-finale p { margin: 0 0 var(--spazio-3); color: #d9d3c4; max-width: 50ch; }
+.cta-finale h2 { color: var(--carta); margin: 0 0 0.6rem; }
+.cta-finale p { margin: 0 0 var(--spazio-3); color: var(--inchiostro-tenue-inverso); max-width: 50ch; }
 .cta-finale .azioni { margin: 0; }
 
 /* ---------- Footer ---------- */
 .sito-footer {
-  background: var(--verde-notte);
-  color: #d5cfc0;
-  border-top: 4px solid var(--noce);
-  padding-block: 2.75rem;
+  background: var(--inchiostro);
+  color: var(--inchiostro-tenue-inverso);
+  border-top: 1px solid var(--bordo-scuro);
+  padding-block: 3rem;
   font-size: var(--t-testo-2);
 }
-.sito-footer a { color: #f0e8d8; }
+.sito-footer a { color: var(--carta); text-decoration: none; }
 .sito-footer a:hover { color: var(--noce-chiaro); }
 .footer-colonne { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem; }
-.sito-footer h3 { color: var(--carta); font-size: 1.05rem; margin-top: 0; }
+.sito-footer h3 { color: var(--carta); font-size: 1.1rem; margin-top: 0; }
 .sito-footer ul { list-style: none; padding: 0; margin: 0; }
+.sito-footer li { margin-bottom: 0.35rem; }
 .footer-legale {
   margin-top: 2.5rem;
   padding-top: 1.25rem;
-  border-top: 1px solid rgba(244, 240, 230, 0.18);
+  border-top: 1px solid var(--bordo-scuro);
   font-size: 0.85rem;
 }
 
 /* ---------- Scheda prodotto ---------- */
-.scheda-prodotto {
-  background: var(--superficie);
-  border: 1px solid var(--bordo);
-  border-radius: var(--raggio);
-  overflow: hidden;
-}
+.scheda-prodotto { background: var(--superficie); border: 1px solid var(--bordo); }
 .scheda-foto { display: block; width: 100%; padding: 0; border: none; cursor: zoom-in; background: none; }
 .scheda-foto img { aspect-ratio: 4 / 3; object-fit: cover; width: 100%; }
 .scheda-info { padding: 1rem 1.1rem 1.2rem; border-top: 1px solid var(--bordo); }
@@ -552,10 +641,9 @@ body.menu-aperto .barra-mobile { display: none; }
   .faq summary {
     transition: color 0.15s ease, background-color 0.15s ease, border-color 0.15s ease;
   }
-  .scheda-prodotto,
-  .card-categoria { transition: transform 0.18s ease, box-shadow 0.18s ease; }
-  .scheda-prodotto:hover,
-  .card-categoria:hover { transform: translateY(-3px); box-shadow: 0 10px 22px rgba(38, 33, 26, 0.12); }
+  .card-categoria__foto { transition: transform 0.6s cubic-bezier(0.2, 0.7, 0.2, 1); }
+  .card-categoria:hover .card-categoria__foto { transform: scale(1.045); }
+  .mega-menu { transition: opacity 0.15s ease, visibility 0.15s; }
 }
 
 /* ---------- Filtri gallery ---------- */
@@ -563,19 +651,18 @@ body.menu-aperto .barra-mobile { display: none; }
 .filtri button {
   background: var(--superficie);
   border: 1px solid var(--bordo);
-  border-radius: var(--raggio);
-  padding: 0.45rem 1rem;
+  padding: 0.45rem 1.1rem;
   cursor: pointer;
   font: inherit;
   font-size: var(--t-testo-2);
   color: var(--inchiostro-tenue);
 }
-.filtri button:hover { border-color: var(--noce); color: var(--noce); }
-.filtri button.attivo { background: var(--verde-lago); border-color: var(--verde-lago); color: var(--superficie); font-weight: 700; }
+.filtri button:hover { border-color: var(--inchiostro); color: var(--inchiostro); }
+.filtri button.attivo { background: var(--inchiostro); border-color: var(--inchiostro); color: var(--carta); font-weight: 700; }
 
 /* ---------- Lightbox ---------- */
-dialog.lightbox { border: none; border-radius: var(--raggio); padding: 0; max-width: min(92vw, 1000px); background: var(--superficie); }
-dialog.lightbox::backdrop { background: rgba(28, 47, 42, 0.82); }
+dialog.lightbox { border: none; padding: 0; max-width: min(92vw, 1000px); background: var(--superficie); }
+dialog.lightbox::backdrop { background: rgba(24, 21, 18, 0.86); }
 dialog.lightbox img { max-height: 80vh; object-fit: contain; margin-inline: auto; }
 dialog.lightbox p { margin: 0; padding: 0.85rem 1rem; text-align: center; font-family: var(--font-display); }
 .lightbox-chiudi {
@@ -586,32 +673,34 @@ dialog.lightbox p { margin: 0; padding: 0.85rem 1rem; text-align: center; font-f
   height: 2.4rem;
   border: none;
   border-radius: 50%;
-  background: rgba(38, 33, 26, 0.72);
+  background: rgba(24, 21, 18, 0.72);
   color: var(--carta);
   font-size: 1.1rem;
   line-height: 1;
   cursor: pointer;
 }
-.lightbox-chiudi:hover { background: var(--verde-notte); }
+.lightbox-chiudi:hover { background: var(--inchiostro); }
 
 /* ---------- Form ---------- */
 .form-contatti { display: grid; gap: 1rem; max-width: 480px; }
-.form-contatti label { display: grid; gap: 0.3rem; font-weight: 700; }
+.form-contatti label { display: grid; gap: 0.3rem; font-weight: 700; font-size: var(--t-testo-2); }
 .form-contatti input,
 .form-contatti textarea {
   font: inherit;
   font-weight: 400;
-  padding: 0.65rem 0.85rem;
+  padding: 0.7rem 0.85rem;
   border: 1px solid var(--bordo);
-  border-radius: var(--raggio);
   background: var(--superficie);
   color: var(--inchiostro);
 }
 .form-contatti input:focus,
-.form-contatti textarea:focus { border-color: var(--verde-lago); outline: 2px solid var(--verde-lago); outline-offset: 0; }
+.form-contatti textarea:focus { border-color: var(--noce); outline: 2px solid var(--noce); outline-offset: 0; }
 .form-contatti .honeypot { position: absolute; left: -9999px; }
 .form-contatti .esito { font-weight: 700; }
 
 /* ---------- Contatti ---------- */
 .griglia-contatti { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2.5rem; }
-.mappa { display: block; border: 8px solid var(--superficie); box-shadow: 0 0 0 1px var(--bordo); border-radius: var(--raggio); }
+.mappa { display: block; width: 100%; border: 1px solid var(--bordo); }
+.lista-orari { list-style: none; padding: 0; margin: 1rem 0 1.5rem; border-top: 1px solid var(--bordo); }
+.lista-orari li { display: flex; justify-content: space-between; gap: 1rem; padding: 0.55rem 0; border-bottom: 1px solid var(--bordo); font-size: var(--t-testo-2); }
+.lista-orari li span:first-child { color: var(--inchiostro-tenue); }

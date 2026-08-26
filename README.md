@@ -22,8 +22,8 @@ generate da `src/data/categorie.ts`.
 
 - **Aggiungere un prodotto:** copia una foto in `src/assets/prodotti/` e crea un
   file `.md` in `src/content/prodotti/` (vedi i file esistenti per il formato).
-  Categorie valide: `camere`, `cucine`, `divani`, `materassi`, `soggiorno`,
-  `elettrodomestici`. Il prodotto compare in /prodotti/ e nella sua categoria.
+  Categorie valide: `cucine`, `soggiorno`, `divani`, `tavoli-sedie`, `camere`,
+  `materassi`, `bagni`. Il prodotto compare in /prodotti/ e nella sua categoria.
   Il campo `inEvidenza` è oggi inutilizzato (riservato a una futura sezione "in evidenza").
 - **Telefono, orari, indirizzo, social, link mappa:** `src/data/negozio.ts`.
 - **Categorie (testi SEO, intro, marchi collegati, foto):** `src/data/categorie.ts`.

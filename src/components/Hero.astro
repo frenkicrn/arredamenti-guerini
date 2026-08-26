@@ -1,31 +1,43 @@
 ---
-// Hero.astro
+// Hero.astro — foto a piena pagina con velo scuro; unico punto del sito
+// dove compare la cornice ad angoli, la firma visiva "in esposizione".
 import { Image } from 'astro:assets';
 import type { ImageMetadata } from 'astro';
-import Quota from './Quota.astro';
 
 interface Props {
+  eyebrow?: string;
   titolo: string;
   sottotitolo: string;
   foto: ImageMetadata;
   altFoto: string;
   meta?: string[];
 }
-const { titolo, sottotitolo, foto, altFoto, meta = [] } = Astro.props;
+const {
+  eyebrow = 'Sale Marasino · Lago d’Iseo',
+  titolo,
+  sottotitolo,
+  foto,
+  altFoto,
+  meta = [],
+} = Astro.props;
 ---
 <section class="hero">
-  <div class="contenitore hero-griglia">
-    <div class="hero-testo">
-      <div class="hero-quota"><Quota da="progetto" a="montaggio" /></div>
-      <h1>{titolo}</h1>
-      <p>{sottotitolo}</p>
-      <div class="azioni">
-        <a class="bottone bottone--chiaro" href="/contatti/">Richiedi un preventivo</a>
-        <a class="bottone bottone--contorno-chiaro" href="/contatti/#dove-siamo">Vieni in negozio</a>
-      </div>
-    </div>
-    <div class="hero-cornice">
-      <Image src={foto} alt={altFoto} widths={[800, 1400, 2000]} sizes="(max-width: 800px) 100vw, 50vw" loading="eager" />
+  <Image
+    class="hero__foto"
+    src={foto}
+    alt={altFoto}
+    widths={[800, 1400, 2000, 2600]}
+    sizes="100vw"
+    loading="eager"
+  />
+  <div class="contenitore hero__contenuto">
+    <div class="hero__cornice" aria-hidden="true"></div>
+    <p class="eyebrow eyebrow--chiara">{eyebrow}</p>
+    <h1>{titolo}</h1>
+    <p class="hero__sottotitolo">{sottotitolo}</p>
+    <div class="azioni">
+      <a class="bottone bottone--chiaro" href="/contatti/">Richiedi un preventivo</a>
+      <a class="bottone bottone--contorno-chiaro" href="/contatti/#dove-siamo">Vieni in negozio</a>
     </div>
   </div>
 </section>

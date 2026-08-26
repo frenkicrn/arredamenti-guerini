@@ -1,7 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import ServizioVoce from '../components/ServizioVoce.astro';
-import Righello from '../components/Righello.astro';
 import CtaFinale from '../components/CtaFinale.astro';
 import { SERVIZI, NOTA_SERVIZI } from '../data/servizi';
 import { NEGOZIO } from '../data/negozio';
@@ -12,17 +11,17 @@ import { NEGOZIO } from '../data/negozio';
   descrizione="Progettiamo la stanza sulle tue misure, veniamo a misurare e montiamo noi: servizi compresi in zona Brescia. Pagamenti da concordare in negozio."
 >
   <section class="sezione contenitore">
+    <p class="eyebrow">Come lavoriamo</p>
     <h1>Dal progetto al montaggio</h1>
     <p class="intro">Vendere un mobile è la parte facile. Il lavoro vero è farlo entrare nella stanza giusta, con le misure giuste, montato bene. Per questo i servizi sono compresi, non un extra.</p>
-    <Righello />
-    <h2>I nostri servizi</h2>
     <div class="griglia-servizi">
       {SERVIZI.map((s) => <ServizioVoce servizio={s} />)}
     </div>
   </section>
 
-  <section class="sezione--stretta contenitore">
-    <h2>Zona e tempi</h2>
+  <section class="sezione--stretta sezione--avorio contenitore">
+    <p class="eyebrow">Zona e tempi</p>
+    <h2>Dove e quando</h2>
     <p><strong>{NOTA_SERVIZI}</strong>: rilievo misure, consegna e montaggio sono inclusi per le case in provincia di Brescia e sul Lago d’Iseo. Per altre zone chiedici: valutiamo insieme.</p>
     <p>{NEGOZIO.consegna}. I tempi dipendono dal marchio e dalla composizione: te li diciamo con il preventivo.</p>
   </section>

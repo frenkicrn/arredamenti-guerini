@@ -1,5 +1,6 @@
 ---
 import { NEGOZIO } from '../data/negozio';
+import { CATEGORIE } from '../data/categorie';
 
 interface Props {
   voci: { href: string; testo: string }[];
@@ -15,7 +16,17 @@ const wa = `https://wa.me/${NEGOZIO.whatsapp.replace(/[^\d]/g, '')}`;
     <button type="button" class="menu-chiudi">Chiudi</button>
   </div>
   <nav aria-label="Principale (mobile)">
-    {voci.map((v) => (
+    {voci.map((v) => v.href === '/prodotti' ? (
+      <details class="menu-mobile__prodotti" open={pathname.startsWith('/prodotti')}>
+        <summary aria-current={pathname.startsWith('/prodotti') ? 'page' : undefined}>Prodotti</summary>
+        <div class="menu-mobile__categorie">
+          {CATEGORIE.map((c) => (
+            <a href={`/prodotti/${c.slug}/`} aria-current={pathname === `/prodotti/${c.slug}` ? 'page' : undefined}>{c.nome}</a>
+          ))}
+          <a href="/prodotti/" class="menu-mobile__tutti">Tutti i prodotti</a>
+        </div>
+      </details>
+    ) : (
       <a href={v.href + '/'} aria-current={pathname.startsWith(v.href) ? 'page' : undefined}>{v.testo}</a>
     ))}
   </nav>

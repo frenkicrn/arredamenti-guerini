@@ -11,11 +11,11 @@ const prodotti = await getCollection('prodotti');
 <Layout
   titoloCompleto
   titolo="Mobili, cucine e arredi a Sale Marasino | Arredamenti Guerini"
-  descrizione="Cucine, camere, divani, materassi, soggiorni ed elettrodomestici in esposizione a Sale Marasino (BS), con progetto e montaggio compresi in zona Brescia."
+  descrizione="Cucine, soggiorno, divani, tavoli e sedie, camere, materassi e bagni in esposizione a Sale Marasino (BS), con progetto e montaggio compresi in zona Brescia."
 >
   <section class="sezione contenitore">
     <h1>I nostri prodotti</h1>
-    <p class="intro">Sei categorie, i marchi che conosciamo bene e una regola: prima si misura, poi si sceglie. Entra in una categoria o scorri tutto quello che abbiamo in esposizione.</p>
+    <p class="intro">Sette categorie, i marchi che conosciamo bene e una regola: prima si misura, poi si sceglie. Entra in una categoria o scorri tutto quello che abbiamo in esposizione.</p>
     <div class="griglia-categorie">
       {CATEGORIE.map((c) => <CardCategoria categoria={c} />)}
     </div>

@@ -5,7 +5,6 @@ import CardCategoria from '../components/CardCategoria.astro';
 import CardMarchio from '../components/CardMarchio.astro';
 import ServizioVoce from '../components/ServizioVoce.astro';
 import CtaFinale from '../components/CtaFinale.astro';
-import Righello from '../components/Righello.astro';
 import { NEGOZIO } from '../data/negozio';
 import { CATEGORIE } from '../data/categorie';
 import { MARCHI } from '../data/marchi';
@@ -26,41 +25,59 @@ import heroFoto from '../assets/prodotti/hero-showroom.jpg';
   />
 
   <section class="sezione contenitore">
-    <h2>Come lavoriamo</h2>
+    <p class="eyebrow">Come lavoriamo</p>
+    <h2>Dal progetto al montaggio, un passo alla volta</h2>
     <div class="griglia-servizi">
       {SERVIZI.map((s) => <ServizioVoce servizio={s} breve />)}
     </div>
     <p class="spazio-sopra"><a href="/servizi/">Scopri tutti i servizi →</a></p>
   </section>
 
-  <section class="sezione contenitore">
+  <section class="sezione sezione--avorio contenitore">
+    <p class="eyebrow">Il catalogo</p>
     <h2>Cosa trovi in negozio</h2>
+    <p class="intro">Sette reparti, gli stessi marchi che conosciamo da anni. Entra in una categoria per vedere i marchi collegati e quello che abbiamo in esposizione.</p>
     <div class="griglia-categorie">
       {CATEGORIE.map((c) => <CardCategoria categoria={c} />)}
     </div>
   </section>
 
   <section class="sezione contenitore">
-    <h2>I marchi che trattiamo</h2>
+    <p class="eyebrow">I marchi che trattiamo</p>
+    <h2>Otto marchi, scelti bene</h2>
     <div class="griglia-marchi">
       {MARCHI.map((m) => <CardMarchio marchio={m} />)}
     </div>
     <p class="spazio-sopra"><a href="/marchi/">Tutti i marchi, uno per uno →</a></p>
   </section>
 
-  <section class="sezione contenitore">
-    <h2>Vieni a trovarci</h2>
-    <Righello />
-    <p>{NEGOZIO.indirizzo.via}, {NEGOZIO.indirizzo.cap} {NEGOZIO.indirizzo.comune} ({NEGOZIO.indirizzo.provincia}) — <a href={`tel:${NEGOZIO.telefono.replaceAll(' ', '')}`}>{NEGOZIO.telefono}</a></p>
-    <ul>
-      {NEGOZIO.orari.map((o) => (
-        <li><strong>{o.giorni}</strong>: {o.orario}</li>
-      ))}
-    </ul>
-    <p class="azioni">
-      <a class="bottone" href={NEGOZIO.mapsDirectionsUrl} rel="noopener">Indicazioni per il negozio</a>
-      <a class="bottone bottone--secondario" href="/contatti/#dove-siamo">Orari e mappa</a>
-    </p>
+  <section class="sezione sezione--avorio contenitore">
+    <p class="eyebrow">Vieni a trovarci</p>
+    <h2>Sale Marasino, sul Lago d’Iseo</h2>
+    <div class="griglia-contatti">
+      <div>
+        <p>{NEGOZIO.indirizzo.via}, {NEGOZIO.indirizzo.cap} {NEGOZIO.indirizzo.comune} ({NEGOZIO.indirizzo.provincia})</p>
+        <p><a href={`tel:${NEGOZIO.telefono.replaceAll(' ', '')}`}>{NEGOZIO.telefono}</a></p>
+        <ul class="lista-orari">
+          {NEGOZIO.orari.map((o) => (
+            <li><span>{o.giorni}</span><span>{o.orario}</span></li>
+          ))}
+        </ul>
+        <p class="azioni">
+          <a class="bottone" href={NEGOZIO.mapsDirectionsUrl} rel="noopener">Indicazioni per il negozio</a>
+          <a class="bottone bottone--secondario" href="/contatti/#dove-siamo">Altri contatti</a>
+        </p>
+      </div>
+      <iframe
+        class="mappa"
+        src={NEGOZIO.mapsEmbedUrl}
+        title={`Mappa: ${NEGOZIO.nome}`}
+        width="100%"
+        height="360"
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+      ></iframe>
+    </div>
   </section>
 
   <CtaFinale />

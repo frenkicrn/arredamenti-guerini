@@ -16,7 +16,7 @@ export const MARCHI: Marchio[] = [
     prodotti: 'Cucine, bagno e living (+ elettrodomestici)',
     descrizione:
       'Tra i marchi italiani di cucine più conosciuti, che da noi trovi anche nelle soluzioni bagno e living. Progettiamo la composizione sulle tue misure e la montiamo noi.',
-    categorie: ['cucine', 'soggiorno', 'elettrodomestici'],
+    categorie: ['cucine', 'soggiorno', 'bagni'],
   },
   {
     slug: 'gruppo-colombini',
@@ -64,7 +64,7 @@ export const MARCHI: Marchio[] = [
     prodotti: 'Tavoli e sedie',
     descrizione:
       'Tavoli fissi e allungabili e sedie per la zona pranzo, da abbinare al soggiorno.',
-    categorie: ['soggiorno'],
+    categorie: ['tavoli-sedie'],
   },
   {
     slug: 'ingenia-casa',
@@ -72,6 +72,6 @@ export const MARCHI: Marchio[] = [
     prodotti: 'Tavoli e sedie',
     descrizione:
       'Tavoli e sedie per cucina e soggiorno, in tante finiture per completare la composizione.',
-    categorie: ['soggiorno'],
+    categorie: ['tavoli-sedie'],
   },
 ];

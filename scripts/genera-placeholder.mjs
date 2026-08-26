@@ -15,6 +15,15 @@ const foto = [
   ['parete-soggiorno', '#bba88c', '#77604a'],
   ['forno-incasso', '#a6947c', '#5a4a38'],
   ['hero-showroom', '#3a2e22', '#1e1712'],
+  // Fase B — nuove categorie e sezioni di approfondimento (§5 handoff)
+  ['poltrona-vitarelax', '#b3a086', '#6b5138'],
+  ['tavolo-sedie', '#cabb9f', '#8a6c47'],
+  ['zona-pranzo', '#ad9a7e', '#654e34'],
+  ['cameretta', '#d1c3ab', '#9a7c52'],
+  ['rete-cuorflex', '#c4b69c', '#7d6244'],
+  ['bagno-scavolini', '#c7bca9', '#7a6650'],
+  ['mobile-bagno', '#b8a98d', '#6f5a3c'],
+  ['zona-giorno', '#c0af92', '#725c3c'],
 ];
 
 for (const [nome, da, a] of foto) {

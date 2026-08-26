@@ -1,4 +1,6 @@
 ---
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
 import { getCollection } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
 import Breadcrumb from '../../components/Breadcrumb.astro';
@@ -18,21 +20,53 @@ interface Props {
 const { categoria } = Astro.props;
 const prodotti = await getCollection('prodotti', (p) => p.data.categoria === categoria.slug);
 const marchi = MARCHI.filter((m) => categoria.marchi.includes(m.slug));
+const correlate = CATEGORIE.filter((c) => categoria.correlate?.includes(c.slug));
+
+const immagini = import.meta.glob<{ default: ImageMetadata }>('../../assets/prodotti/*.jpg', { eager: true });
+const fotoDi = (nome: string) => immagini[`../../assets/prodotti/${nome}.jpg`].default;
 ---
 <Layout titoloCompleto titolo={categoria.titoloSeo} descrizione={categoria.descrizioneSeo}>
   <section class="sezione contenitore">
     <Breadcrumb voci={[{ nome: 'Home', href: '/' }, { nome: 'Prodotti', href: '/prodotti/' }, { nome: categoria.nome }]} />
     <h1>{categoria.nome} a Sale Marasino e sul Lago d’Iseo</h1>
     <p class="intro">{categoria.intro}</p>
+    {correlate.length > 0 && (
+      <p class="correlate">
+        Vedi anche: {correlate.map((c, i) => <>{i > 0 && ' · '}<a href={`/prodotti/${c.slug}/`}>{c.nome}</a></>)}
+      </p>
+    )}
+  </section>
 
+  <section class="contenitore">
+    {categoria.approfondimento.map((a, i) => (
+      <div class:list={['approfondimento', { 'approfondimento--inversa': i % 2 === 1 }]}>
+        <div class="approfondimento__foto">
+          <Image
+            src={fotoDi(a.foto)}
+            alt={`${a.titolo}: ${categoria.nome.toLowerCase()} da Arredamenti Guerini a Sale Marasino`}
+            widths={[400, 700, 1000]}
+            sizes="(max-width: 780px) 100vw, 50vw"
+            loading="lazy"
+          />
+        </div>
+        <div class="approfondimento__testo">
+          <h3>{a.titolo}</h3>
+          <p>{a.testo}</p>
+        </div>
+      </div>
+    ))}
+  </section>
+
+  <section class="sezione contenitore">
     <h2>I marchi per {categoria.nome.toLowerCase()}</h2>
     <div class="griglia-marchi">
       {marchi.map((m) => <CardMarchio marchio={m} />)}
     </div>
   </section>
 
-  <section class="sezione--stretta contenitore">
-    <h2>In esposizione</h2>
+  <section class="sezione--vetrina contenitore">
+    <p class="eyebrow">In esposizione</p>
+    <p class="vetrina-nota">Lo showroom è piccolo: un assaggio di quello che trovi, il resto si vede meglio dal vivo.</p>
     {prodotti.length > 0 ? (
       <GalleriaProdotti prodotti={prodotti} />
     ) : (

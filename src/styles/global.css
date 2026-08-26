@@ -92,6 +92,8 @@ a:hover { color: var(--inchiostro); }
 .sezione h2 { margin: 0 0 var(--spazio-2); }
 .sezione--stretta h2 { margin: 0 0 var(--spazio-2); }
 .intro { font-size: 1.15rem; max-width: 62ch; margin: 0 0 var(--spazio-3); color: var(--inchiostro-tenue); }
+.correlate { margin: 0; font-size: var(--t-testo-2); color: var(--inchiostro-tenue); }
+.correlate a { font-weight: 700; }
 
 /* Fasce alternate di sezione (avorio) */
 .sezione--avorio { background: var(--avorio); }
@@ -207,7 +209,8 @@ a:hover { color: var(--inchiostro); }
 }
 .griglia-schede { grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); }
 .griglia-categorie { grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; }
-@media (min-width: 780px) { .griglia-categorie { grid-template-columns: repeat(3, 1fr); } }
+@media (min-width: 700px) { .griglia-categorie { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 1040px) { .griglia-categorie { grid-template-columns: repeat(4, 1fr); } }
 .griglia-marchi { grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 0 2.5rem; }
 .griglia-servizi { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 2.5rem 2rem; counter-reset: voce; }
 
@@ -252,6 +255,36 @@ a:hover { color: var(--inchiostro); }
   border-bottom-color: var(--noce);
 }
 .header-cta { padding: 0.55rem 1.2rem; margin-left: 0.5rem; }
+
+/* Mega menu "Prodotti": rivelato via hover/focus, nessuna ombra
+   (coerente col resto del sito) — solo bordo e sfondo pieno a
+   separarlo dal contenuto sotto. */
+.nav-prodotti { position: relative; }
+.mega-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  margin-top: 0.75rem;
+  min-width: 340px;
+  padding: 1.1rem 1.25rem;
+  background: var(--superficie);
+  border: 1px solid var(--bordo);
+  opacity: 0;
+  visibility: hidden;
+  z-index: 30;
+}
+.nav-prodotti:hover .mega-menu,
+.nav-prodotti:focus-within .mega-menu {
+  opacity: 1;
+  visibility: visible;
+}
+.mega-menu__lista { list-style: none; margin: 0 0 0.85rem; padding: 0; display: grid; grid-template-columns: repeat(2, 1fr); gap: 0 1.5rem; }
+.mega-menu__lista a { display: block; padding: 0.5rem 0.15rem; text-decoration: none; border-bottom: 1px solid var(--bordo); }
+.mega-menu__nome { display: block; font-weight: 700; color: var(--inchiostro); font-size: var(--t-testo-2); }
+.mega-menu__etichetta { display: block; font-size: var(--t-testo-3); color: var(--inchiostro-tenue); text-transform: uppercase; letter-spacing: 0.03em; }
+.mega-menu__lista a:hover .mega-menu__nome,
+.mega-menu__lista a:hover .mega-menu__etichetta { color: var(--noce-testo); }
+.mega-menu__tutti { display: inline-block; font-weight: 700; font-size: var(--t-testo-2); text-decoration: none; }
 .menu-bottone {
   display: none;
   font: inherit;
@@ -303,6 +336,35 @@ a:hover { color: var(--inchiostro); }
 }
 .menu-mobile nav a:hover { color: var(--noce-chiaro); }
 .menu-mobile nav a[aria-current='page'] { color: var(--noce-chiaro); }
+.menu-mobile__prodotti { border-bottom: 1px solid var(--bordo-scuro); }
+.menu-mobile__prodotti summary {
+  font-family: var(--font-display);
+  font-size: 1.7rem;
+  font-weight: 600;
+  color: var(--carta);
+  cursor: pointer;
+  padding: 0.6rem 0;
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.menu-mobile__prodotti summary::-webkit-details-marker { display: none; }
+.menu-mobile__prodotti summary::after { content: '+'; color: var(--noce-chiaro); font-weight: 700; }
+.menu-mobile__prodotti[open] summary::after { content: '−'; }
+.menu-mobile__prodotti summary:hover { color: var(--noce-chiaro); }
+.menu-mobile .menu-mobile__categorie { display: grid; gap: 0.1rem; padding: 0 0 0.85rem; }
+.menu-mobile .menu-mobile__categorie a {
+  font-family: var(--font-testo);
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--inchiostro-tenue-inverso);
+  border-bottom: none;
+  padding: 0.5rem 0.1rem;
+}
+.menu-mobile .menu-mobile__categorie a:hover,
+.menu-mobile .menu-mobile__categorie a[aria-current='page'] { color: var(--noce-chiaro); }
+.menu-mobile .menu-mobile__tutti { font-weight: 700; color: var(--noce-chiaro); margin-top: 0.3rem; }
 .menu-contatti { display: grid; gap: 0.6rem; margin-top: auto; font-size: var(--t-testo-2); }
 .menu-contatti a { color: var(--noce-chiaro); }
 body.menu-aperto { overflow: hidden; }
@@ -433,6 +495,35 @@ body.menu-aperto .barra-mobile { display: none; }
   color: var(--noce-chiaro);
 }
 .card-categoria:hover .card-categoria__testo h3 { color: var(--carta); }
+
+/* ---------- Approfondimento categoria ----------
+   Testo + foto alternati sinistra/destra, sul modello turra.it.
+   Ogni pagina categoria ne ha 2: la foto usa .order per invertire
+   il lato senza toccare l'ordine nel markup (sorgente = accessibilità). */
+.approfondimento {
+  display: grid;
+  gap: var(--spazio-3) var(--spazio-4);
+  align-items: center;
+  padding-block: var(--spazio-4);
+  border-top: 1px solid var(--bordo);
+}
+.approfondimento__foto { aspect-ratio: 4 / 3; overflow: hidden; background: var(--sabbia); }
+.approfondimento__foto img { width: 100%; height: 100%; object-fit: cover; }
+.approfondimento__testo h3 { margin: 0 0 0.6rem; }
+.approfondimento__testo p { margin: 0; color: var(--inchiostro-tenue); }
+@media (min-width: 780px) {
+  .approfondimento { grid-template-columns: 1fr 1fr; }
+  .approfondimento--inversa .approfondimento__foto { order: 2; }
+}
+
+/* ---------- Sezione "In esposizione" ridimensionata ----------
+   Lo showroom è piccolo: qui il peso visivo resta contenuto
+   (eyebrow al posto di un h2, griglia più stretta) rispetto alla
+   sezione marchi/approfondimento che la precede. */
+.sezione--vetrina { padding-block: var(--spazio-4); }
+.vetrina-nota { margin: 0 0 var(--spazio-2); max-width: 52ch; color: var(--inchiostro-tenue); font-size: var(--t-testo-2); }
+.sezione--vetrina .griglia-schede { max-width: 760px; grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); gap: 1rem; }
+.sezione--vetrina .vuoto { max-width: 760px; padding: var(--spazio-3); }
 
 /* ---------- Card marchio ----------
    Compatta (Home): riga d'indice con filetto inferiore.
@@ -575,6 +666,7 @@ body.menu-aperto .barra-mobile { display: none; }
   }
   .card-categoria__foto { transition: transform 0.6s cubic-bezier(0.2, 0.7, 0.2, 1); }
   .card-categoria:hover .card-categoria__foto { transform: scale(1.045); }
+  .mega-menu { transition: opacity 0.15s ease, visibility 0.15s; }
 }
 
 /* ---------- Filtri gallery ---------- */

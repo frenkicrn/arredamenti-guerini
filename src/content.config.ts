@@ -7,12 +7,13 @@ const prodotti = defineCollection({
     z.object({
       titolo: z.string(),
       categoria: z.enum([
-        'camere',
         'cucine',
-        'divani',
-        'materassi',
         'soggiorno',
-        'elettrodomestici',
+        'divani',
+        'tavoli-sedie',
+        'camere',
+        'materassi',
+        'bagni',
       ]),
       marchio: z.string().optional(),
       foto: image(),

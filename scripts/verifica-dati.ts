@@ -7,7 +7,7 @@ import { SERVIZI } from '../src/data/servizi.ts';
 import { FAQ } from '../src/data/faq.ts';
 import { NEGOZIO } from '../src/data/negozio.ts';
 
-const SLUG_ATTESI = ['camere', 'cucine', 'divani', 'materassi', 'soggiorno', 'elettrodomestici'];
+const SLUG_ATTESI = ['cucine', 'soggiorno', 'divani', 'tavoli-sedie', 'camere', 'materassi', 'bagni'];
 
 assert.deepEqual(CATEGORIE.map((c) => c.slug), SLUG_ATTESI, 'slug categorie diversi da quelli della collection');
 
@@ -15,12 +15,18 @@ const slugMarchi = new Set(MARCHI.map((m) => m.slug));
 assert.equal(MARCHI.length, 8, 'devono esserci 8 marchi');
 assert.equal(slugMarchi.size, 8, 'slug marchi duplicati');
 
+const slugCategorie = new Set(SLUG_ATTESI);
 for (const c of CATEGORIE) {
   assert.ok(c.marchi.length > 0, `categoria ${c.slug}: nessun marchio collegato`);
   for (const m of c.marchi) assert.ok(slugMarchi.has(m), `categoria ${c.slug}: marchio "${m}" inesistente`);
   assert.ok(c.titoloSeo.includes('Sale Marasino'), `categoria ${c.slug}: titoloSeo senza località`);
   assert.ok(c.descrizioneSeo.length <= 155, `categoria ${c.slug}: descrizioneSeo di ${c.descrizioneSeo.length} caratteri (max 155)`);
   assert.ok(existsSync(`src/assets/prodotti/${c.foto}.jpg`), `categoria ${c.slug}: foto ${c.foto}.jpg mancante`);
+  assert.ok(c.approfondimento.length >= 2, `categoria ${c.slug}: servono almeno 2 sezioni di approfondimento`);
+  for (const a of c.approfondimento) {
+    assert.ok(existsSync(`src/assets/prodotti/${a.foto}.jpg`), `categoria ${c.slug}: foto approfondimento ${a.foto}.jpg mancante`);
+  }
+  for (const s of c.correlate ?? []) assert.ok(slugCategorie.has(s), `categoria ${c.slug}: correlata "${s}" inesistente`);
 }
 
 for (const m of MARCHI) {

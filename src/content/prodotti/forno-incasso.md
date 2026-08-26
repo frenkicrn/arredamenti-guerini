@@ -1,6 +1,7 @@
 ---
 titolo: Forno da incasso
-categoria: elettrodomestici
+categoria: cucine
+marchio: Scavolini
 foto: ../../assets/prodotti/forno-incasso.jpg
 ---
 

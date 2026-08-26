@@ -1,5 +1,6 @@
 ---
 import MenuMobile from './MenuMobile.astro';
+import { CATEGORIE } from '../data/categorie';
 
 const pathname = Astro.url.pathname.replace(/\/$/, '') || '/';
 const voci = [
@@ -14,7 +15,24 @@ const voci = [
   <div class="contenitore header-riga">
     <a href="/" class="logo">Arredamenti <strong>Guerini</strong></a>
     <nav class="nav-desktop" aria-label="Principale">
-      {voci.map((v) => (
+      {voci.map((v) => v.href === '/prodotti' ? (
+        <div class="nav-prodotti">
+          <a href="/prodotti/" aria-current={pathname.startsWith('/prodotti') ? 'page' : undefined}>Prodotti</a>
+          <div class="mega-menu" aria-label="Categorie prodotti">
+            <ul class="mega-menu__lista">
+              {CATEGORIE.map((c) => (
+                <li>
+                  <a href={`/prodotti/${c.slug}/`}>
+                    <span class="mega-menu__nome">{c.nome}</span>
+                    <span class="mega-menu__etichetta">{c.etichetta}</span>
+                  </a>
+                </li>
+              ))}
+            </ul>
+            <a class="mega-menu__tutti" href="/prodotti/">Tutti i prodotti →</a>
+          </div>
+        </div>
+      ) : (
         <a href={v.href + '/'} aria-current={pathname.startsWith(v.href) ? 'page' : undefined}>{v.testo}</a>
       ))}
       <a class="bottone header-cta" href="/contatti/">Richiedi un preventivo</a>

@@ -22,7 +22,8 @@ const faqJsonLd = {
   descrizione="Richiedi un preventivo o vieni in negozio a Sale Marasino: telefono, WhatsApp, indicazioni, orari di apertura e risposte alle domande frequenti."
 >
   <section class="sezione contenitore">
-    <h1>Contatti</h1>
+    <p class="eyebrow">Contatti</p>
+    <h1>Scriviamoci o vieni a trovarci</h1>
     <div class="griglia-contatti">
       <div>
         <h2>Richiedi un preventivo</h2>
@@ -62,8 +63,9 @@ const faqJsonLd = {
     </div>
   </section>
 
-  <section class="sezione--stretta contenitore">
-    <h2>Domande frequenti</h2>
+  <section class="sezione--stretta sezione--avorio contenitore">
+    <p class="eyebrow">Domande frequenti</p>
+    <h2>Le domande che ci fate più spesso</h2>
     <Faq voci={FAQ} />
     <script type="application/ld+json" set:html={JSON.stringify(faqJsonLd)} />
   </section>

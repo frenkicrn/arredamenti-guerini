@@ -16,19 +16,34 @@ const { marchio, estesa = false, soloLogo = false } = Astro.props;
 const categorie = CATEGORIE.filter((c) => marchio.categorie.includes(c.slug));
 const primaCategoria = categorie[0];
 
-const loghi = import.meta.glob<{ default: ImageMetadata }>('../assets/marchi/*.{png,jpg,jpeg,webp}', { eager: true });
-const chiaveLogo = Object.keys(loghi).find((k) => k.includes(`/${marchio.slug}.`));
-const logo = chiaveLogo ? loghi[chiaveLogo].default : undefined;
+const immaginiMarchio = import.meta.glob<{ default: ImageMetadata }>('../assets/marchi/*.{png,jpg,jpeg,webp}', { eager: true });
+const trova = (suffisso: string) => {
+  const chiave = Object.keys(immaginiMarchio).find((k) => k.includes(`/${marchio.slug}${suffisso}`));
+  return chiave ? immaginiMarchio[chiave].default : undefined;
+};
+const logo = trova('.');
+const foto = trova('-foto.');
 ---
 {estesa ? (
   <article class="card-marchio card-marchio--estesa">
-    <div class="card-marchio__logo">
-      {logo ? (
-        <Image src={logo} alt={`Logo ${marchio.nome}`} widths={[280, 420]} sizes="420px" loading="lazy" />
-      ) : (
-        <span aria-hidden="true">{marchio.nome}</span>
-      )}
-    </div>
+    {foto ? (
+      <div class="card-marchio__media">
+        <Image src={foto} alt={`Un arredo ${marchio.nome}`} widths={[560, 900, 1400]} sizes="(max-width: 900px) 100vw, 45vw" loading="lazy" />
+        {logo && (
+          <span class="card-marchio__placca">
+            <Image src={logo} alt={`Logo ${marchio.nome}`} widths={[160, 320]} sizes="160px" loading="lazy" />
+          </span>
+        )}
+      </div>
+    ) : (
+      <div class="card-marchio__logo">
+        {logo ? (
+          <Image src={logo} alt={`Logo ${marchio.nome}`} widths={[280, 420]} sizes="420px" loading="lazy" />
+        ) : (
+          <span aria-hidden="true">{marchio.nome}</span>
+        )}
+      </div>
+    )}
     <h3>{marchio.nome}</h3>
     <p>{marchio.descrizione}</p>
     <ul class="card-marchio__categorie" aria-label="Categorie">

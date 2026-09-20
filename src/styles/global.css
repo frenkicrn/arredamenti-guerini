@@ -763,6 +763,30 @@ body.menu-aperto .barra-mobile { display: none; }
   padding: 1.5rem 0 0;
 }
 .card-marchio--estesa:hover { border-bottom-color: transparent; }
+/* Foto del marchio con la placca del logo appoggiata nell'angolo */
+.card-marchio__media {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  background: var(--sabbia);
+  margin-bottom: var(--spazio-2);
+}
+.card-marchio__media > img { width: 100%; height: 100%; object-fit: cover; }
+.card-marchio__placca {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 7.5rem;
+  padding: 0.7rem 1rem;
+  background: #fff;
+  border-top: 1px solid var(--bordo);
+  border-right: 1px solid var(--bordo);
+}
+.card-marchio__placca img { max-height: 26px; max-width: 110px; width: auto; height: auto; object-fit: contain; }
+
 .card-marchio--estesa .card-marchio__logo {
   display: flex;
   align-items: center;

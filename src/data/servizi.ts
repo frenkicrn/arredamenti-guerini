@@ -20,7 +20,7 @@ export const SERVIZI: Servizio[] = [
     nome: 'Progettazione',
     breve: 'Disegniamo la stanza sulle tue misure e sulle tue abitudini.',
     descrizione:
-      'Partiamo da come vivi la casa, non dal catalogo. Disegniamo la composizione sulle misure reali della stanza, scegliamo insieme finiture e materiali e ti mostriamo il progetto prima di ordinare, così ogni scelta è chiara.',
+      'Partiamo da come vivi la casa, non da una soluzione standard. Disegniamo la composizione sulle misure reali della stanza, scegliamo insieme finiture e materiali e ti mostriamo il progetto prima di ordinare, così ogni scelta è chiara.',
   },
   {
     slug: 'montaggio',

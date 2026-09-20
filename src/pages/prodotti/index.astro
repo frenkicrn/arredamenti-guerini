@@ -12,13 +12,13 @@ const ordine = (slug: string) => CATEGORIE.findIndex((c) => c.slug === slug);
 const prodotti = (await getCollection('prodotti')).sort(
   (a, b) => ordine(a.data.categoria) - ordine(b.data.categoria),
 );
-// Filtri solo per i reparti che hanno almeno un prodotto in esposizione.
+// Filtri solo per i reparti che hanno almeno un modello pubblicato.
 const conProdotti = CATEGORIE.filter((c) => prodotti.some((p) => p.data.categoria === c.slug));
 ---
 <Layout
   titoloCompleto
   titolo="Mobili, cucine e arredi a Sale Marasino | Arredamenti Guerini"
-  descrizione="Cucine, soggiorno, tavoli e sedie, camere, materassi e bagni in esposizione a Sale Marasino (BS), con progetto e montaggio compresi in zona Brescia."
+  descrizione="Cucine, soggiorno, tavoli e sedie, camere, materassi e bagni a Sale Marasino (BS), con progetto, rilievo misure e montaggio compresi in zona Brescia."
 >
   <section class="sezione contenitore">
     <Breadcrumb voci={[{ nome: 'Home', href: '/' }, { nome: 'Prodotti' }]} />

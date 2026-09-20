@@ -28,46 +28,44 @@ const faqJsonLd = {
     <h1>Scrivici, o passa a trovarci</h1>
     <p class="intro">Rispondiamo noi, dal negozio. Se ci racconti la stanza fissiamo il rilievo misure e ti prepariamo il preventivo.</p>
 
-    <div class="blocchi-contatto">
-      <div>
-        <p class="eyebrow">Telefono</p>
-        <a class="blocchi-contatto__telefono" href={tel}>{telVisibile}</a>
-      </div>
-      <div id="dove-siamo">
-        <p class="eyebrow">In negozio</p>
-        <p class="blocchi-contatto__dato">
-          {NEGOZIO.indirizzo.via}<br />
-          {NEGOZIO.indirizzo.comune} ({NEGOZIO.indirizzo.provincia})
-        </p>
-      </div>
-      <div>
-        <p class="eyebrow">Orari</p>
-        <p class="blocchi-contatto__dato">
-          Mar–Sab 9–12 · 15–19<br />
-          Lunedì e domenica chiuso
-        </p>
-      </div>
-    </div>
-
     <div class="griglia-contatti">
       <div>
         <h2>Raccontaci la stanza</h2>
+        <p class="griglia-contatti__nota">Più cose ci scrivi (la stanza, le misure se le hai, i tempi), più il primo preventivo sarà vicino alla realtà.</p>
         <FormContatti />
       </div>
-      <div>
-        <h2>Come arrivare</h2>
+
+      <div class="scheda-negozio scheda-negozio--verticale" id="dove-siamo">
         <iframe
-          class="mappa"
+          class="scheda-negozio__mappa"
           src={NEGOZIO.mapsEmbedUrl}
           title={`Mappa: ${NEGOZIO.nome}`}
           width="640"
-          height="320"
+          height="300"
           loading="lazy"
           referrerpolicy="no-referrer-when-downgrade"
         ></iframe>
-        <p class="azioni">
-          <a class="bottone bottone--secondario" href={NEGOZIO.mapsDirectionsUrl} rel="noopener">Indicazioni stradali</a>
-        </p>
+        <div class="scheda-negozio__info">
+          <dl class="scheda-negozio__voci">
+            <div>
+              <dt>Telefono</dt>
+              <dd><a class="telefono" href={tel}>{telVisibile}</a></dd>
+            </div>
+            <div>
+              <dt>In negozio</dt>
+              <dd>{NEGOZIO.indirizzo.via}<br />{NEGOZIO.indirizzo.cap} {NEGOZIO.indirizzo.comune} ({NEGOZIO.indirizzo.provincia})</dd>
+            </div>
+            {NEGOZIO.orari.map((o) => (
+              <div>
+                <dt>{o.giorni}</dt>
+                <dd>{o.orario}</dd>
+              </div>
+            ))}
+          </dl>
+          <div class="azioni">
+            <a class="bottone bottone--secondario" href={NEGOZIO.mapsDirectionsUrl} rel="noopener">Indicazioni stradali</a>
+          </div>
+        </div>
       </div>
     </div>
   </section>

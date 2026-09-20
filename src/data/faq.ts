@@ -7,7 +7,7 @@ export const FAQ: Voce[] = [
   {
     domanda: 'Quanto tempo ci vuole per la consegna?',
     risposta:
-      'Per gli arredi su ordinazione i tempi partono da circa un mese dalla conferma. Alcuni articoli in esposizione sono disponibili in pronta consegna: chiedici quali.',
+      'Per gli arredi su ordinazione i tempi partono da circa un mese dalla conferma. Qualche articolo è in pronta consegna: chiedici quali.',
   },
   {
     domanda: 'In quale zona consegnate e montate?',

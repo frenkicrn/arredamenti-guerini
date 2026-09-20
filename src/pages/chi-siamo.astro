@@ -13,12 +13,12 @@ import fotoShowroom from '../assets/prodotti/cucina-madeleine-b.jpg';
 >
   <section class="sezione contenitore">
     <Breadcrumb voci={[{ nome: 'Home', href: '/' }, { nome: 'Chi siamo' }]} />
-    <h1 class="chi-siamo__titolo">Una famiglia, tre generazioni di case arredate</h1>
+    <h1 class="chi-siamo__titolo">Una famiglia, più di cinquant’anni di case arredate</h1>
 
     <div class="chi-siamo__foto">
       <Image
         src={fotoShowroom}
-        alt={`Una cucina in esposizione nello showroom di ${NEGOZIO.nome} a Sale Marasino`}
+        alt="Una cucina Scavolini Madeleine con ante a telaio"
         widths={[800, 1400, 2000]}
         sizes="(max-width: 1280px) 100vw, 1280px"
         loading="eager"
@@ -26,11 +26,11 @@ import fotoShowroom from '../assets/prodotti/cucina-madeleine-b.jpg';
     </div>
 
     <div class="chi-siamo__testo">
-      <p class="chi-siamo__apertura">Il negozio l’hanno aperto i nostri genitori nel {NEGOZIO.dal}, in questa stessa strada che corre lungo il lago. Oggi lo portiamo avanti noi tre, fratello e sorella.</p>
+      <p class="chi-siamo__apertura">Il negozio l’hanno aperto i nostri genitori nel {NEGOZIO.dal}, in questa stessa strada che corre lungo il lago. Oggi siamo in tre a portarlo avanti: due fratelli e una sorella.</p>
       <div>
-        <p>In negozio trovi <strong>Elisabetta</strong>: ti accoglie, ascolta com’è fatta la tua casa e prepara il preventivo. È la persona con cui scegli finiture, misure e tempi, e quella che ti richiama se qualcosa va chiarito.</p>
-        <p><strong>Stefano</strong> e <strong>Angelo</strong> arrivano a casa tua: prendono le misure prima dell’ordine, smontano quello che c’era, consegnano e montano i mobili nuovi. Sono le stesse mani dall’inizio alla fine, e questo è il motivo per cui possiamo garantire quello che promettiamo.</p>
-        <p>Non lavoriamo a catalogo. Veniamo a vedere gli spazi reali, disegniamo la composizione su quelle misure e ti mostriamo il progetto prima di ordinare qualsiasi cosa. Dopo più di cinquant’anni sul lago, molte delle case che arrediamo oggi le avevamo già arredate per i genitori dei nostri clienti.</p>
+        <p>In negozio trovi <strong>Elisabetta</strong>: ti accoglie, ascolta com’è fatta la tua casa e prepara il preventivo. È la persona con cui scegli finiture, misure e tempi, ed è lei a richiamarti se c’è qualcosa da chiarire.</p>
+        <p><strong>Stefano</strong> e <strong>Angelo</strong> arrivano a casa tua: prendono le misure prima dell’ordine, smontano quello che c’era, consegnano e montano i mobili nuovi. Sono sempre loro, dal rilievo al montaggio: per questo possiamo garantire quello che promettiamo.</p>
+        <p>Non ci limitiamo a venderti un mobile: veniamo a vedere gli spazi reali, disegniamo la composizione su quelle misure e ti mostriamo il progetto prima di ordinare qualsiasi cosa. Dopo più di cinquant’anni sul lago, molte delle case che arrediamo oggi le avevamo già arredate per i genitori dei nostri clienti.</p>
         <div class="azioni">
           <a class="bottone bottone--secondario" href="/servizi/">Come lavoriamo</a>
           <a class="bottone bottone--secondario" href="/contatti/#dove-siamo">Vieni in negozio</a>
@@ -39,5 +39,5 @@ import fotoShowroom from '../assets/prodotti/cucina-madeleine-b.jpg';
     </div>
   </section>
 
-  <CtaFinale titolo="Passa a conoscerci" testo="Lo showroom è a Sale Marasino, sulla strada del lago: vieni negli orari di apertura o fissiamo un appuntamento." />
+  <CtaFinale titolo="Passa a conoscerci" testo="Il negozio è a Sale Marasino, sulla strada del lago: passa negli orari di apertura o fissiamo un appuntamento." />
 </Layout>

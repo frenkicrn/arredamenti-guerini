@@ -96,6 +96,8 @@ a:hover { color: var(--inchiostro); }
 .sezione--stretta { padding-top: var(--spazio-4); }
 /* Ultima sezione di una pagina senza CtaFinale a seguire: serve uno spazio prima del footer */
 .sezione--ultima { padding-bottom: var(--spazio-5); }
+/* L'hero attacca subito sotto l'header: 4,5rem di stacco erano troppi. */
+.sezione--hero { padding-top: var(--spazio-4); }
 .sezione h1 { margin: 0 0 var(--spazio-2); }
 .sezione h2 { margin: 0 0 var(--spazio-2); }
 .sezione--stretta h2 { margin: 0 0 var(--spazio-2); }
@@ -121,6 +123,10 @@ a:hover { color: var(--inchiostro); }
 }
 /* Variante con filetto terracotta: hero della Home e delle pagine reparto. */
 .eyebrow--filetto::before { content: ''; width: 36px; height: 1px; background: var(--noce); flex-shrink: 0; }
+/* Firma del negozio nell'hero: più marcata, è l'unica riga che dice da
+   quanto tempo e dove. */
+.eyebrow--firma { font-size: 0.9rem; letter-spacing: 0.16em; color: var(--inchiostro); margin-bottom: 1.4rem; }
+.eyebrow--firma::before { width: 48px; height: 2px; }
 .centrato .eyebrow { justify-content: center; }
 
 /* Utilità */
@@ -467,13 +473,58 @@ body.menu-aperto .barra-mobile { display: none; }
   white-space: nowrap;
 }
 
-/* ---------- Dove siamo (Home) ---------- */
-.dove-siamo { display: grid; gap: var(--spazio-3); align-items: start; }
-.dove-siamo__indirizzo { margin: 0 0 1.75rem; font-size: 1.12rem; font-weight: 500; line-height: 1.4; }
-.dove-siamo__mappa { background: var(--sabbia); aspect-ratio: 16 / 11; width: 100%; border: none; }
-@media (min-width: 780px) {
-  .dove-siamo { grid-template-columns: 0.9fr 1.1fr; gap: 3rem; }
+/* ---------- Scheda negozio ----------
+   Un solo pannello con mappa e dati, usato in Home ("Dove siamo") e in
+   Contatti: tiene insieme indirizzo, orari e azioni invece di lasciarli
+   galleggiare in colonne separate. */
+.scheda-negozio {
+  display: grid;
+  border: 1px solid var(--bordo);
+  background: var(--superficie);
+  overflow: hidden;
 }
+.scheda-negozio__mappa { display: block; width: 100%; height: 100%; min-height: 300px; border: none; background: var(--sabbia); }
+.scheda-negozio__info { padding: 2rem 2.25rem; display: grid; gap: 1.5rem; align-content: center; }
+.scheda-negozio__indirizzo { margin: 0; font-family: var(--font-display); font-size: 1.6rem; font-weight: 400; line-height: 1.25; }
+.scheda-negozio .lista-orari { margin: 0; }
+.scheda-negozio .azioni { margin: 0; }
+@media (min-width: 900px) {
+  .scheda-negozio { grid-template-columns: 0.85fr 1.15fr; }
+  .scheda-negozio__mappa { border-left: 1px solid var(--bordo); }
+}
+
+/* Variante a colonna stretta (Contatti): mappa sopra, dati sotto. */
+.scheda-negozio--verticale { grid-template-columns: 1fr; }
+@media (min-width: 900px) {
+  .scheda-negozio--verticale { grid-template-columns: 1fr; }
+  .scheda-negozio--verticale .scheda-negozio__mappa { border-left: none; }
+}
+.scheda-negozio--verticale .scheda-negozio__mappa { border-bottom: 1px solid var(--bordo); min-height: 280px; }
+.scheda-negozio--verticale .scheda-negozio__info { gap: 1.25rem; }
+
+/* Righe etichetta/valore dentro la scheda */
+.scheda-negozio__voci { margin: 0; display: grid; }
+.scheda-negozio__voci > div {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 1.5rem;
+  padding: 0.9rem 0;
+  border-bottom: 1px solid var(--sabbia);
+}
+.scheda-negozio__voci > div:first-child { padding-top: 0; }
+.scheda-negozio__voci > div:last-child { border-bottom: none; padding-bottom: 0; }
+.scheda-negozio__voci dt {
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--etichetta);
+  white-space: nowrap;
+}
+.scheda-negozio__voci dd { margin: 0; text-align: right; line-height: 1.5; }
+.scheda-negozio__voci .telefono { font-family: var(--font-display); font-size: 1.5rem; text-decoration: none; color: var(--inchiostro); }
+.scheda-negozio__voci .telefono:hover { color: var(--noce-testo); }
 
 /* ---------- Intestazione a due colonne (pagina reparto) ----------
    Testo + foto (o segnaposto "Foto in arrivo") affiancati, 4/3. */
@@ -980,24 +1031,9 @@ dialog.lightbox p { margin: 0; padding: 0.85rem 1rem; text-align: center; font-f
 .form-contatti .esito { font-weight: 700; }
 
 /* ---------- Contatti ---------- */
-.blocchi-contatto {
-  display: grid;
-  gap: var(--spazio-3) 2.5rem;
-  padding-block: 2rem;
-  border-top: 1px solid var(--bordo);
-  border-bottom: 1px solid var(--bordo);
-  margin-block: var(--spazio-4) var(--spazio-5);
-}
-.blocchi-contatto__telefono { font-family: var(--font-display); font-size: 1.9rem; text-decoration: none; color: var(--inchiostro); }
-.blocchi-contatto__telefono:hover { color: var(--noce-testo); }
-.blocchi-contatto__dato { margin: 0; font-size: 1.08rem; font-weight: 500; line-height: 1.4; }
-@media (min-width: 780px) {
-  .blocchi-contatto { grid-template-columns: repeat(3, 1fr); }
-}
-
-.griglia-contatti { display: grid; gap: var(--spazio-4); align-items: start; }
-.griglia-contatti h2 { margin: 0 0 1.75rem; font-size: 2rem; }
-.mappa { display: block; width: 100%; background: var(--sabbia); border: none; margin-bottom: 1rem; }
+.griglia-contatti { display: grid; gap: var(--spazio-4); align-items: start; margin-top: var(--spazio-4); }
+.griglia-contatti h2 { margin: 0 0 0.75rem; font-size: 2rem; }
+.griglia-contatti__nota { margin: 0 0 1.75rem; max-width: 46ch; color: var(--inchiostro-tenue); }
 @media (min-width: 900px) {
   .griglia-contatti { grid-template-columns: 0.9fr 1.1fr; gap: 3.5rem; }
 }

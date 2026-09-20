@@ -55,7 +55,7 @@ export const CATEGORIE: Categoria[] = [
       {
         titolo: 'Classica o lineare, la stessa cura',
         testo:
-          'Dalle ante a telaio del legno massello alle superfici lisce delle composizioni lineari: cambiano le finiture, non il modo di lavorare. In negozio le vedi dal vivo e capisci quale regge meglio la tua giornata.',
+          'Dalle ante a telaio del legno massello alle superfici lisce delle composizioni lineari: cambiano le finiture, non il modo di lavorare. Ti facciamo vedere i campioni e ti diciamo quale regge meglio la tua giornata.',
         foto: 'cucina-regola',
       },
       {
@@ -104,7 +104,7 @@ export const CATEGORIE: Categoria[] = [
       'Tavoli fissi e allungabili e sedie Zamagna Italia e Ingenia Casa a Sale Marasino (BS), per cucina e soggiorno. Montaggio compreso in zona Brescia.',
     titolo: 'Tavoli e sedie per la zona pranzo',
     intro:
-      'Un tavolo si sceglie in due tempi: quanti siete di solito e quanti diventate a Natale. Per questo lavoriamo molto con gli allungabili, in ceramica, legno e laminato, e con le sedie da abbinare per forma e tessuto. In negozio provi la seduta e vedi i campioni dei piani dal vivo.',
+      'Un tavolo si sceglie in due tempi: quanti siete di solito e quanti diventate a Natale. Per questo lavoriamo molto con gli allungabili, in ceramica, legno e laminato, e con le sedie da abbinare per forma e tessuto. Piani e tessuti si scelgono sui campioni, così vedi il materiale vero prima di ordinare.',
     approfondimento: [
       {
         titolo: 'Allungabile, senza rinunciare alla misura di ogni giorno',
@@ -113,9 +113,9 @@ export const CATEGORIE: Categoria[] = [
         foto: 'tavolo-infinity',
       },
       {
-        titolo: 'Le sedie si provano, non si guardano',
+        titolo: 'Sedie: altezza, schienale, tessuto',
         testo:
-          'Altezza della seduta, profondità dello schienale, tessuto che regge le macchie: sono cose che si capiscono sedendosi. In negozio hai i modelli e i campioni dei rivestimenti da abbinare al piano che hai scelto.',
+          'Altezza della seduta, profondità dello schienale, tessuto che regge le macchie: sono le cose che contano davvero a tavola. Le scegliamo insieme sui campioni dei rivestimenti, abbinandole al piano che hai scelto.',
         foto: 'tavolo-zamagna',
       },
     ],
@@ -128,13 +128,13 @@ export const CATEGORIE: Categoria[] = [
     nome: 'Divani e poltrone',
     etichetta: 'Divani e poltrone relax',
     sommario:
-      'Divani fissi e angolari con misure e rivestimenti su richiesta, più poltrone relax elettriche da provare in negozio.',
+      'Divani fissi e angolari con misure e rivestimenti su richiesta, e poltrone relax elettriche scelte su chi le userà.',
     titoloSeo: 'Divani e poltrone relax a Sale Marasino (Lago d’Iseo) | Arredamenti Guerini',
     descrizioneSeo:
-      'Divani Biel e poltrone elettriche Vitarelax a Sale Marasino (BS). Provali in negozio: consegna e montaggio compresi in zona Brescia.',
+      'Divani Biel e poltrone relax elettriche Vitarelax a Sale Marasino (BS): misure e rivestimenti su richiesta, consegna e montaggio compresi.',
     titolo: 'Divani e poltrone relax',
     intro:
-      'Un divano si giudica sedendosi, ed è il motivo per cui teniamo in negozio i modelli che proponiamo più spesso. Lavoriamo con divani fissi e angolari, con misure, rivestimenti e sedute su richiesta, e con poltrone relax elettriche per chi ha bisogno di alzarsi senza sforzo. Se la misura del tuo spazio è difficile, la prendiamo noi.',
+      'Un divano si sceglie su tre cose: la misura che entra nella stanza, la seduta e il rivestimento. Lavoriamo con divani fissi e angolari, con misure, rivestimenti e sedute su richiesta, e con poltrone relax elettriche per chi ha bisogno di alzarsi senza sforzo. Se la misura del tuo spazio è difficile, la prendiamo noi.',
     approfondimento: [
       {
         titolo: 'Angolare o lineare, sulla stanza che hai',
@@ -145,7 +145,7 @@ export const CATEGORIE: Categoria[] = [
       {
         titolo: 'Poltrone relax elettriche',
         testo:
-          'Schienale e poggiapiedi si regolano con un motore, e alcuni modelli aiutano ad alzarsi. È un acquisto che si fa per stare comodi tutti i giorni: vieni a provarle, così capiamo insieme misura e meccanismo giusti.',
+          'Schienale e poggiapiedi si regolano con un motore, e alcuni modelli aiutano ad alzarsi. È un acquisto che si fa per stare comodi tutti i giorni: ti aiutiamo a scegliere misura e meccanismo in base a chi la userà.',
         foto: 'poltrona-relax',
       },
     ],
@@ -181,13 +181,13 @@ export const CATEGORIE: Categoria[] = [
     nome: 'Materassi e reti',
     etichetta: 'Riposo su misura',
     sommario:
-      'Materassi da provare stesi, abbinati alla rete giusta: un buon materasso su una rete sbagliata rende metà.',
+      'Materassi abbinati alla rete giusta: un buon materasso su una rete sbagliata rende metà.',
     titoloSeo: 'Materassi e reti a Sale Marasino (Lago d’Iseo) | Arredamenti Guerini',
     descrizioneSeo:
-      'Materassi e reti Cuorflex a Sale Marasino (BS): consulenza in negozio per scegliere il sistema letto giusto. Alcuni articoli in pronta consegna.',
+      'Materassi e reti Cuorflex a Sale Marasino (BS): ti aiutiamo a scegliere il sistema letto giusto. Qualche articolo in pronta consegna.',
     titolo: 'Materassi e reti',
     intro:
-      'Il materasso è l’unico arredo che usi otto ore al giorno, e si sceglie provandolo. In negozio ti facciamo stendere sui modelli che teniamo, ti spieghiamo la differenza tra le lastre e abbiniamo la rete giusta, perché un buon materasso su una rete sbagliata rende metà.',
+      'Il materasso è l’unico arredo che usi otto ore al giorno. Ti spieghiamo la differenza tra le lastre, ti mostriamo i materiali e abbiniamo la rete giusta, perché un buon materasso su una rete sbagliata rende metà.',
     approfondimento: [
       {
         titolo: 'La lastra e il tessuto cambiano il riposo',

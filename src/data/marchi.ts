@@ -39,7 +39,7 @@ export const MARCHI: Marchio[] = [
     nome: 'Cuorflex',
     prodotti: 'Reti e materassi',
     descrizione:
-      'Materassi e reti per ogni modo di dormire: in negozio li provi e ti consigliamo la combinazione giusta.',
+      'Materassi e reti per ogni modo di dormire: ti consigliamo la combinazione giusta in base a come dormi.',
     categorie: ['materassi'],
   },
   {
@@ -47,7 +47,7 @@ export const MARCHI: Marchio[] = [
     nome: 'Biel Divani',
     prodotti: 'Divani',
     descrizione:
-      'Divani fissi e angolari con rivestimenti e misure su richiesta. In esposizione, da provare.',
+      'Divani fissi e angolari con rivestimenti, misure e sedute su richiesta.',
     categorie: ['divani'],
   },
   {
@@ -55,7 +55,7 @@ export const MARCHI: Marchio[] = [
     nome: 'Vitarelax',
     prodotti: 'Poltrone relax',
     descrizione:
-      'Poltrone relax elettriche per il comfort di tutti i giorni, da provare in negozio.',
+      'Poltrone relax elettriche, con schienale e poggiapiedi motorizzati.',
     categorie: ['divani'],
   },
   {

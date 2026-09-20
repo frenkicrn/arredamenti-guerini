@@ -22,7 +22,7 @@ const tel = `tel:${NEGOZIO.telefono.replaceAll(' ', '')}`;
     titolo="Arrediamo la tua casa, dal progetto al montaggio"
     sottotitolo="Negozio di famiglia sul lago dal 1969. Veniamo a prendere le misure, ti mostriamo il progetto e montiamo con la nostra squadra."
     foto={heroFoto}
-    altFoto="Cucina Scavolini Madeleine in esposizione da Arredamenti Guerini"
+    altFoto="Cucina Scavolini Madeleine con ante a telaio e isola centrale"
   />
 
   <section class="sezione--stretta contenitore">
@@ -37,7 +37,7 @@ const tel = `tel:${NEGOZIO.telefono.replaceAll(' ', '')}`;
       </div>
       <div>
         <h3>Da un mese alla consegna</h3>
-        <p>Questo il tempo per gli arredi su misura. Alcuni pezzi in esposizione li porti a casa subito.</p>
+        <p>Questo il tempo per gli arredi su misura. Su qualche articolo in pronta consegna si fa prima.</p>
       </div>
     </div>
   </section>
@@ -48,7 +48,7 @@ const tel = `tel:${NEGOZIO.telefono.replaceAll(' ', '')}`;
         <p class="eyebrow">I reparti</p>
         <h2>Arrediamo la casa, stanza per stanza</h2>
       </div>
-      <p class="testa-sezione__appoggio">Ogni stanza la progettiamo insieme sulle misure della tua casa, scegliendo finiture e materiali dai cataloghi dei marchi che trattiamo. In negozio ti mostriamo campioni, disegni e i pezzi che teniamo esposti.</p>
+      <p class="testa-sezione__appoggio">Ogni stanza la progettiamo insieme sulle misure della tua casa, scegliendo finiture e materiali dai cataloghi dei marchi che trattiamo. In negozio guardiamo i campioni e il disegno della tua stanza, con calma.</p>
     </div>
     <CaroselloReparti />
   </section>
@@ -77,11 +77,16 @@ const tel = `tel:${NEGOZIO.telefono.replaceAll(' ', '')}`;
   </section>
 
   <section class="sezione contenitore" id="dove-siamo">
-    <div class="dove-siamo">
+    <div class="testa-sezione">
       <div>
         <p class="eyebrow">Dove siamo</p>
         <h2>Sulla strada del lago, a Sale Marasino</h2>
-        <p class="dove-siamo__indirizzo">
+      </div>
+      <p class="testa-sezione__appoggio">Siamo sulla provinciale che costeggia il lago, con parcheggio davanti al negozio. Se vieni per un progetto, meglio una telefonata prima: così ti dedichiamo il tempo che serve.</p>
+    </div>
+    <div class="scheda-negozio">
+      <div class="scheda-negozio__info">
+        <p class="scheda-negozio__indirizzo">
           {NEGOZIO.indirizzo.via}<br />
           {NEGOZIO.indirizzo.cap} {NEGOZIO.indirizzo.comune} ({NEGOZIO.indirizzo.provincia})
         </p>
@@ -96,11 +101,11 @@ const tel = `tel:${NEGOZIO.telefono.replaceAll(' ', '')}`;
         </div>
       </div>
       <iframe
-        class="dove-siamo__mappa"
+        class="scheda-negozio__mappa"
         src={NEGOZIO.mapsEmbedUrl}
         title={`Mappa: ${NEGOZIO.nome}`}
         width="720"
-        height="495"
+        height="460"
         loading="lazy"
         referrerpolicy="no-referrer-when-downgrade"
       ></iframe>

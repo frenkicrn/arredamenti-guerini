@@ -46,7 +46,7 @@ const fotoTesta = fotoDi(categoria.foto);
         {fotoTesta ? (
           <Image
             src={fotoTesta}
-            alt={`${categoria.nome}: arredi in esposizione da Arredamenti Guerini a Sale Marasino`}
+            alt={`${categoria.nome}: una delle soluzioni che proponiamo`}
             widths={[500, 800, 1200]}
             sizes="(max-width: 780px) 100vw, 50vw"
             loading="eager"
@@ -65,7 +65,7 @@ const fotoTesta = fotoDi(categoria.foto);
             <div class="approfondimento__foto">
               <Image
                 src={foto}
-                alt={`${a.titolo}: ${categoria.nome.toLowerCase()} da Arredamenti Guerini a Sale Marasino`}
+                alt={a.titolo}
                 widths={[400, 700, 1000]}
                 sizes="(max-width: 780px) 100vw, 50vw"
                 loading="lazy"

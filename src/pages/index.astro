@@ -71,8 +71,8 @@ const tel = `tel:${NEGOZIO.telefono.replaceAll(' ', '')}`;
       <h2>I marchi che trattiamo</h2>
       <a class="testa-riga__link" href="/marchi/">Tutti i marchi</a>
     </div>
-    <div class="griglia-marchi">
-      {MARCHI.map((m) => <CardMarchio marchio={m} />)}
+    <div class="griglia-loghi">
+      {MARCHI.map((m) => <CardMarchio marchio={m} soloLogo />)}
     </div>
   </section>
 

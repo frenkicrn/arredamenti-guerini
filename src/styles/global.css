@@ -673,6 +673,32 @@ body.menu-aperto .barra-mobile { display: none; }
   text-transform: uppercase;
   text-align: right;
 }
+/* ---------- Muro dei loghi (Home) ----------
+   Fondo bianco caldo e non crema: diversi loghi hanno il bianco già
+   nel file, così le tessere restano uniformi e i marchi respirano. */
+.griglia-loghi { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+@media (min-width: 640px) { .griglia-loghi { grid-template-columns: repeat(4, 1fr); } }
+.tessera-marchio {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  aspect-ratio: 16 / 9;
+  padding: 1.25rem 1.5rem;
+  /* Bianco pieno, non il bianco caldo: diversi loghi hanno il fondo bianco
+     dentro al file e così non si vede lo stacco. */
+  background: #fff;
+  border: 1px solid var(--bordo);
+  text-decoration: none;
+  color: var(--inchiostro);
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  text-align: center;
+}
+.tessera-marchio:hover { border-color: var(--noce); }
+/* I loghi sono ritagliati al contenuto: l'altezza fa da vincolo principale,
+   così i marchi quadrati e quelli larghi pesano otticamente allo stesso modo. */
+.tessera-marchio img { max-height: 60px; max-width: 80%; width: auto; height: auto; object-fit: contain; }
+
 /* Elenco a piena larghezza (in fondo alla pagina reparto) */
 .lista-marchi { border-top: 1px solid var(--bordo); padding-top: 2rem; margin-top: var(--spazio-4); }
 .lista-marchi .card-marchio { padding: 0.85rem 0; }
@@ -693,7 +719,8 @@ body.menu-aperto .barra-mobile { display: none; }
   aspect-ratio: 16 / 5;
   overflow: hidden;
   margin-bottom: var(--spazio-2);
-  background: var(--sabbia);
+  background: #fff;
+  border: 1px solid var(--bordo);
   font-family: var(--font-display);
   font-size: 1.3rem;
   font-weight: 400;

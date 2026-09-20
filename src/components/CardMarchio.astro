@@ -7,9 +7,12 @@ import { CATEGORIE } from '../data/categorie';
 
 interface Props {
   marchio: Marchio;
+  /** Scheda completa: logo, descrizione e reparti (pagina Marchi) */
   estesa?: boolean;
+  /** Solo logo, in tessera (Home) */
+  soloLogo?: boolean;
 }
-const { marchio, estesa = false } = Astro.props;
+const { marchio, estesa = false, soloLogo = false } = Astro.props;
 const categorie = CATEGORIE.filter((c) => marchio.categorie.includes(c.slug));
 const primaCategoria = categorie[0];
 
@@ -34,6 +37,14 @@ const logo = chiaveLogo ? loghi[chiaveLogo].default : undefined;
       ))}
     </ul>
   </article>
+) : soloLogo ? (
+  <a class="tessera-marchio" href={primaCategoria ? `/prodotti/${primaCategoria.slug}/` : '/marchi/'}>
+    {logo ? (
+      <Image src={logo} alt={marchio.nome} widths={[200, 400]} sizes="200px" loading="lazy" />
+    ) : (
+      <span>{marchio.nome}</span>
+    )}
+  </a>
 ) : (
   <a class="card-marchio" href={primaCategoria ? `/prodotti/${primaCategoria.slug}/` : '/marchi/'}>
     <h3>{marchio.nome}</h3>

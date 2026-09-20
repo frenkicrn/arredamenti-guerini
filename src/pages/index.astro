@@ -1,79 +1,106 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Hero from '../components/Hero.astro';
-import CardCategoria from '../components/CardCategoria.astro';
+import CaroselloReparti from '../components/CaroselloReparti.astro';
 import CardMarchio from '../components/CardMarchio.astro';
 import ServizioVoce from '../components/ServizioVoce.astro';
 import CtaFinale from '../components/CtaFinale.astro';
 import { NEGOZIO } from '../data/negozio';
-import { CATEGORIE } from '../data/categorie';
 import { MARCHI } from '../data/marchi';
-import { SERVIZI, NOTA_SERVIZI } from '../data/servizi';
-import heroFoto from '../assets/prodotti/hero-showroom.jpg';
+import { SERVIZI } from '../data/servizi';
+import heroFoto from '../assets/prodotti/cucina-madeleine-a.jpg';
+
+const tel = `tel:${NEGOZIO.telefono.replaceAll(' ', '')}`;
 ---
 <Layout
   titoloCompleto
   titolo="Arredamenti Guerini · Mobili e cucine a Sale Marasino (Lago d’Iseo)"
-  descrizione="Negozio di arredamento di famiglia a Sale Marasino, sul Lago d’Iseo: cucine Scavolini, camere, divani, materassi. Progetto, misure e montaggio compresi."
+  descrizione="Negozio di arredamento di famiglia a Sale Marasino, sul Lago d’Iseo, dal 1969: cucine, camere, divani, materassi. Progetto, misure e montaggio compresi."
 >
   <Hero
+    eyebrow={`Sale Marasino · Lago d’Iseo · dal ${NEGOZIO.dal}`}
     titolo="Arrediamo la tua casa, dal progetto al montaggio"
-    sottotitolo="Un negozio di famiglia a Sale Marasino, sul Lago d’Iseo: veniamo a misurare, disegniamo la stanza con te e montiamo tutto noi."
+    sottotitolo="Negozio di famiglia sul lago dal 1969. Veniamo a prendere le misure, ti mostriamo il progetto e montiamo con la nostra squadra."
     foto={heroFoto}
-    altFoto={`Lo showroom di ${NEGOZIO.nome} a Sale Marasino, con cucine e soggiorni in esposizione`}
-    meta={['Consegna a partire da 1 mese', 'Alcuni articoli in pronta consegna', NOTA_SERVIZI]}
+    altFoto="Cucina Scavolini Madeleine in esposizione da Arredamenti Guerini"
   />
 
+  <section class="sezione--stretta contenitore">
+    <div class="punti-forza">
+      <div>
+        <h3>Progetto e misure senza impegno</h3>
+        <p>Veniamo a misurare la stanza e ti mostriamo il disegno prima che tu ordini qualcosa.</p>
+      </div>
+      <div>
+        <h3>Consegna e montaggio inclusi</h3>
+        <p>Nella zona del lago d’Iseo, della Franciacorta e di Brescia li facciamo noi, senza costi a parte.</p>
+      </div>
+      <div>
+        <h3>Da un mese alla consegna</h3>
+        <p>Questo il tempo per gli arredi su misura. Alcuni pezzi in esposizione li porti a casa subito.</p>
+      </div>
+    </div>
+  </section>
+
   <section class="sezione contenitore">
-    <p class="eyebrow">Come lavoriamo</p>
-    <h2>Dal progetto al montaggio, un passo alla volta</h2>
+    <div class="testa-sezione">
+      <div>
+        <p class="eyebrow">I reparti</p>
+        <h2>Arrediamo la casa, stanza per stanza</h2>
+      </div>
+      <p class="testa-sezione__appoggio">Ogni stanza la progettiamo insieme sulle misure della tua casa, scegliendo finiture e materiali dai cataloghi dei marchi che trattiamo. In negozio ti mostriamo campioni, disegni e i pezzi che teniamo esposti.</p>
+    </div>
+    <CaroselloReparti />
+  </section>
+
+  <section class="sezione contenitore">
+    <div class="testa-sezione">
+      <div>
+        <p class="eyebrow">Come lavoriamo</p>
+        <h2>Dal rilievo al montaggio</h2>
+      </div>
+      <p class="testa-sezione__appoggio">Tre passaggi, nell’ordine in cui avvengono davvero. Rilievo, progetto e montaggio sono compresi in zona Brescia, lago d’Iseo e Franciacorta.</p>
+    </div>
     <div class="griglia-servizi">
       {SERVIZI.map((s) => <ServizioVoce servizio={s} breve />)}
     </div>
-    <p class="spazio-sopra"><a href="/servizi/">Scopri tutti i servizi →</a></p>
-  </section>
-
-  <section class="sezione sezione--avorio contenitore">
-    <p class="eyebrow">Il catalogo</p>
-    <h2>Cosa trovi in negozio</h2>
-    <p class="intro">Sette reparti, gli stessi marchi che conosciamo da anni. Entra in una categoria per vedere i marchi collegati e quello che abbiamo in esposizione.</p>
-    <div class="griglia-categorie">
-      {CATEGORIE.map((c) => <CardCategoria categoria={c} />)}
-    </div>
   </section>
 
   <section class="sezione contenitore">
-    <p class="eyebrow">I marchi che trattiamo</p>
-    <h2>Otto marchi, scelti bene</h2>
+    <div class="testa-riga">
+      <h2>I marchi che trattiamo</h2>
+      <a class="testa-riga__link" href="/marchi/">Tutti i marchi</a>
+    </div>
     <div class="griglia-marchi">
       {MARCHI.map((m) => <CardMarchio marchio={m} />)}
     </div>
-    <p class="spazio-sopra"><a href="/marchi/">Tutti i marchi, uno per uno →</a></p>
   </section>
 
-  <section class="sezione sezione--avorio contenitore">
-    <p class="eyebrow">Vieni a trovarci</p>
-    <h2>Sale Marasino, sul Lago d’Iseo</h2>
-    <div class="griglia-contatti">
+  <section class="sezione contenitore" id="dove-siamo">
+    <div class="dove-siamo">
       <div>
-        <p>{NEGOZIO.indirizzo.via}, {NEGOZIO.indirizzo.cap} {NEGOZIO.indirizzo.comune} ({NEGOZIO.indirizzo.provincia})</p>
-        <p><a href={`tel:${NEGOZIO.telefono.replaceAll(' ', '')}`}>{NEGOZIO.telefono}</a></p>
+        <p class="eyebrow">Dove siamo</p>
+        <h2>Sulla strada del lago, a Sale Marasino</h2>
+        <p class="dove-siamo__indirizzo">
+          {NEGOZIO.indirizzo.via}<br />
+          {NEGOZIO.indirizzo.cap} {NEGOZIO.indirizzo.comune} ({NEGOZIO.indirizzo.provincia})
+        </p>
         <ul class="lista-orari">
           {NEGOZIO.orari.map((o) => (
             <li><span>{o.giorni}</span><span>{o.orario}</span></li>
           ))}
         </ul>
-        <p class="azioni">
-          <a class="bottone" href={NEGOZIO.mapsDirectionsUrl} rel="noopener">Indicazioni per il negozio</a>
-          <a class="bottone bottone--secondario" href="/contatti/#dove-siamo">Altri contatti</a>
-        </p>
+        <div class="azioni">
+          <a class="bottone" href={tel}>Chiama {NEGOZIO.telefono.replace('+39 ', '')}</a>
+          <a class="bottone bottone--secondario" href={NEGOZIO.mapsDirectionsUrl} rel="noopener">Indicazioni</a>
+        </div>
       </div>
       <iframe
-        class="mappa"
+        class="dove-siamo__mappa"
         src={NEGOZIO.mapsEmbedUrl}
         title={`Mappa: ${NEGOZIO.nome}`}
-        width="100%"
-        height="360"
+        width="720"
+        height="495"
         loading="lazy"
         referrerpolicy="no-referrer-when-downgrade"
       ></iframe>

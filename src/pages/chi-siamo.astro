@@ -1,44 +1,43 @@
 ---
+import { Image } from 'astro:assets';
 import Layout from '../layouts/Layout.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
 import CtaFinale from '../components/CtaFinale.astro';
 import { NEGOZIO } from '../data/negozio';
+import fotoShowroom from '../assets/prodotti/cucina-madeleine-b.jpg';
 ---
 <Layout
   titoloCompleto
-  titolo="Chi siamo · Negozio di arredamento di famiglia a Sale Marasino | Arredamenti Guerini"
-  descrizione="Arredamenti Guerini: negozio di arredamento a conduzione familiare a Sale Marasino, sul Lago d’Iseo. Showroom, consulenza e montaggio in zona Brescia."
+  titolo="Chi siamo · Negozio di arredamento di famiglia dal 1969 | Arredamenti Guerini"
+  descrizione="Arredamenti Guerini: negozio di famiglia a Sale Marasino, sul Lago d’Iseo, aperto nel 1969. Oggi lo portano avanti Elisabetta, Stefano e Angelo."
 >
   <section class="sezione contenitore">
-    <p class="eyebrow">Chi siamo</p>
-    <h1>Una bottega di famiglia sul Lago d’Iseo</h1>
-    <!-- TESTO DA CONFERMARE COL CLIENTE: anno di apertura, chi gestisce il negozio, generazioni -->
-    <p class="intro">Siamo un negozio di arredamento a conduzione familiare a {NEGOZIO.indirizzo.comune}, sul Lago d’Iseo. Le case della zona le conosciamo una per una: ecco perché prima di proporre un mobile veniamo a misurare la stanza.</p>
-  </section>
+    <Breadcrumb voci={[{ nome: 'Home', href: '/' }, { nome: 'Chi siamo' }]} />
+    <h1 class="chi-siamo__titolo">Una famiglia, tre generazioni di case arredate</h1>
 
-  <section class="sezione sezione--avorio contenitore">
-    <p class="eyebrow">Come vi accogliamo</p>
-    <h2>In negozio, senza fretta</h2>
-    <p>In negozio trovi cucine, camere, divani e materassi in esposizione, da toccare e provare, e cataloghi e campioni dei marchi che trattiamo. Ci sediamo con te, ascoltiamo come vivi la casa e disegniamo insieme la soluzione: senza fretta e con un preventivo chiaro.</p>
-  </section>
+    <div class="chi-siamo__foto">
+      <Image
+        src={fotoShowroom}
+        alt={`Una cucina in esposizione nello showroom di ${NEGOZIO.nome} a Sale Marasino`}
+        widths={[800, 1400, 2000]}
+        sizes="(max-width: 1280px) 100vw, 1280px"
+        loading="eager"
+      />
+    </div>
 
-  <section class="sezione contenitore">
-    <p class="eyebrow">Perché sceglierci</p>
-    <h2>Tre motivi, non cento</h2>
-    <div class="griglia-motivi">
-      <div class="motivo">
-        <h3>Marchi che conosciamo bene</h3>
-        <p>Pochi e scelti: li trovi tutti <a href="/marchi/">qui</a>.</p>
-      </div>
-      <div class="motivo">
-        <h3>Servizi compresi</h3>
-        <p>Progettazione, rilievo misure e montaggio in zona Brescia: <a href="/servizi/">come lavoriamo</a>.</p>
-      </div>
-      <div class="motivo">
-        <h3>Una persona di riferimento</h3>
-        <p>Chi ti accoglie in negozio segue il tuo progetto fino al montaggio.</p>
+    <div class="chi-siamo__testo">
+      <p class="chi-siamo__apertura">Il negozio l’hanno aperto i nostri genitori nel {NEGOZIO.dal}, in questa stessa strada che corre lungo il lago. Oggi lo portiamo avanti noi tre, fratello e sorella.</p>
+      <div>
+        <p>In negozio trovi <strong>Elisabetta</strong>: ti accoglie, ascolta com’è fatta la tua casa e prepara il preventivo. È la persona con cui scegli finiture, misure e tempi, e quella che ti richiama se qualcosa va chiarito.</p>
+        <p><strong>Stefano</strong> e <strong>Angelo</strong> arrivano a casa tua: prendono le misure prima dell’ordine, smontano quello che c’era, consegnano e montano i mobili nuovi. Sono le stesse mani dall’inizio alla fine, e questo è il motivo per cui possiamo garantire quello che promettiamo.</p>
+        <p>Non lavoriamo a catalogo. Veniamo a vedere gli spazi reali, disegniamo la composizione su quelle misure e ti mostriamo il progetto prima di ordinare qualsiasi cosa. Dopo più di cinquant’anni sul lago, molte delle case che arrediamo oggi le avevamo già arredate per i genitori dei nostri clienti.</p>
+        <div class="azioni">
+          <a class="bottone bottone--secondario" href="/servizi/">Come lavoriamo</a>
+          <a class="bottone bottone--secondario" href="/contatti/#dove-siamo">Vieni in negozio</a>
+        </div>
       </div>
     </div>
   </section>
 
-  <CtaFinale titolo="Passa a conoscerci" testo="Lo showroom è a Sale Marasino, sul lago: vieni quando vuoi negli orari di apertura, o fissiamo un appuntamento." />
+  <CtaFinale titolo="Passa a conoscerci" testo="Lo showroom è a Sale Marasino, sulla strada del lago: vieni negli orari di apertura o fissiamo un appuntamento." />
 </Layout>

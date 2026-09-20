@@ -19,6 +19,7 @@ const prodotti = defineCollection({
       foto: image(),
       prontaConsegna: z.boolean().default(false),
       inEvidenza: z.boolean().default(false),
+      inPromozione: z.boolean().default(false),
     }),
 });
 

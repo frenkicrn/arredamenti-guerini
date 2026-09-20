@@ -1,0 +1,77 @@
+---
+// CaroselloReparti.astro — un reparto per volta, a immagine piena.
+// Unico elemento interattivo della Home: pista che trasla, frecce cicliche
+// e riga di nomi per saltare a un reparto.
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+import { CATEGORIE } from '../data/categorie';
+
+const immagini = import.meta.glob<{ default: ImageMetadata }>('../assets/prodotti/*.jpg', { eager: true });
+const fotoDi = (nome?: string) => (nome ? immagini[`../assets/prodotti/${nome}.jpg`]?.default : undefined);
+---
+<div class="carosello-reparti" data-carosello aria-roledescription="carosello" aria-label="I reparti del negozio">
+  <div class="carosello-reparti__pista" data-pista>
+    {CATEGORIE.map((c, i) => {
+      const foto = fotoDi(c.foto);
+      return (
+        <div
+          class="carosello-reparti__slide"
+          role="group"
+          aria-roledescription="slide"
+          aria-label={`${i + 1} di ${CATEGORIE.length}: ${c.nome}`}
+        >
+          {foto ? (
+            <Image
+              src={foto}
+              alt={`${c.nome}: arredi in esposizione da Arredamenti Guerini a Sale Marasino`}
+              widths={[800, 1400, 2000]}
+              sizes="(max-width: 1280px) 100vw, 1280px"
+              loading={i === 0 ? 'eager' : 'lazy'}
+            />
+          ) : (
+            <p class="carosello-reparti__segnaposto">Foto in arrivo</p>
+          )}
+          <div class="carosello-reparti__scrim"></div>
+          <div class="carosello-reparti__didascalia">
+            <div class="carosello-reparti__blocco">
+              <p class="carosello-reparti__etichetta">{c.etichetta}</p>
+              <h3 class="carosello-reparti__titolo">{c.nome}</h3>
+              <a class="carosello-reparti__link" href={`/prodotti/${c.slug}/`}>Scopri il reparto</a>
+            </div>
+            <p class="carosello-reparti__sommario">{c.sommario}</p>
+          </div>
+        </div>
+      );
+    })}
+  </div>
+  <button type="button" class="carosello-reparti__freccia carosello-reparti__freccia--prev" data-prec aria-label="Reparto precedente">←</button>
+  <button type="button" class="carosello-reparti__freccia carosello-reparti__freccia--next" data-succ aria-label="Reparto successivo">→</button>
+</div>
+
+<div class="carosello-reparti__nomi" data-nomi role="tablist" aria-label="Scegli il reparto">
+  {CATEGORIE.map((c, i) => (
+    <button type="button" class="carosello-reparti__nome" data-vai={i} aria-current={i === 0 ? 'true' : 'false'}>
+      {c.nome}
+    </button>
+  ))}
+</div>
+
+<script>
+  const carosello = document.querySelector<HTMLElement>('[data-carosello]');
+  if (carosello) {
+    const pista = carosello.querySelector<HTMLElement>('[data-pista]')!;
+    const slide = pista.children.length;
+    const nomi = Array.from(document.querySelectorAll<HTMLButtonElement>('[data-vai]'));
+    let indice = 0;
+
+    function mostra(prossimo: (attuale: number) => number) {
+      indice = ((prossimo(indice) % slide) + slide) % slide;
+      pista.style.transform = `translateX(-${indice * 100}%)`;
+      nomi.forEach((n, i) => n.setAttribute('aria-current', String(i === indice)));
+    }
+
+    carosello.querySelector('[data-prec]')!.addEventListener('click', () => mostra((i) => i - 1));
+    carosello.querySelector('[data-succ]')!.addEventListener('click', () => mostra((i) => i + 1));
+    nomi.forEach((bottone, i) => bottone.addEventListener('click', () => mostra(() => i)));
+  }
+</script>

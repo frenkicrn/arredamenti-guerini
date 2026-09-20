@@ -1,29 +1,33 @@
 ---
 import { getCollection } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
+import Breadcrumb from '../../components/Breadcrumb.astro';
 import CardCategoria from '../../components/CardCategoria.astro';
 import GalleriaProdotti from '../../components/GalleriaProdotti.astro';
 import CtaFinale from '../../components/CtaFinale.astro';
 import { CATEGORIE } from '../../data/categorie';
 
 const prodotti = await getCollection('prodotti');
+// Filtri solo per i reparti che hanno almeno un prodotto in esposizione.
+const conProdotti = CATEGORIE.filter((c) => prodotti.some((p) => p.data.categoria === c.slug));
 ---
 <Layout
   titoloCompleto
   titolo="Mobili, cucine e arredi a Sale Marasino | Arredamenti Guerini"
-  descrizione="Cucine, soggiorno, divani, tavoli e sedie, camere, materassi e bagni in esposizione a Sale Marasino (BS), con progetto e montaggio compresi in zona Brescia."
+  descrizione="Cucine, soggiorno, tavoli e sedie, camere, materassi e bagni in esposizione a Sale Marasino (BS), con progetto e montaggio compresi in zona Brescia."
 >
   <section class="sezione contenitore">
+    <Breadcrumb voci={[{ nome: 'Home', href: '/' }, { nome: 'Prodotti' }]} />
     <h1>I nostri prodotti</h1>
-    <p class="intro">Sette categorie, i marchi che conosciamo bene e una regola: prima si misura, poi si sceglie. Entra in una categoria o scorri tutto quello che abbiamo in esposizione.</p>
+    <p class="intro">Scegli la stanza da cui vuoi partire.</p>
     <div class="griglia-categorie">
       {CATEGORIE.map((c) => <CardCategoria categoria={c} />)}
     </div>
-  </section>
 
-  <section class="sezione--stretta contenitore">
-    <h2>Tutto in esposizione</h2>
-    <GalleriaProdotti prodotti={prodotti} filtri />
+    <div class="testa-riga testa-riga--sola">
+      <h2>Qualche modello</h2>
+    </div>
+    <GalleriaProdotti prodotti={prodotti} categorie={conProdotti} filtri />
   </section>
 
   <CtaFinale titolo="Non trovi quello che cerchi?" testo="In negozio abbiamo cataloghi e campioni di tutti i marchi: dicci cosa ti serve e ti mostriamo le possibilità." />

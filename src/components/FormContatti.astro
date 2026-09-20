@@ -7,19 +7,19 @@ import { NEGOZIO } from '../data/negozio';
   <input type="checkbox" name="botcheck" class="honeypot" tabindex="-1" autocomplete="off" aria-hidden="true" />
 
   <label>
-    Nome e cognome
-    <input type="text" name="name" required autocomplete="name" />
+    Nome
+    <input type="text" name="name" placeholder="Il tuo nome" required autocomplete="name" />
   </label>
   <label>
     Telefono o email
-    <input type="text" name="recapito" required autocomplete="tel" />
+    <input type="text" name="recapito" placeholder="Come ti richiamiamo" required autocomplete="tel" />
   </label>
   <label>
-    Come possiamo aiutarti?
-    <textarea name="message" rows="5" required></textarea>
+    Cosa ti serve
+    <textarea name="message" rows="5" placeholder="La stanza, le misure se le hai, i tempi" required></textarea>
   </label>
 
-  <button type="submit" class="bottone">Invia richiesta</button>
+  <button type="submit" class="bottone">Invia la richiesta</button>
   <p class="esito" role="status" hidden></p>
 </form>
 

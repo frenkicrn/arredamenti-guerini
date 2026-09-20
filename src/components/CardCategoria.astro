@@ -1,6 +1,5 @@
 ---
-// CardCategoria.astro — foto a piena card con etichetta in velo,
-// come un cartellino di reparto sull'immagine dell'ambiente.
+// CardCategoria.astro — foto (o segnaposto) sopra, etichetta e nome sotto.
 import { Image } from 'astro:assets';
 import type { ImageMetadata } from 'astro';
 import type { Categoria } from '../data/categorie';
@@ -11,19 +10,22 @@ interface Props {
 const { categoria } = Astro.props;
 
 const immagini = import.meta.glob<{ default: ImageMetadata }>('../assets/prodotti/*.jpg', { eager: true });
-const foto = immagini[`../assets/prodotti/${categoria.foto}.jpg`].default;
+const foto = categoria.foto ? immagini[`../assets/prodotti/${categoria.foto}.jpg`]?.default : undefined;
 ---
 <a class="card-categoria" href={`/prodotti/${categoria.slug}/`}>
-  <Image
-    class="card-categoria__foto"
-    src={foto}
-    alt={`${categoria.nome}: esempio di arredo esposto da Arredamenti Guerini a Sale Marasino`}
-    widths={[400, 700, 1000]}
-    sizes="(max-width: 700px) 100vw, 33vw"
-    loading="lazy"
-  />
-  <div class="card-categoria__testo">
-    <h3>{categoria.nome}</h3>
-    <p class="card-categoria__etichetta">{categoria.etichetta}</p>
+  <div class="card-categoria__foto">
+    {foto ? (
+      <Image
+        src={foto}
+        alt={`${categoria.nome}: arredi in esposizione da Arredamenti Guerini a Sale Marasino`}
+        widths={[400, 700, 1000]}
+        sizes="(max-width: 780px) 100vw, 33vw"
+        loading="lazy"
+      />
+    ) : (
+      <p class="card-categoria__segnaposto">Foto in arrivo</p>
+    )}
   </div>
+  <p class="card-categoria__etichetta">{categoria.etichetta}</p>
+  <h3>{categoria.nome}</h3>
 </a>

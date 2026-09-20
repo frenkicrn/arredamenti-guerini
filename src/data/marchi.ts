@@ -13,7 +13,7 @@ export const MARCHI: Marchio[] = [
   {
     slug: 'scavolini',
     nome: 'Scavolini',
-    prodotti: 'Cucine, bagno e living (+ elettrodomestici)',
+    prodotti: 'Cucine · Bagni · Living',
     descrizione:
       'Tra i marchi italiani di cucine più conosciuti, che da noi trovi anche nelle soluzioni bagno e living. Progettiamo la composizione sulle tue misure e la montiamo noi.',
     categorie: ['cucine', 'soggiorno', 'bagni'],
@@ -21,7 +21,7 @@ export const MARCHI: Marchio[] = [
   {
     slug: 'gruppo-colombini',
     nome: 'Gruppo Colombini',
-    prodotti: 'Camerette, camere e living',
+    prodotti: 'Camere · Living',
     descrizione:
       'Camere, camerette e living componibili: sistemi flessibili che crescono con la famiglia, con finiture coordinate tra le stanze.',
     categorie: ['camere', 'soggiorno'],
@@ -53,7 +53,7 @@ export const MARCHI: Marchio[] = [
   {
     slug: 'vitarelax',
     nome: 'Vitarelax',
-    prodotti: 'Poltrone elettriche',
+    prodotti: 'Poltrone relax',
     descrizione:
       'Poltrone relax elettriche per il comfort di tutti i giorni, da provare in negozio.',
     categorie: ['divani'],

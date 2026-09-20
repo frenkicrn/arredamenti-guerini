@@ -1,29 +1,28 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import ServizioVoce from '../components/ServizioVoce.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
 import CtaFinale from '../components/CtaFinale.astro';
-import { SERVIZI, NOTA_SERVIZI } from '../data/servizi';
-import { NEGOZIO } from '../data/negozio';
+import { SERVIZI } from '../data/servizi';
 ---
 <Layout
   titoloCompleto
-  titolo="Progettazione, rilievo misure e montaggio a Sale Marasino | Arredamenti Guerini"
-  descrizione="Progettiamo la stanza sulle tue misure, veniamo a misurare e montiamo noi: servizi compresi in zona Brescia. Pagamenti da concordare in negozio."
+  titolo="Rilievo misure, progettazione e montaggio a Sale Marasino | Arredamenti Guerini"
+  descrizione="Veniamo a misurare la stanza, progettiamo sulle misure reali e montiamo con la nostra squadra: servizi compresi in zona Brescia, lago d’Iseo e Franciacorta."
 >
   <section class="sezione contenitore">
-    <p class="eyebrow">Come lavoriamo</p>
-    <h1>Dal progetto al montaggio</h1>
-    <p class="intro">Vendere un mobile è la parte facile. Il lavoro vero è farlo entrare nella stanza giusta, con le misure giuste, montato bene. Per questo i servizi sono compresi, non un extra.</p>
-    <div class="griglia-servizi">
-      {SERVIZI.map((s) => <ServizioVoce servizio={s} />)}
-    </div>
-  </section>
+    <Breadcrumb voci={[{ nome: 'Home', href: '/' }, { nome: 'Servizi' }]} />
+    <h1>Dal rilievo al montaggio</h1>
+    <p class="intro">Tre passaggi, nell’ordine in cui avvengono davvero. Rilievo, progetto e montaggio sono compresi in zona Brescia, lago d’Iseo e Franciacorta.</p>
 
-  <section class="sezione--stretta sezione--avorio contenitore">
-    <p class="eyebrow">Zona e tempi</p>
-    <h2>Dove e quando</h2>
-    <p><strong>{NOTA_SERVIZI}</strong>: rilievo misure, consegna e montaggio sono inclusi per le case in provincia di Brescia e sul Lago d’Iseo. Per altre zone chiedici: valutiamo insieme.</p>
-    <p>{NEGOZIO.consegna}. I tempi dipendono dal marchio e dalla composizione: te li diciamo con il preventivo.</p>
+    <ol class="passaggi">
+      {SERVIZI.map((s, i) => (
+        <li class="passaggio" id={s.slug}>
+          <span class="passaggio__numero" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>
+          <h2>{s.nome}</h2>
+          <p>{s.descrizione}</p>
+        </li>
+      ))}
+    </ol>
   </section>
 
   <CtaFinale titolo="Iniziamo dalle misure" testo="Fissiamo un appuntamento: veniamo noi a misurare la stanza e ti prepariamo un progetto con il preventivo." />

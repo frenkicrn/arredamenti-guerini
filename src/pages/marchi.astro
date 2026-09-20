@@ -1,5 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
 import CardMarchio from '../components/CardMarchio.astro';
 import CtaFinale from '../components/CtaFinale.astro';
 import { MARCHI } from '../data/marchi';
@@ -10,14 +11,12 @@ import { MARCHI } from '../data/marchi';
   descrizione="I marchi che trattiamo a Sale Marasino (BS): Scavolini, Gruppo Colombini, Stilfar, Cuorflex, Biel Divani, Vitarelax, Zamagna, Ingenia Casa."
 >
   <section class="sezione contenitore">
-    <p class="eyebrow">Marchi</p>
+    <Breadcrumb voci={[{ nome: 'Home', href: '/' }, { nome: 'Marchi' }]} />
     <h1>I marchi che trattiamo</h1>
-    <p class="intro">Pochi marchi, scelti perché li conosciamo bene: sappiamo come si progettano, come si montano e come si comportano negli anni. Su ciascuno ti diamo consulenza e assistenza direttamente in negozio.</p>
-    <h2>Tutti i marchi</h2>
-    <div class="griglia-marchi">
+    <p class="intro">Otto aziende italiane che conosciamo bene. Da ogni marchio arrivi ai reparti in cui lo trovi in negozio.</p>
+    <div class="griglia-marchi griglia-marchi--estesa">
       {MARCHI.map((m) => <CardMarchio marchio={m} estesa />)}
     </div>
-    <!-- Loghi: quando il cliente li fornisce, sostituire il segnaposto tipografico in CardMarchio con <Image> (vedi README) -->
   </section>
 
   <CtaFinale titolo="Vuoi vedere un marchio dal vivo?" testo="In esposizione trovi cucine, camere, divani e materassi da toccare e provare. Vieni in negozio o chiedici un appuntamento." />

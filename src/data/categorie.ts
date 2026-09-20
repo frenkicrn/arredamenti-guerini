@@ -3,159 +3,172 @@ export interface Approfondimento {
   titolo: string;
   /** 2-4 frasi di approfondimento */
   testo: string;
-  /** nome file (senza estensione) in src/assets/prodotti/ */
-  foto: string;
+  /** nome file (senza estensione) in src/assets/prodotti/ — assente finché non arriva una foto reale */
+  foto?: string;
 }
 
 export interface Categoria {
   slug: string;
   nome: string;
-  /** Etichetta breve mostrata in overlay sulla card */
+  /** Etichetta breve mostrata sopra il nome del reparto */
   etichetta: string;
+  /** Una frase per la didascalia del carosello Home */
+  sommario: string;
   /** <title> completo della pagina categoria */
   titoloSeo: string;
   /** meta description (max 155 caratteri) */
   descrizioneSeo: string;
+  /** H1 della pagina reparto */
+  titolo: string;
   /** Introduzione della pagina categoria (2-3 frasi) */
   intro: string;
-  /** 2 sezioni di approfondimento testo + foto, mostrate alternate sinistra/destra */
+  /** Sezioni di approfondimento testo (+ foto se disponibile), mostrate alternate sinistra/destra */
   approfondimento: Approfondimento[];
   /** slug di categorie correlate (src/data/categorie.ts), mostrate come rimando in fondo all'intro */
   correlate?: string[];
   /** slug dei marchi (src/data/marchi.ts) */
   marchi: string[];
-  /** nome file (senza estensione) in src/assets/prodotti/ */
-  foto: string;
+  /** nome file (senza estensione) in src/assets/prodotti/ — assente finché non arriva una foto reale ("Foto in arrivo") */
+  foto?: string;
 }
 
 export const CATEGORIE: Categoria[] = [
   {
     slug: 'cucine',
     nome: 'Cucine',
-    etichetta: 'cucine ed elettrodomestici',
+    etichetta: 'Cucine ed elettrodomestici',
+    sommario:
+      'Composizione, finiture, piano di lavoro ed elettrodomestici da incasso scelti nello stesso momento, sulle misure vere della stanza.',
     titoloSeo: 'Cucine Scavolini a Sale Marasino e sul Lago d’Iseo | Arredamenti Guerini',
     descrizioneSeo:
       'Cucine Scavolini componibili e su misura a Sale Marasino (BS), con elettrodomestici da incasso abbinati: progetto e montaggio compresi in zona Brescia.',
+    titolo: 'Cucine a Sale Marasino e sul lago d’Iseo',
     intro:
-      'La cucina è la stanza in cui si passa più tempo, e la progettiamo insieme a te sulle misure vere della tua casa: composizioni Scavolini, finiture, piani di lavoro ed elettrodomestici da incasso scelti nello stesso momento, così tutto combacia. Dal disegno alla posa in opera hai un unico interlocutore, dal preventivo al montaggio.',
+      'La cucina è la stanza in cui si passa più tempo, e la progettiamo con te sulle misure vere della tua casa: composizione, finiture, piano di lavoro ed elettrodomestici da incasso scelti nello stesso momento, così tutto combacia. Dal disegno al montaggio hai una sola squadra.',
     approfondimento: [
       {
         titolo: 'Il progetto, prima di tutto',
         testo:
-          'Veniamo a misurare la tua cucina prima di ordinare qualsiasi cosa: pareti, prese, tubazioni. Il disegno tiene conto degli spazi reali, non di un modulo standard, e lo vedi prima di confermare.',
-        foto: 'cucina-moderna',
+          'Veniamo a misurare la tua cucina prima di ordinare qualsiasi cosa: pareti, prese, tubazioni, pendenze. Il disegno tiene conto degli spazi reali, non di un modulo standard, e lo vedi prima di confermare.',
+        foto: 'cucina-madeleine-b',
+      },
+      {
+        titolo: 'Classica o lineare, la stessa cura',
+        testo:
+          'Dalle ante a telaio del legno massello alle superfici lisce delle composizioni lineari: cambiano le finiture, non il modo di lavorare. In negozio le vedi dal vivo e capisci quale regge meglio la tua giornata.',
+        foto: 'cucina-regola',
       },
       {
         titolo: 'Elettrodomestici da incasso',
         testo:
-          'Forno, piano cottura, frigorifero e lavastoviglie si scelgono insieme alla composizione, non dopo: misure e finiture combaciano con il resto della cucina fin dal progetto.',
-        foto: 'forno-incasso',
+          'Forno, piano cottura, frigorifero e lavastoviglie si scelgono insieme alla composizione, non dopo: misure e finiture combaciano con il resto della cucina già dal progetto.',
+        foto: 'cucina-moda-a',
       },
     ],
     correlate: ['bagni'],
     marchi: ['scavolini'],
-    foto: 'cucina-moderna',
+    foto: 'cucina-moda-b',
   },
   {
     slug: 'soggiorno',
     nome: 'Soggiorno',
-    etichetta: 'living componibile',
+    etichetta: 'Living componibile',
+    sommario:
+      'Pareti attrezzate componibili disegnate attorno a quello che devi tenere, al centimetro della tua parete.',
     titoloSeo: 'Soggiorno e living componibile a Sale Marasino (Lago d’Iseo) | Arredamenti Guerini',
     descrizioneSeo:
       'Pareti attrezzate e living componibili Gruppo Colombini e Scavolini a Sale Marasino (BS): progetto su misura e montaggio compresi in zona Brescia.',
+    titolo: 'Living e pareti attrezzate su misura',
     intro:
-      'Pareti attrezzate e living componibili Gruppo Colombini e Scavolini: componiamo il soggiorno sulle misure della stanza e sulle abitudini di chi la vive, tra vani a giorno, ante laccate e sistemi porta TV. Il tavolo e le sedie per la zona pranzo hanno una categoria a parte.',
+      'Il soggiorno è la stanza che cambia più spesso: televisione, libri, oggetti che si accumulano. Le pareti attrezzate componibili si disegnano attorno a quello che devi tenere, con moduli chiusi dove serve ordine e aperti dove vuoi mostrare. Partiamo dalla parete che hai, comprese porte e finestre nei punti scomodi.',
     approfondimento: [
       {
-        titolo: 'Componibile, non standard',
+        titolo: 'Componibile vuol dire sulle tue misure',
         testo:
-          'I sistemi Gruppo Colombini e Scavolini si compongono modulo per modulo: altezze, larghezze e ante si adattano alla parete che hai, non il contrario.',
-        foto: 'parete-soggiorno',
-      },
-      {
-        titolo: 'Vani a giorno e contenitori',
-        testo:
-          'Librerie aperte per gli oggetti di tutti i giorni, ante chiuse per quello che preferisci non vedere: il mix si decide insieme, in base a come usi la stanza.',
-        foto: 'zona-giorno',
+          'Larghezze, profondità e altezze si combinano modulo per modulo: la composizione arriva al centimetro della tua parete, non alla misura più vicina del catalogo. Le finiture si coordinano con la cucina se le stanze sono aperte l’una sull’altra.',
+        foto: 'soggiorno-composizione',
       },
     ],
     correlate: ['tavoli-sedie'],
     marchi: ['gruppo-colombini', 'scavolini'],
-    foto: 'parete-soggiorno',
-  },
-  {
-    slug: 'divani',
-    nome: 'Divani e poltrone',
-    etichetta: 'divani e poltrone relax',
-    titoloSeo: 'Divani e poltrone relax a Sale Marasino (Lago d’Iseo) | Arredamenti Guerini',
-    descrizioneSeo:
-      'Divani Biel e poltrone elettriche Vitarelax a Sale Marasino (BS). Provali in negozio: consegna e montaggio compresi in zona Brescia.',
-    intro:
-      'Un divano si sceglie sedendosi: in negozio trovi i modelli Biel Divani da provare, con rivestimenti, misure e configurazioni su richiesta, oltre alle poltrone elettriche Vitarelax pensate per il relax di tutti i giorni. Ti aiutiamo a scegliere la misura giusta per lo spazio che hai davvero.',
-    approfondimento: [
-      {
-        titolo: 'Da provare in negozio',
-        testo:
-          'I modelli Biel Divani in esposizione si provano dal vivo, seduta compresa: rivestimento, profondità e schienale si valutano meglio con la casa in mente, non a schermo.',
-        foto: 'divano-tre-posti',
-      },
-      {
-        titolo: 'Poltrone relax elettriche',
-        testo:
-          'Le poltrone Vitarelax hanno regolazioni elettriche per schienale e poggiapiedi, pensate per chi passa in relax più di qualche minuto al giorno.',
-        foto: 'poltrona-vitarelax',
-      },
-    ],
-    marchi: ['biel-divani', 'vitarelax'],
-    foto: 'divano-tre-posti',
+    foto: 'soggiorno-parete',
   },
   {
     slug: 'tavoli-sedie',
     nome: 'Tavoli e sedie',
-    etichetta: 'zona pranzo',
+    etichetta: 'Zona pranzo',
+    sommario:
+      'Tavoli allungabili in ceramica, legno e laminato, con le sedie da abbinare per forma e tessuto.',
     titoloSeo: 'Tavoli e sedie per la zona pranzo a Sale Marasino | Arredamenti Guerini',
     descrizioneSeo:
       'Tavoli fissi e allungabili e sedie Zamagna Italia e Ingenia Casa a Sale Marasino (BS), per cucina e soggiorno. Montaggio compreso in zona Brescia.',
+    titolo: 'Tavoli e sedie per la zona pranzo',
     intro:
-      'Il tavolo è il punto dove la casa si ritrova: proponiamo i tavoli fissi e allungabili e le sedie Zamagna Italia e Ingenia Casa, da abbinare alla cucina o al soggiorno che hai già o che stiamo progettando insieme. Finiture e misure scelte per la stanza reale, non per il catalogo.',
+      'Un tavolo si sceglie in due tempi: quanti siete di solito e quanti diventate a Natale. Per questo lavoriamo molto con gli allungabili, in ceramica, legno e laminato, e con le sedie da abbinare per forma e tessuto. In negozio provi la seduta e vedi i campioni dei piani dal vivo.',
     approfondimento: [
       {
-        titolo: 'Fissi o allungabili',
+        titolo: 'Allungabile, senza rinunciare alla misura di ogni giorno',
         testo:
-          'Per la tavola di tutti i giorni o per quando arriva la famiglia al completo: i tavoli allungabili Zamagna e Ingenia Casa cambiano misura senza cambiare stanza.',
-        foto: 'tavolo-sedie',
+          'I modelli allungabili restano compatti nell’uso quotidiano e aprono di 40, 80 o 120 centimetri quando serve. Ti diciamo quanto spazio serve intorno perché le sedie girino davvero, misurando la stanza.',
+        foto: 'tavolo-infinity',
       },
       {
-        titolo: 'Abbinati a cucina e soggiorno',
+        titolo: 'Le sedie si provano, non si guardano',
         testo:
-          'Finiture coordinate con la composizione cucina o living che scegli, così tavolo e sedie non sembrano aggiunti dopo.',
-        foto: 'zona-pranzo',
+          'Altezza della seduta, profondità dello schienale, tessuto che regge le macchie: sono cose che si capiscono sedendosi. In negozio hai i modelli e i campioni dei rivestimenti da abbinare al piano che hai scelto.',
+        foto: 'tavolo-zamagna',
       },
     ],
     correlate: ['soggiorno'],
     marchi: ['zamagna-italia', 'ingenia-casa'],
-    foto: 'tavolo-sedie',
+    foto: 'tavolo-paris',
+  },
+  {
+    slug: 'divani',
+    nome: 'Divani e poltrone',
+    etichetta: 'Divani e poltrone relax',
+    sommario:
+      'Divani fissi e angolari con misure e rivestimenti su richiesta, più poltrone relax elettriche da provare in negozio.',
+    titoloSeo: 'Divani e poltrone relax a Sale Marasino (Lago d’Iseo) | Arredamenti Guerini',
+    descrizioneSeo:
+      'Divani Biel e poltrone elettriche Vitarelax a Sale Marasino (BS). Provali in negozio: consegna e montaggio compresi in zona Brescia.',
+    titolo: 'Divani e poltrone relax',
+    intro:
+      'Un divano si giudica sedendosi, ed è il motivo per cui teniamo in negozio i modelli che proponiamo più spesso. Lavoriamo con divani fissi e angolari, con misure, rivestimenti e sedute su richiesta, e con poltrone relax elettriche per chi ha bisogno di alzarsi senza sforzo. Se la misura del tuo spazio è difficile, la prendiamo noi.',
+    approfondimento: [
+      {
+        titolo: 'Angolare o lineare, sulla stanza che hai',
+        testo:
+          'La penisola va bene finché lascia passare: prima di proporti una misura veniamo a vedere dove sono porte, finestre e passaggi. Rivestimenti sfoderabili, sedute più morbide o più sostenute e profondità si scelgono a parte, modello per modello.',
+        foto: 'divano-erika',
+      },
+      {
+        titolo: 'Poltrone relax elettriche',
+        testo:
+          'Schienale e poggiapiedi si regolano con un motore, e alcuni modelli aiutano ad alzarsi. È un acquisto che si fa per stare comodi tutti i giorni: vieni a provarle, così capiamo insieme misura e meccanismo giusti.',
+        foto: 'poltrona-relax',
+      },
+    ],
+    marchi: ['biel-divani', 'vitarelax'],
+    foto: 'divano-tango',
   },
   {
     slug: 'camere',
     nome: 'Camere e camerette',
-    etichetta: 'camere e camerette',
+    etichetta: 'Camere e camerette',
+    sommario:
+      'Letti imbottiti, armadi e camerette componibili che si riconfigurano man mano che i figli crescono.',
     titoloSeo: 'Camere e camerette a Sale Marasino (Lago d’Iseo) | Arredamenti Guerini',
     descrizioneSeo:
       'Camere matrimoniali, camerette e letti imbottiti a Sale Marasino (BS). Progettazione, rilievo misure e montaggio compresi in zona Brescia.',
+    titolo: 'Camere e camerette',
     intro:
-      'Armadi, letti e camerette pensati per gli spazi veri delle case sul lago: veniamo a misurare la stanza e progettiamo la camera intorno a come la vivi, dalla cameretta che deve crescere con i bambini alla camera matrimoniale. Sistemi componibili Gruppo Colombini e letti imbottiti Stilfar Italia, con il montaggio compreso.',
+      'La camera dei genitori e quella dei figli hanno tempi diversi: la prima si progetta una volta e resta, la seconda deve cambiare tre o quattro volte. Lavoriamo con letti imbottiti, armadi e sistemi componibili per camerette che si riconfigurano, dal letto a terra alla scrivania per lo studio.',
     approfondimento: [
       {
-        titolo: 'Letti imbottiti su misura',
+        titolo: 'Camerette che si rifanno, non si rifanno da capo',
         testo:
-          'I letti Stilfar Italia, in tessuto o pelle, con o senza contenitore: la misura si adatta alla stanza, non il contrario.',
-        foto: 'camera-matrimoniale',
-      },
-      {
-        titolo: 'Camerette che crescono con i bambini',
-        testo:
-          'I sistemi componibili Gruppo Colombini si aggiornano nel tempo — un letto singolo che diventa a castello, un armadio che si allunga — senza rifare la stanza da capo.',
+          'Letto, armadio e scrivania sono moduli: quando il bambino cresce si cambia il letto e si sposta la scrivania, senza buttare il resto. Progettiamo tenendo conto di quanto spazio serve davvero per giocare oggi e per studiare fra cinque anni.',
         foto: 'cameretta',
       },
     ],
@@ -166,55 +179,48 @@ export const CATEGORIE: Categoria[] = [
   {
     slug: 'materassi',
     nome: 'Materassi e reti',
-    etichetta: 'riposo su misura',
+    etichetta: 'Riposo su misura',
+    sommario:
+      'Materassi da provare stesi, abbinati alla rete giusta: un buon materasso su una rete sbagliata rende metà.',
     titoloSeo: 'Materassi e reti a Sale Marasino (Lago d’Iseo) | Arredamenti Guerini',
     descrizioneSeo:
       'Materassi e reti Cuorflex a Sale Marasino (BS): consulenza in negozio per scegliere il sistema letto giusto. Alcuni articoli in pronta consegna.',
+    titolo: 'Materassi e reti',
     intro:
-      'Dormire bene dipende dalla coppia materasso e rete: ti aiutiamo a scegliere tra i sistemi Cuorflex in base a come dormi, senza fretta. Alcuni modelli sono in pronta consegna, altri si ordinano su misura.',
+      'Il materasso è l’unico arredo che usi otto ore al giorno, e si sceglie provandolo. In negozio ti facciamo stendere sui modelli che teniamo, ti spieghiamo la differenza tra le lastre e abbiniamo la rete giusta, perché un buon materasso su una rete sbagliata rende metà.',
     approfondimento: [
       {
-        titolo: 'Si prova, non si sceglie a caso',
+        titolo: 'La lastra e il tessuto cambiano il riposo',
         testo:
-          'In negozio provi i materassi Cuorflex sdraiato, non solo guardandoli: portanza, temperatura e sostegno si sentono, non si leggono su un’etichetta.',
-        foto: 'materasso-memory',
-      },
-      {
-        titolo: 'La rete giusta fa la differenza',
-        testo:
-          'Una rete a doghe adatta al peso e alla postura completa il materasso: te la consigliamo insieme, come un sistema unico.',
-        foto: 'rete-cuorflex',
+          'Molle insacchettate, memory, lattice: cambiano il modo in cui il materasso sostiene e quanto trattiene il calore. Anche il rivestimento conta, perché è quello che tocchi: ti facciamo vedere e sentire la differenza, senza venderti la sigla più costosa.',
+        foto: 'materasso-graphene',
       },
     ],
     correlate: ['camere'],
     marchi: ['cuorflex'],
-    foto: 'materasso-memory',
+    foto: 'materasso-tencel',
   },
   {
     slug: 'bagni',
     nome: 'Bagni',
-    etichetta: 'arredo bagno Scavolini',
+    etichetta: 'Arredo bagno',
+    sommario:
+      'Mobili sospesi o a terra, lavabi, specchi contenitori e colonne progettati tenendo conto di dove passano gli impianti.',
     titoloSeo: 'Arredo bagno Scavolini a Sale Marasino (Lago d’Iseo) | Arredamenti Guerini',
     descrizioneSeo:
       'Mobili e complementi bagno Scavolini a Sale Marasino (BS): progettazione su misura e montaggio compresi in zona Brescia.',
+    titolo: 'Arredo bagno, dal mobile allo specchio',
     intro:
-      'Scavolini, lo stesso marchio con cui componiamo le cucine, propone anche soluzioni complete per il bagno: mobili, lavabi e complementi da comporre sulle misure della stanza, con finiture che puoi abbinare al resto della casa.',
+      'Nel bagno lo spazio è quasi sempre poco e vincolato dagli scarichi. Progettiamo mobili sospesi e a terra, lavabi, specchi contenitori e colonne sulle misure della stanza, tenendo conto di dove passano gli impianti. Le finiture si coordinano con i rivestimenti che hai già scelto o che devi ancora scegliere.',
     approfondimento: [
       {
-        titolo: 'Le stesse finiture di casa',
+        titolo: 'Sospeso, per guadagnare spazio',
         testo:
-          'Perché il bagno con Scavolini condivide il linguaggio delle cucine e del living: colori e materiali si abbinano tra le stanze, se lo desideri.',
-        foto: 'bagno-scavolini',
-      },
-      {
-        titolo: 'Composizioni su misura',
-        testo:
-          'Bagni piccoli o articolati, con o senza finestra: la composizione si disegna sulle misure reali della stanza, dopo un sopralluogo.',
-        foto: 'mobile-bagno',
+          'Il mobile sospeso libera il pavimento, semplifica la pulizia e permette di scegliere l’altezza del piano in base a chi lo usa. Dove gli scarichi non lo consentono, restiamo a terra e recuperiamo spazio in altezza con una colonna.',
       },
     ],
     correlate: ['cucine'],
     marchi: ['scavolini'],
-    foto: 'bagno-scavolini',
+    foto: 'bagno-rivo',
   },
 ];

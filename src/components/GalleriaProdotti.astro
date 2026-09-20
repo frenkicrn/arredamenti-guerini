@@ -2,18 +2,20 @@
 // GalleriaProdotti.astro — griglia prodotti + lightbox (+ filtri opzionali). Unico punto con questo JS.
 import type { CollectionEntry } from 'astro:content';
 import SchedaProdotto from './SchedaProdotto.astro';
-import { CATEGORIE } from '../data/categorie';
+import { CATEGORIE, type Categoria } from '../data/categorie';
 
 interface Props {
   prodotti: CollectionEntry<'prodotti'>[];
+  /** Reparti da mostrare come filtro; se assente, tutti */
+  categorie?: Categoria[];
   filtri?: boolean;
 }
-const { prodotti, filtri = false } = Astro.props;
+const { prodotti, categorie = CATEGORIE, filtri = false } = Astro.props;
 ---
 {filtri && (
-  <div class="filtri" role="group" aria-label="Filtra per categoria">
-    <button type="button" class="attivo" aria-pressed="true" data-filtro="tutti">Tutti</button>
-    {CATEGORIE.map((c) => (
+  <div class="filtri" role="group" aria-label="Filtra per reparto">
+    <button type="button" class="attivo" aria-pressed="true" data-filtro="tutti">Tutto</button>
+    {categorie.map((c) => (
       <button type="button" aria-pressed="false" data-filtro={c.slug}>{c.nome}</button>
     ))}
   </div>
@@ -30,7 +32,7 @@ const { prodotti, filtri = false } = Astro.props;
 </dialog>
 
 <script>
-  // Filtro per categoria (solo se i bottoni esistono)
+  // Filtro per reparto (solo se i bottoni esistono)
   const bottoni = document.querySelectorAll<HTMLButtonElement>('[data-filtro]');
   const schede = document.querySelectorAll<HTMLElement>('.scheda-prodotto');
   bottoni.forEach((bottone) => {

@@ -1,11 +1,13 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
 import FormContatti from '../components/FormContatti.astro';
 import Faq from '../components/Faq.astro';
 import { NEGOZIO } from '../data/negozio';
 import { FAQ } from '../data/faq';
 
-const wa = `https://wa.me/${NEGOZIO.whatsapp.replace(/[^\d]/g, '')}`;
+const tel = `tel:${NEGOZIO.telefono.replaceAll(' ', '')}`;
+const telVisibile = NEGOZIO.telefono.replace('+39 ', '');
 const faqJsonLd = {
   '@context': 'https://schema.org',
   '@type': 'FAQPage',
@@ -19,53 +21,61 @@ const faqJsonLd = {
 <Layout
   titoloCompleto
   titolo="Contatti e orari · Arredamenti Guerini, Sale Marasino (BS)"
-  descrizione="Richiedi un preventivo o vieni in negozio a Sale Marasino: telefono, WhatsApp, indicazioni, orari di apertura e risposte alle domande frequenti."
+  descrizione="Richiedi un preventivo o vieni in negozio a Sale Marasino: telefono, indicazioni, orari di apertura e risposte alle domande frequenti."
 >
   <section class="sezione contenitore">
-    <p class="eyebrow">Contatti</p>
-    <h1>Scriviamoci o vieni a trovarci</h1>
+    <Breadcrumb voci={[{ nome: 'Home', href: '/' }, { nome: 'Contatti' }]} />
+    <h1>Scrivici, o passa a trovarci</h1>
+    <p class="intro">Rispondiamo noi, dal negozio. Se ci racconti la stanza fissiamo il rilievo misure e ti prepariamo il preventivo.</p>
+
+    <div class="blocchi-contatto">
+      <div>
+        <p class="eyebrow">Telefono</p>
+        <a class="blocchi-contatto__telefono" href={tel}>{telVisibile}</a>
+      </div>
+      <div id="dove-siamo">
+        <p class="eyebrow">In negozio</p>
+        <p class="blocchi-contatto__dato">
+          {NEGOZIO.indirizzo.via}<br />
+          {NEGOZIO.indirizzo.comune} ({NEGOZIO.indirizzo.provincia})
+        </p>
+      </div>
+      <div>
+        <p class="eyebrow">Orari</p>
+        <p class="blocchi-contatto__dato">
+          Mar–Sab 9–12 · 15–19<br />
+          Lunedì e domenica chiuso
+        </p>
+      </div>
+    </div>
+
     <div class="griglia-contatti">
       <div>
-        <h2>Richiedi un preventivo</h2>
-        <p>Raccontaci la stanza e cosa vorresti: ti rispondiamo per fissare un appuntamento o un rilievo misure.</p>
+        <h2>Raccontaci la stanza</h2>
         <FormContatti />
       </div>
-
-      <div id="dove-siamo">
-        <h2>Dove siamo</h2>
-        <p>
-          {NEGOZIO.indirizzo.via}, {NEGOZIO.indirizzo.cap} {NEGOZIO.indirizzo.comune} ({NEGOZIO.indirizzo.provincia})<br />
-          Telefono: <a href={`tel:${NEGOZIO.telefono.replaceAll(' ', '')}`}>{NEGOZIO.telefono}</a><br />
-          WhatsApp: <a href={wa}>Scrivici su WhatsApp</a><br />
-          Email: <a href={`mailto:${NEGOZIO.email}`}>{NEGOZIO.email}</a>
-        </p>
-        <p class="azioni">
-          <a class="bottone" href={NEGOZIO.mapsDirectionsUrl} rel="noopener">Indicazioni</a>
-        </p>
+      <div>
+        <h2>Come arrivare</h2>
         <iframe
           class="mappa"
           src={NEGOZIO.mapsEmbedUrl}
           title={`Mappa: ${NEGOZIO.nome}`}
-          width="100%"
-          height="300"
+          width="640"
+          height="320"
           loading="lazy"
           referrerpolicy="no-referrer-when-downgrade"
         ></iframe>
-
-        <h2>Orari di apertura</h2>
-        <ul>
-          {NEGOZIO.orari.map((o) => (
-            <li><strong>{o.giorni}</strong>: {o.orario}</li>
-          ))}
-        </ul>
-        <p>Seguici su <a href={NEGOZIO.facebook}>Facebook</a>{NEGOZIO.instagram && <> e <a href={NEGOZIO.instagram}>Instagram</a></>} per le novità in negozio.</p>
+        <p class="azioni">
+          <a class="bottone bottone--secondario" href={NEGOZIO.mapsDirectionsUrl} rel="noopener">Indicazioni stradali</a>
+        </p>
       </div>
     </div>
   </section>
 
-  <section class="sezione--stretta sezione--avorio contenitore">
-    <p class="eyebrow">Domande frequenti</p>
-    <h2>Le domande che ci fate più spesso</h2>
+  <section class="sezione--stretta sezione--ultima contenitore">
+    <div class="testa-riga testa-riga--sola">
+      <h2>Domande frequenti</h2>
+    </div>
     <Faq voci={FAQ} />
     <script type="application/ld+json" set:html={JSON.stringify(faqJsonLd)} />
   </section>

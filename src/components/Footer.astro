@@ -1,21 +1,35 @@
 ---
+import { Image } from 'astro:assets';
 import { NEGOZIO } from '../data/negozio';
-const anno = new Date().getFullYear();
+import { CATEGORIE } from '../data/categorie';
+import logo from '../assets/logo-guerini.png';
+
+const tel = `tel:${NEGOZIO.telefono.replaceAll(' ', '')}`;
+const telVisibile = NEGOZIO.telefono.replace('+39 ', '');
 ---
 <footer class="sito-footer">
   <div class="contenitore footer-colonne">
     <div>
-      <h3>{NEGOZIO.nome}</h3>
-      <p>{NEGOZIO.claimBreve}</p>
+      <a href="/" class="logo logo--placca" aria-label={NEGOZIO.nome}>
+        <Image src={logo} alt={NEGOZIO.nome} widths={[236]} sizes="236px" loading="lazy" />
+      </a>
       <p>
         {NEGOZIO.indirizzo.via}<br />
         {NEGOZIO.indirizzo.cap} {NEGOZIO.indirizzo.comune} ({NEGOZIO.indirizzo.provincia})
       </p>
+      <p class="footer-telefono"><a href={tel}>{telVisibile}</a></p>
     </div>
     <div>
-      <h3>Esplora</h3>
+      <h3>Prodotti</h3>
       <ul>
-        <li><a href="/prodotti/">Prodotti</a></li>
+        {CATEGORIE.map((c) => (
+          <li><a href={`/prodotti/${c.slug}/`}>{c.nome}</a></li>
+        ))}
+      </ul>
+    </div>
+    <div>
+      <h3>Il negozio</h3>
+      <ul>
         <li><a href="/marchi/">Marchi</a></li>
         <li><a href="/servizi/">Servizi</a></li>
         <li><a href="/chi-siamo/">Chi siamo</a></li>
@@ -23,23 +37,15 @@ const anno = new Date().getFullYear();
       </ul>
     </div>
     <div>
-      <h3>Contatti</h3>
-      <ul>
-        <li><a href={`tel:${NEGOZIO.telefono.replaceAll(' ', '')}`}>{NEGOZIO.telefono}</a></li>
-        <li><a href={`https://wa.me/${NEGOZIO.whatsapp.replace(/[^\d]/g, '')}`}>WhatsApp</a></li>
-        <li><a href={`mailto:${NEGOZIO.email}`}>{NEGOZIO.email}</a></li>
-        <li><a href={NEGOZIO.facebook}>Facebook</a></li>
-        {NEGOZIO.instagram && <li><a href={NEGOZIO.instagram}>Instagram</a></li>}
-      </ul>
-    </div>
-    <div>
       <h3>Orari</h3>
-      <ul>
-        {NEGOZIO.orari.map((o) => (
-          <li>{o.giorni}: {o.orario}</li>
-        ))}
-      </ul>
+      <p>
+        Martedì – Sabato<br />
+        9:00–12:00 · 15:00–19:00<br />
+        Lunedì e domenica chiuso
+      </p>
     </div>
   </div>
-  <div class="contenitore footer-legale">© {anno} {NEGOZIO.nome}</div>
+  <div class="contenitore footer-legale">
+    © {NEGOZIO.nome} · {NEGOZIO.indirizzo.comune} ({NEGOZIO.indirizzo.provincia}) · dal {NEGOZIO.dal}
+  </div>
 </footer>

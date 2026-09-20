@@ -1,5 +1,5 @@
 ---
-// CtaFinale.astro — chiusura di ogni pagina con i tre verbi del sito.
+// CtaFinale.astro — fascia scura di chiusura, in tutte le pagine.
 import { NEGOZIO } from '../data/negozio';
 
 interface Props {
@@ -7,19 +7,20 @@ interface Props {
   testo?: string;
 }
 const {
-  titolo = 'Parliamo del tuo progetto',
-  testo = 'Passa in negozio a Sale Marasino, chiamaci o scrivici: ti ascoltiamo e ti diciamo come possiamo aiutarti.',
+  titolo = 'Raccontaci la stanza.\nAl resto pensiamo noi.',
+  testo = 'Vieni in negozio o chiamaci: fissiamo il rilievo misure e ti mostriamo il progetto prima di ordinare qualsiasi cosa.',
 } = Astro.props;
-const wa = `https://wa.me/${NEGOZIO.whatsapp.replace(/[^\d]/g, '')}`;
+const tel = `tel:${NEGOZIO.telefono.replaceAll(' ', '')}`;
 ---
 <section class="cta-finale">
-  <div class="contenitore">
-    <h2>{titolo}</h2>
-    <p>{testo}</p>
+  <div class="contenitore cta-finale__riga">
+    <div>
+      <h2>{titolo.split('\n').map((riga, i) => (i === 0 ? riga : <><br />{riga}</>))}</h2>
+      <p>{testo}</p>
+    </div>
     <div class="azioni">
-      <a class="bottone bottone--chiaro" href="/contatti/">Richiedi un preventivo</a>
-      <a class="bottone bottone--contorno-chiaro" href="/contatti/#dove-siamo">Vieni in negozio</a>
-      <a class="bottone bottone--contorno-chiaro" href={wa}>Scrivici su WhatsApp</a>
+      <a class="bottone" href="/contatti/">Richiedi un preventivo</a>
+      <a class="bottone bottone--contorno-chiaro" href={tel}>Chiama {NEGOZIO.telefono.replace('+39 ', '')}</a>
     </div>
   </div>
 </section>

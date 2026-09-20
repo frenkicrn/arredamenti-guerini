@@ -1,6 +1,8 @@
 ---
+import { Image } from 'astro:assets';
 import { NEGOZIO } from '../data/negozio';
 import { CATEGORIE } from '../data/categorie';
+import logo from '../assets/logo-guerini.png';
 
 interface Props {
   voci: { href: string; testo: string }[];
@@ -8,11 +10,14 @@ interface Props {
 }
 const { voci, pathname } = Astro.props;
 const tel = `tel:${NEGOZIO.telefono.replaceAll(' ', '')}`;
-const wa = `https://wa.me/${NEGOZIO.whatsapp.replace(/[^\d]/g, '')}`;
+const telVisibile = NEGOZIO.telefono.replace('+39 ', '');
+const orariBrevi = NEGOZIO.orari.find((o) => o.giorni.includes('–'));
 ---
 <div id="menu-mobile" class="menu-mobile" role="dialog" aria-modal="true" aria-label="Menu" hidden>
   <div class="menu-mobile__testa">
-    <a href="/" class="logo">Arredamenti <strong>Guerini</strong></a>
+    <a href="/" class="logo logo--placca" aria-label={NEGOZIO.nome}>
+      <Image src={logo} alt={NEGOZIO.nome} widths={[236]} sizes="236px" loading="lazy" />
+    </a>
     <button type="button" class="menu-chiudi">Chiudi</button>
   </div>
   <nav aria-label="Principale (mobile)">
@@ -31,8 +36,10 @@ const wa = `https://wa.me/${NEGOZIO.whatsapp.replace(/[^\d]/g, '')}`;
     ))}
   </nav>
   <div class="menu-contatti">
-    <a class="bottone bottone--chiaro" href="/contatti/">Richiedi un preventivo</a>
-    <a href={tel}>Chiama: {NEGOZIO.telefono}</a>
-    <a href={wa}>Scrivici su WhatsApp</a>
+    <a class="bottone" href={tel}>Chiama {telVisibile}</a>
+    <p>
+      {NEGOZIO.indirizzo.via}, {NEGOZIO.indirizzo.comune} ({NEGOZIO.indirizzo.provincia})<br />
+      {orariBrevi && `${orariBrevi.giorni} ${orariBrevi.orario}`}
+    </p>
   </div>
 </div>

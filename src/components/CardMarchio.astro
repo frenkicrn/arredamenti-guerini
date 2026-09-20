@@ -1,5 +1,7 @@
 ---
-// CardMarchio.astro — compatta (nome + prodotti) o estesa (logo, descrizione, categorie)
+// CardMarchio.astro — compatta (link cliccabile: nome + prodotti) o estesa (logo, descrizione, categorie)
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
 import type { Marchio } from '../data/marchi';
 import { CATEGORIE } from '../data/categorie';
 
@@ -9,17 +11,32 @@ interface Props {
 }
 const { marchio, estesa = false } = Astro.props;
 const categorie = CATEGORIE.filter((c) => marchio.categorie.includes(c.slug));
+const primaCategoria = categorie[0];
+
+const loghi = import.meta.glob<{ default: ImageMetadata }>('../assets/marchi/*.{png,jpg,jpeg,webp}', { eager: true });
+const chiaveLogo = Object.keys(loghi).find((k) => k.includes(`/${marchio.slug}.`));
+const logo = chiaveLogo ? loghi[chiaveLogo].default : undefined;
 ---
-<article class:list={['card-marchio', { 'card-marchio--estesa': estesa }]}>
-  {estesa && <div class="card-marchio__logo" aria-hidden="true">{marchio.nome}</div>}
-  <h3>{marchio.nome}</h3>
-  <p class="marchio">{marchio.prodotti}</p>
-  {estesa && <p>{marchio.descrizione}</p>}
-  {estesa && (
+{estesa ? (
+  <article class="card-marchio card-marchio--estesa">
+    <div class="card-marchio__logo">
+      {logo ? (
+        <Image src={logo} alt={`Logo ${marchio.nome}`} widths={[280, 420]} sizes="420px" loading="lazy" />
+      ) : (
+        <span aria-hidden="true">{marchio.nome}</span>
+      )}
+    </div>
+    <h3>{marchio.nome}</h3>
+    <p>{marchio.descrizione}</p>
     <ul class="card-marchio__categorie" aria-label="Categorie">
       {categorie.map((c) => (
         <li><a href={`/prodotti/${c.slug}/`}>{c.nome}</a></li>
       ))}
     </ul>
-  )}
-</article>
+  </article>
+) : (
+  <a class="card-marchio" href={primaCategoria ? `/prodotti/${primaCategoria.slug}/` : '/marchi/'}>
+    <h3>{marchio.nome}</h3>
+    <p class="marchio">{marchio.prodotti}</p>
+  </a>
+)}

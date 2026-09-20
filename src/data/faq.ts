@@ -12,7 +12,7 @@ export const FAQ: Voce[] = [
   {
     domanda: 'In quale zona consegnate e montate?',
     risposta:
-      'Consegna, rilievo misure e montaggio sono compresi in zona Brescia, Lago d’Iseo e dintorni. Per altre zone contattaci: valutiamo insieme.',
+      'Rilievo misure, consegna e montaggio sono compresi nella zona di Brescia, del lago d’Iseo, della Franciacorta e della bassa Valle Camonica. Per altre zone contattaci: valutiamo insieme.',
   },
   {
     domanda: 'Come funziona il rilievo misure?',
@@ -20,13 +20,13 @@ export const FAQ: Voce[] = [
       'Fissiamo un appuntamento e veniamo noi a misurare la stanza prima dell’ordine, così il progetto è fatto sulle dimensioni reali della tua casa.',
   },
   {
-    domanda: 'Quali forme di pagamento accettate?',
-    risposta:
-      'Concordiamo in negozio la formula più adatta, con soluzioni personalizzate. Contattaci per i dettagli.',
-  },
-  {
     domanda: 'Il preventivo è impegnativo?',
     risposta:
-      'No: il preventivo si basa sul progetto e sulle misure e serve a farti scegliere con chiarezza. Richiedilo dal modulo, per telefono o su WhatsApp.',
+      'No: il preventivo si basa sul progetto e sulle misure e serve a farti scegliere con chiarezza. Puoi richiederlo dal modulo o per telefono.',
+  },
+  {
+    domanda: 'Portate via i mobili vecchi?',
+    risposta:
+      'Sì: se serve smontiamo e ritiriamo i mobili esistenti nello stesso intervento del montaggio. Dicci cosa c’è da togliere quando prendiamo le misure.',
   },
 ];

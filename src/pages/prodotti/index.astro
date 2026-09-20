@@ -7,7 +7,11 @@ import GalleriaProdotti from '../../components/GalleriaProdotti.astro';
 import CtaFinale from '../../components/CtaFinale.astro';
 import { CATEGORIE } from '../../data/categorie';
 
-const prodotti = await getCollection('prodotti');
+// Ordinati come i reparti, così "Tutto" segue lo stesso ordine del negozio.
+const ordine = (slug: string) => CATEGORIE.findIndex((c) => c.slug === slug);
+const prodotti = (await getCollection('prodotti')).sort(
+  (a, b) => ordine(a.data.categoria) - ordine(b.data.categoria),
+);
 // Filtri solo per i reparti che hanno almeno un prodotto in esposizione.
 const conProdotti = CATEGORIE.filter((c) => prodotti.some((p) => p.data.categoria === c.slug));
 ---

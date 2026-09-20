@@ -237,7 +237,9 @@ a:hover { color: var(--inchiostro); }
 /* Mega menu "Prodotti": rivelato via hover/focus, nessuna ombra
    (coerente col resto del sito) — solo bordo e sfondo pieno a
    separarlo dal contenuto sotto. */
-.nav-prodotti { position: relative; }
+/* Flex anche qui: così il link interno è un flex item come gli altri della
+   nav e il suo padding verticale fa altezza, allineandolo alle altre voci. */
+.nav-prodotti { position: relative; display: flex; align-items: center; }
 .mega-menu {
   position: absolute;
   top: 100%;

@@ -166,7 +166,7 @@ export const CATEGORIE: Categoria[] = [
       'La camera dei genitori e quella dei figli hanno tempi diversi: la prima si progetta una volta e resta, la seconda deve cambiare tre o quattro volte. Lavoriamo con letti imbottiti, armadi e sistemi componibili per camerette che si riconfigurano, dal letto a terra alla scrivania per lo studio.',
     approfondimento: [
       {
-        titolo: 'Camerette che si rifanno, non si rifanno da capo',
+        titolo: 'Camerette che evolvono, non si rifanno da capo',
         testo:
           'Letto, armadio e scrivania sono moduli: quando il bambino cresce si cambia il letto e si sposta la scrivania, senza buttare il resto. Progettiamo tenendo conto di quanto spazio serve davvero per giocare oggi e per studiare fra cinque anni.',
         foto: 'cameretta',

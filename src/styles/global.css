@@ -869,7 +869,21 @@ body.menu-aperto .barra-mobile { display: none; }
 .chi-siamo__foto img { width: 100%; height: 100%; object-fit: cover; }
 .chi-siamo__testo { display: grid; gap: var(--spazio-3); align-items: start; }
 .chi-siamo__apertura { margin: 0; font-family: var(--font-display); font-weight: 300; font-size: 1.6rem; line-height: 1.35; }
-.chi-siamo__testo p:not(.chi-siamo__apertura) { margin: 0 0 1.25rem; color: var(--inchiostro-tenue); font-size: 1.05rem; line-height: 1.75; }
+/* Frase in risalto sotto l'apertura: filetto con il segno terracotta,
+   lo stesso device dell'occhiello, e testo in serif più piccolo. */
+.chi-siamo__risalto {
+  position: relative;
+  margin: 2.25rem 0 0;
+  padding-top: 1.75rem;
+  border-top: 1px solid var(--bordo);
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: 1.25rem;
+  line-height: 1.45;
+  color: var(--inchiostro);
+}
+.chi-siamo__risalto::before { content: ''; position: absolute; top: -1px; left: 0; width: 48px; height: 2px; background: var(--noce); }
+.chi-siamo__testo p:not(.chi-siamo__apertura):not(.chi-siamo__risalto) { margin: 0 0 1.25rem; color: var(--inchiostro-tenue); font-size: 1.05rem; line-height: 1.75; }
 .chi-siamo__testo strong { font-weight: 600; color: var(--inchiostro); }
 @media (min-width: 900px) {
   .chi-siamo__testo { grid-template-columns: 0.9fr 1.1fr; gap: 4rem; }

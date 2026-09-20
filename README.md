@@ -22,33 +22,34 @@ generate da `src/data/categorie.ts`.
 
 - **Aggiungere un prodotto:** copia una foto in `src/assets/prodotti/` e crea un
   file `.md` in `src/content/prodotti/` (vedi i file esistenti per il formato).
-  Categorie valide: `cucine`, `soggiorno`, `divani`, `tavoli-sedie`, `camere`,
-  `materassi`, `bagni`. Il prodotto compare in /prodotti/ e nella sua categoria.
-  Il campo `inEvidenza` è oggi inutilizzato (riservato a una futura sezione "in evidenza").
+  Categorie valide: `cucine`, `soggiorno`, `tavoli-sedie`, `divani`, `camere`,
+  `materassi`, `bagni`. Il prodotto compare in /prodotti/ e nei filtri per reparto.
+  `inPromozione: true` mostra il badge "Promozione"; `prontaConsegna: true` il
+  badge relativo. Il campo `inEvidenza` è oggi inutilizzato.
 - **Telefono, orari, indirizzo, social, link mappa:** `src/data/negozio.ts`.
-- **Categorie (testi SEO, intro, marchi collegati, foto):** `src/data/categorie.ts`.
+- **Reparti (testi SEO, titolo, intro, sommario del carosello, approfondimenti,
+  marchi collegati, foto):** `src/data/categorie.ts`. Il campo `foto` e la `foto`
+  di un approfondimento sono opzionali: senza foto compare "Foto in arrivo".
 - **Marchi, servizi, FAQ:** `src/data/marchi.ts`, `src/data/servizi.ts`, `src/data/faq.ts`.
-- **Loghi dei marchi:** quando disponibili, metterli in `src/assets/marchi/<slug>.svg|png`
-  e sostituire in `src/components/CardMarchio.astro` il `div.card-marchio__logo`
-  con un `<Image>`.
+- **Loghi dei marchi:** `src/assets/marchi/<slug>.png|jpg|jpeg|webp`, dove `<slug>`
+  è quello in `src/data/marchi.ts`. Vengono caricati da soli; senza file resta
+  il segnaposto tipografico.
+- **Design system (colori, tipografia, spaziature):** custom properties in cima a
+  `src/styles/global.css`.
 - Dopo ogni modifica ai dati: `npm test` (verifica coerenza) e `npm run build`.
 
 ## Dati in attesa dal cliente
 
-- [ ] Via/indirizzo esatto, telefono, WhatsApp, email (in `src/data/negozio.ts`)
-- [ ] Orari di apertura reali (in `src/data/negozio.ts`)
 - [ ] Chiave Web3Forms (vedi sotto) al posto di `INSERIRE_CHIAVE_WEB3FORMS`
-- [ ] Conferma marchio "Gruppo Colombini" (nella lista cliente: "Gruppo colombiani")
-- [ ] Foto reali dei prodotti (sostituire i placeholder in `src/assets/prodotti/`)
-- [ ] Testo "Chi siamo" definitivo, eventuale logo del negozio, profilo Instagram
-- [ ] Loghi dei marchi (dai press kit ufficiali) per la pagina Marchi (`/marchi/`)
+- [ ] Email e WhatsApp reali (oggi placeholder in `src/data/negozio.ts`; il sito
+      non li mostra, usa telefono e modulo)
+- [ ] Profilo Instagram (in `src/data/negozio.ts`, vuoto = link non mostrato)
 - [ ] Coordinate geografiche per il JSON-LD (`geo`)
-- [ ] Immagine og:image per le condivisioni social (quando arrivano le foto reali)
-- [ ] Favicon/logo definitivo del negozio
-- [ ] Storia del negozio: anno di apertura, chi lo gestisce (testo in `src/pages/chi-siamo.astro`)
-- [ ] Condizioni dei pagamenti personalizzati (FAQ e pagina Servizi: oggi rimandano "chiedi in negozio")
+- [ ] Immagine og:image per le condivisioni social
+- [ ] Favicon definitiva ricavata dal logo (oggi `public/favicon.svg` è generica)
+- [ ] Foto proprie del negozio e dello showroom (oggi si usano foto di catalogo
+      dei marchi)
 - [ ] Il rilievo misure/sopralluogo è gratuito? (oggi il sito non lo dichiara)
-- [ ] Zona esatta di consegna e montaggio (oggi: "zona Brescia, Lago d’Iseo e dintorni")
 
 ## Form contatti (Web3Forms)
 

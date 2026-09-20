@@ -11,7 +11,6 @@
 :root {
   /* Palette */
   --carta: #f2ede5;               /* fondo pagina (avena) */
-  --avorio: #f2ede5;              /* stesso fondo: niente più fasce alternate */
   --sabbia: #e4dbcc;              /* superfici piene, placeholder foto (crema) */
   --superficie: #fffdf9;          /* input e popup su fondo carta */
   --bordo: #ddd3c5;               /* filetti chiari */
@@ -104,9 +103,6 @@ a:hover { color: var(--inchiostro); }
 .correlate { margin: 0; font-size: var(--t-testo-2); color: var(--inchiostro-tenue); }
 .correlate a { font-weight: 700; }
 
-/* Fasce alternate di sezione (avorio) */
-.sezione--avorio { background: var(--avorio); }
-
 /* ---------- Eyebrow: l'etichetta da reparto ----------
    Il dispositivo strutturale del sito: introduce ogni sezione
    come il cartellino di un reparto in showroom. Sempre testo
@@ -125,7 +121,6 @@ a:hover { color: var(--inchiostro); }
 }
 /* Variante con filetto terracotta: hero della Home e delle pagine reparto. */
 .eyebrow--filetto::before { content: ''; width: 36px; height: 1px; background: var(--noce); flex-shrink: 0; }
-.eyebrow--chiara { color: var(--noce-chiaro); }
 .centrato .eyebrow { justify-content: center; }
 
 /* Utilità */
@@ -142,7 +137,6 @@ a:hover { color: var(--inchiostro); }
 
 /* ---------- Bottoni e badge ----------
    .bottone            → riempimento noce, testo carta: primario su fondo chiaro
-   .bottone--chiaro     → riempimento carta, testo inchiostro: primario su fondo scuro
    .bottone--secondario → contorno noce: secondario su fondo chiaro
    .bottone--contorno-chiaro → contorno carta: secondario su fondo scuro */
 .bottone {
@@ -162,8 +156,6 @@ a:hover { color: var(--inchiostro); }
 .bottone:hover { background: var(--noce-scuro); border-color: var(--noce-scuro); color: #fff; }
 .bottone--secondario { background: transparent; border-color: var(--inchiostro); color: var(--inchiostro); }
 .bottone--secondario:hover { background: var(--inchiostro); border-color: var(--inchiostro); color: var(--carta); }
-.bottone--chiaro { background: var(--carta); border-color: var(--carta); color: var(--inchiostro); }
-.bottone--chiaro:hover { background: var(--noce-chiaro); border-color: var(--noce-chiaro); color: var(--inchiostro); }
 .bottone--contorno-chiaro { background: transparent; border-color: var(--etichetta); color: var(--carta); }
 .bottone--contorno-chiaro:hover { background: var(--carta); border-color: var(--carta); color: var(--inchiostro); }
 
@@ -654,15 +646,6 @@ body.menu-aperto .barra-mobile { display: none; }
   .approfondimento--inversa .approfondimento__foto { order: 2; }
   .approfondimento--senza-foto { grid-template-columns: 0.4fr 0.6fr; align-items: start; }
 }
-
-/* ---------- Sezione "In esposizione" ridimensionata ----------
-   Lo showroom è piccolo: qui il peso visivo resta contenuto
-   (eyebrow al posto di un h2, griglia più stretta) rispetto alla
-   sezione marchi/approfondimento che la precede. */
-.sezione--vetrina { padding-block: var(--spazio-4); }
-.vetrina-nota { margin: 0 0 var(--spazio-2); max-width: 52ch; color: var(--inchiostro-tenue); font-size: var(--t-testo-2); }
-.sezione--vetrina .griglia-schede { max-width: 760px; grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); gap: 1rem; }
-.sezione--vetrina .vuoto { max-width: 760px; padding: var(--spazio-3); }
 
 /* ---------- Card marchio ----------
    Compatta (Home): riga d'indice con filetto inferiore.

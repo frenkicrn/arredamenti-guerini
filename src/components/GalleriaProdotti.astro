@@ -27,7 +27,8 @@ const { prodotti, categorie = CATEGORIE, filtri = false } = Astro.props;
 
 <dialog class="lightbox">
   <button type="button" class="lightbox-chiudi" aria-label="Chiudi">✕</button>
-  <img src="" alt="" />
+  {/* src e alt si popolano al clic: un src vuoto farebbe partire una richiesta alla pagina stessa */}
+  <img alt="" />
   <p></p>
 </dialog>
 

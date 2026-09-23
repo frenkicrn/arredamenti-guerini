@@ -434,10 +434,9 @@ body.menu-aperto .barra-mobile { display: none; }
 .hero-home__sottotitolo { margin: 0 0 2.25rem; max-width: 46ch; font-size: 1.18rem; line-height: 1.6; color: var(--inchiostro-tenue); }
 /* 4/3 e non 4/5: le foto di catalogo sono orizzontali (3:2) e un box
    verticale ne tagliava quasi metà. */
-.hero-home__foto { aspect-ratio: 4 / 3; overflow: hidden; background: var(--sabbia); }
-/* Ritaglio verso sinistra: il 4/3 toglie una fascia a destra, dove i
-   cataloghi stampano il marchio, che così non resta tagliato a metà. */
-.hero-home__foto img { width: 100%; height: 100%; object-fit: cover; object-position: left center; }
+/* Nessun rapporto imposto: la foto si mostra intera, com'è. */
+.hero-home__foto { background: var(--sabbia); }
+.hero-home__foto img { width: 100%; height: auto; display: block; }
 @media (min-width: 780px) {
   .hero-home { grid-template-columns: 1.05fr 0.95fr; gap: 3.5rem; }
 }
@@ -521,7 +520,8 @@ body.menu-aperto .barra-mobile { display: none; }
   font-weight: 600;
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: var(--etichetta);
+  /* sul crema il grigio delle etichette scende sotto 4.5:1 */
+  color: var(--inchiostro-tenue);
 }
 .mappa-negozio__azione {
   font-family: var(--font-display);
@@ -539,8 +539,10 @@ body.menu-aperto .barra-mobile { display: none; }
 /* ---------- Intestazione a due colonne (pagina reparto) ----------
    Testo + foto (o segnaposto "Foto in arrivo") affiancati, 4/3. */
 .intro-categoria { display: grid; gap: var(--spazio-3); align-items: center; margin-bottom: var(--spazio-4); }
-.intro-categoria__foto { position: relative; aspect-ratio: 4 / 3; overflow: hidden; background: var(--sabbia); }
-.intro-categoria__foto img { width: 100%; height: 100%; object-fit: cover; }
+.intro-categoria__foto { position: relative; background: var(--sabbia); }
+.intro-categoria__foto img { width: 100%; height: auto; display: block; }
+/* il segnaposto "Foto in arrivo" ha bisogno di un'altezza propria */
+.intro-categoria__foto:not(:has(img)) { aspect-ratio: 4 / 3; display: grid; place-content: center; }
 @media (min-width: 780px) {
   .intro-categoria { grid-template-columns: 1fr 1fr; gap: 3.5rem; }
 }
@@ -551,12 +553,14 @@ body.menu-aperto .barra-mobile { display: none; }
 .card-categoria { display: block; color: inherit; text-decoration: none; }
 .card-categoria__foto {
   position: relative;
-  aspect-ratio: 4 / 3;
+  aspect-ratio: 3 / 2;
   overflow: hidden;
   background: var(--sabbia);
   margin-bottom: 1rem;
 }
-.card-categoria__foto img { width: 100%; height: 100%; object-fit: cover; }
+/* contain e non cover: nelle griglie il box resta uniforme, ma la foto
+   ci entra intera invece di essere ritagliata ai lati. */
+.card-categoria__foto img { width: 100%; height: 100%; object-fit: contain; }
 .card-categoria__segnaposto {
   position: absolute;
   inset: 0;
@@ -702,8 +706,8 @@ body.menu-aperto .barra-mobile { display: none; }
   padding-block: var(--spazio-4);
   border-top: 1px solid var(--bordo);
 }
-.approfondimento__foto { aspect-ratio: 4 / 3; overflow: hidden; background: var(--sabbia); }
-.approfondimento__foto img { width: 100%; height: 100%; object-fit: cover; }
+.approfondimento__foto { background: var(--sabbia); }
+.approfondimento__foto img { width: 100%; height: auto; display: block; }
 .approfondimento__testo h2 { margin: 0 0 0.6rem; font-size: var(--t-display-3); font-weight: 400; }
 .approfondimento__testo p { margin: 0; color: var(--inchiostro-tenue); }
 @media (min-width: 780px) {
@@ -874,8 +878,8 @@ body.menu-aperto .barra-mobile { display: none; }
 
 /* ---------- Chi siamo ---------- */
 .chi-siamo__titolo { max-width: 26ch; margin: 0 0 var(--spazio-4); }
-.chi-siamo__foto { aspect-ratio: 21 / 9; overflow: hidden; background: var(--sabbia); margin-bottom: var(--spazio-4); }
-.chi-siamo__foto img { width: 100%; height: 100%; object-fit: cover; }
+.chi-siamo__foto { background: var(--sabbia); margin-bottom: var(--spazio-4); }
+.chi-siamo__foto img { width: 100%; height: auto; display: block; }
 .chi-siamo__testo { display: grid; gap: var(--spazio-3); align-items: start; }
 .chi-siamo__apertura { margin: 0; font-family: var(--font-display); font-weight: 300; font-size: 1.6rem; line-height: 1.35; }
 /* Frase in risalto sotto l'apertura: filetto con il segno terracotta,
@@ -976,7 +980,7 @@ body.menu-aperto .barra-mobile { display: none; }
 /* ---------- Scheda prodotto ---------- */
 .scheda-prodotto { background: none; border: none; }
 .scheda-foto { display: block; position: relative; width: 100%; padding: 0; border: none; cursor: zoom-in; background: var(--sabbia); margin-bottom: 0.9rem; }
-.scheda-foto img { aspect-ratio: 4 / 3; object-fit: cover; width: 100%; }
+.scheda-foto img { aspect-ratio: 3 / 2; object-fit: contain; width: 100%; }
 .scheda-foto .badge--promo { position: absolute; top: 0.8rem; left: 0.8rem; }
 .scheda-info { padding: 0; border-top: none; }
 .scheda-info h3 { margin: 0 0 0.2rem; font-size: 1.35rem; font-weight: 400; }

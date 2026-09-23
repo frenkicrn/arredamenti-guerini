@@ -163,7 +163,7 @@ export const CATEGORIE: Categoria[] = [
       'Camere matrimoniali, camerette e letti imbottiti a Sale Marasino (BS). Progettazione, rilievo misure e montaggio compresi in zona Brescia.',
     titolo: 'Camere e camerette',
     intro:
-      'La camera dei genitori e quella dei figli hanno tempi diversi: la prima si progetta una volta e resta, la seconda deve cambiare tre o quattro volte. Lavoriamo con letti imbottiti, armadi e sistemi componibili per camerette che si riconfigurano, dal letto a terra alla scrivania per lo studio.',
+      'Una camera matrimoniale si progetta una volta e resta. Una cameretta no: cambia insieme a chi ci dorme, dal letto a terra alla scrivania per lo studio. Lavoriamo con letti imbottiti, armadi che sfruttano lo spazio che c’è e sistemi componibili pensati proprio per questo.',
     approfondimento: [
       {
         titolo: 'Camerette che evolvono, non si rifanno da capo',

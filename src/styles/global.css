@@ -451,7 +451,7 @@ body.menu-aperto .barra-mobile { display: none; }
   border-top: 1px solid var(--bordo);
   border-bottom: 1px solid var(--bordo);
 }
-.punti-forza h3 { margin: 0 0 0.35rem; font-family: var(--font-testo); font-size: 1.02rem; font-weight: 600; }
+.punti-forza__titolo { margin: 0 0 0.35rem; font-size: 1.02rem; font-weight: 600; }
 .punti-forza p { margin: 0; color: var(--inchiostro-tenue); font-size: 0.97rem; }
 @media (min-width: 780px) {
   .punti-forza { grid-template-columns: repeat(3, 1fr); }
@@ -493,13 +493,43 @@ body.menu-aperto .barra-mobile { display: none; }
 .dove-siamo { display: grid; gap: var(--spazio-3); align-items: start; }
 .dove-siamo h2 { margin: 0 0 1.25rem; font-size: clamp(2rem, 3.2vw, 2.7rem); line-height: 1.08; }
 .dove-siamo__indirizzo { margin: 0 0 1.75rem; font-size: 1.12rem; font-weight: 500; line-height: 1.4; }
-.dove-siamo__mappa {
-  display: block;
+/* Segnaposto e mappa occupano lo stesso spazio: caricandola non salta nulla */
+.mappa-negozio {
   width: 100%;
   aspect-ratio: 16 / 11;
   border: 1px solid var(--bordo);
   background: var(--sabbia);
 }
+.mappa-negozio__frame { display: block; width: 100%; height: 100%; border: 0; }
+.mappa-negozio__apri {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  align-content: center;
+  justify-items: center;
+  gap: 0.4rem;
+  padding: 1.5rem;
+  font: inherit;
+  text-align: center;
+  background: none;
+  border: 0;
+  cursor: pointer;
+  color: var(--inchiostro);
+}
+.mappa-negozio__etichetta {
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--etichetta);
+}
+.mappa-negozio__azione {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  border-bottom: 1px solid var(--noce);
+}
+.mappa-negozio__apri:hover .mappa-negozio__azione { color: var(--noce-testo); }
+.mappa-negozio__nota { font-size: var(--t-testo-2); color: var(--inchiostro-tenue); max-width: 28ch; }
 @media (min-width: 1025px) {
   .dove-siamo { grid-template-columns: 0.9fr 1.1fr; gap: 3rem; }
 }
@@ -547,7 +577,7 @@ body.menu-aperto .barra-mobile { display: none; }
   text-transform: uppercase;
   color: var(--noce-testo);
 }
-.card-categoria h3 { margin: 0; font-size: 1.75rem; font-weight: 400; letter-spacing: -0.01em; }
+.card-categoria h2 { margin: 0; font-size: 1.75rem; font-weight: 400; letter-spacing: -0.01em; }
 
 /* ---------- Carosello reparti (Home) ----------
    Un reparto per volta, a immagine piena. La pista resta a width:100%
@@ -674,7 +704,7 @@ body.menu-aperto .barra-mobile { display: none; }
 }
 .approfondimento__foto { aspect-ratio: 4 / 3; overflow: hidden; background: var(--sabbia); }
 .approfondimento__foto img { width: 100%; height: 100%; object-fit: cover; }
-.approfondimento__testo h3 { margin: 0 0 0.6rem; }
+.approfondimento__testo h2 { margin: 0 0 0.6rem; font-size: var(--t-display-3); font-weight: 400; }
 .approfondimento__testo p { margin: 0; color: var(--inchiostro-tenue); }
 @media (min-width: 780px) {
   .approfondimento { grid-template-columns: 1fr 1fr; }
@@ -730,6 +760,8 @@ body.menu-aperto .barra-mobile { display: none; }
 
 /* Elenco a piena larghezza (in fondo alla pagina reparto) */
 .lista-marchi { border-top: 1px solid var(--bordo); padding-top: 2rem; margin-top: var(--spazio-4); }
+/* è un h2 per la struttura della pagina, ma resta un'etichetta all'occhio */
+.lista-marchi h2.eyebrow { font-size: 0.72rem; margin: 0 0 1.25rem; }
 .lista-marchi .card-marchio { padding: 0.85rem 0; }
 .lista-marchi .card-marchio h3 { font-size: 1.5rem; }
 .lista-marchi .card-marchio .marchio { font-size: var(--t-testo-2); font-weight: 400; letter-spacing: 0; text-transform: none; color: var(--inchiostro-tenue); }
@@ -787,7 +819,7 @@ body.menu-aperto .barra-mobile { display: none; }
   height: auto;
   object-fit: contain;
 }
-.card-marchio--estesa h3 { margin: 0 0 0.5rem; font-size: 1.7rem; }
+.card-marchio--estesa h2 { margin: 0 0 0.5rem; font-size: 1.7rem; font-weight: 400; }
 .card-marchio--estesa .marchio { display: none; }
 .card-marchio--estesa p { margin: 0 0 1.1rem; color: var(--inchiostro-tenue); line-height: 1.65; }
 .card-marchio__categorie { margin: 0; padding: 0; list-style: none; display: flex; flex-wrap: wrap; gap: 0.5rem; }
@@ -921,7 +953,7 @@ body.menu-aperto .barra-mobile { display: none; }
 .footer-colonne { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2.5rem; }
 .sito-footer .logo--placca { display: inline-block; margin-bottom: 1.25rem; }
 .footer-telefono a { color: var(--carta); font-size: 1.1rem; font-weight: 600; }
-.sito-footer h3 {
+.sito-footer h2 {
   color: var(--carta);
   font-family: var(--font-testo);
   font-size: 0.72rem;

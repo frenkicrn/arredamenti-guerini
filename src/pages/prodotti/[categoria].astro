@@ -73,7 +73,7 @@ const fotoTesta = fotoDi(categoria.foto);
             </div>
           )}
           <div class="approfondimento__testo">
-            <h3>{a.titolo}</h3>
+            <h2>{a.titolo}</h2>
             <p>{a.testo}</p>
           </div>
         </div>
@@ -81,7 +81,7 @@ const fotoTesta = fotoDi(categoria.foto);
     })}
 
     <div class="lista-marchi">
-      <p class="eyebrow">I marchi di questo reparto</p>
+      <h2 class="eyebrow">I marchi di questo reparto</h2>
       {marchi.map((m) => <CardMarchio marchio={m} />)}
     </div>
   </section>

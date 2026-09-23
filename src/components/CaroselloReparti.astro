@@ -48,7 +48,7 @@ const fotoDi = (nome?: string) => (nome ? immagini[`../assets/prodotti/${nome}.j
   <button type="button" class="carosello-reparti__freccia carosello-reparti__freccia--next" data-succ aria-label="Reparto successivo">→</button>
 </div>
 
-<div class="carosello-reparti__nomi" data-nomi role="tablist" aria-label="Scegli il reparto">
+<div class="carosello-reparti__nomi" data-nomi aria-label="Scegli il reparto">
   {CATEGORIE.map((c, i) => (
     <button type="button" class="carosello-reparti__nome" data-vai={i} aria-current={i === 0 ? 'true' : 'false'}>
       {c.nome}

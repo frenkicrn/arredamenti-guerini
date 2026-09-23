@@ -20,7 +20,7 @@ const telVisibile = NEGOZIO.telefono.replace('+39 ', '');
       <p class="footer-telefono"><a href={tel}>{telVisibile}</a></p>
     </div>
     <div>
-      <h3>Prodotti</h3>
+      <h2>Prodotti</h2>
       <ul>
         {CATEGORIE.map((c) => (
           <li><a href={`/prodotti/${c.slug}/`}>{c.nome}</a></li>
@@ -28,7 +28,7 @@ const telVisibile = NEGOZIO.telefono.replace('+39 ', '');
       </ul>
     </div>
     <div>
-      <h3>Il negozio</h3>
+      <h2>Il negozio</h2>
       <ul>
         <li><a href="/marchi/">Marchi</a></li>
         <li><a href="/servizi/">Servizi</a></li>
@@ -37,7 +37,7 @@ const telVisibile = NEGOZIO.telefono.replace('+39 ', '');
       </ul>
     </div>
     <div>
-      <h3>Orari</h3>
+      <h2>Orari</h2>
       <p>
         Martedì – Sabato<br />
         9:00–12:00 · 15:00–19:00<br />

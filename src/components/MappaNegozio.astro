@@ -1,0 +1,26 @@
+---
+// MappaNegozio.astro — la mappa Google si carica solo su richiesta.
+// L'embed porta con sé ~450 KB di JavaScript di terze parti e cookie di
+// Google: prima del clic la pagina non contatta nessuno.
+import { NEGOZIO } from '../data/negozio';
+---
+<div class="mappa-negozio" data-mappa data-src={NEGOZIO.mapsEmbedUrl}>
+  <button type="button" class="mappa-negozio__apri" data-apri>
+    <span class="mappa-negozio__etichetta">Mappa</span>
+    <span class="mappa-negozio__azione">Carica la mappa</span>
+    <span class="mappa-negozio__nota">Si apre Google Maps, che usa cookie propri</span>
+  </button>
+</div>
+
+<script>
+  const box = document.querySelector<HTMLElement>('[data-mappa]');
+  box?.querySelector('[data-apri]')?.addEventListener('click', () => {
+    const iframe = document.createElement('iframe');
+    iframe.src = box.dataset.src!;
+    iframe.title = 'Mappa: Arredamenti Guerini, Via Provinciale 51, Sale Marasino';
+    iframe.loading = 'lazy';
+    iframe.referrerPolicy = 'no-referrer-when-downgrade';
+    iframe.className = 'mappa-negozio__frame';
+    box.replaceChildren(iframe);
+  });
+</script>

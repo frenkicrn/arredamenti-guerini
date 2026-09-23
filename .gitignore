@@ -25,3 +25,17 @@ pnpm-debug.log*
 
 # scratch area for SDD task briefs/reports (not part of the shipped project)
 .superpowers/
+
+# Materiale sorgente, non fa parte del sito: pacchetti di design ricevuti e
+# cartelle di foto grezze dei marchi. Le immagini che servono vengono
+# ritagliate e ottimizzate in src/assets/, che invece è tracciata.
+/design_handoff_sito_guerini/
+/Redesign sito Guerini/
+/Redesign sito Guerini.zip
+/src/content/biel/
+/src/content/colombini/
+/src/content/cuorflex/
+/src/content/ingeniacasa/
+/src/content/stilfar italia/
+/src/content/vitarelax/
+/src/content/zamagna/

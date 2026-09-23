@@ -5,6 +5,7 @@ import CaroselloReparti from '../components/CaroselloReparti.astro';
 import CardMarchio from '../components/CardMarchio.astro';
 import ServizioVoce from '../components/ServizioVoce.astro';
 import CtaFinale from '../components/CtaFinale.astro';
+import MappaNegozio from '../components/MappaNegozio.astro';
 import { NEGOZIO } from '../data/negozio';
 import { MARCHI } from '../data/marchi';
 import { SERVIZI } from '../data/servizi';
@@ -28,15 +29,15 @@ const tel = `tel:${NEGOZIO.telefono.replaceAll(' ', '')}`;
   <section class="sezione--stretta contenitore">
     <div class="punti-forza">
       <div>
-        <h3>Progetto e misure senza impegno</h3>
+        <p class="punti-forza__titolo">Progetto e misure senza impegno</p>
         <p>Veniamo a misurare la stanza e ti mostriamo il disegno prima che tu ordini qualcosa.</p>
       </div>
       <div>
-        <h3>Consegna e montaggio inclusi</h3>
+        <p class="punti-forza__titolo">Consegna e montaggio inclusi</p>
         <p>Nella zona del lago d’Iseo, della Franciacorta e di Brescia li facciamo noi, senza costi a parte.</p>
       </div>
       <div>
-        <h3>Da un mese alla consegna</h3>
+        <p class="punti-forza__titolo">Da un mese alla consegna</p>
         <p>Questo il tempo per gli arredi su misura. Su qualche articolo in pronta consegna si fa prima.</p>
       </div>
     </div>
@@ -95,15 +96,7 @@ const tel = `tel:${NEGOZIO.telefono.replaceAll(' ', '')}`;
           <a class="bottone bottone--secondario" href={NEGOZIO.mapsDirectionsUrl} rel="noopener">Indicazioni</a>
         </div>
       </div>
-      <iframe
-        class="dove-siamo__mappa"
-        src={NEGOZIO.mapsEmbedUrl}
-        title={`Mappa: ${NEGOZIO.nome}, ${NEGOZIO.indirizzo.via}, ${NEGOZIO.indirizzo.comune}`}
-        width="720"
-        height="495"
-        loading="lazy"
-        referrerpolicy="no-referrer-when-downgrade"
-      ></iframe>
+      <MappaNegozio />
     </div>
   </section>
 

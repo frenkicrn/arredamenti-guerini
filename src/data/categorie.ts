@@ -86,7 +86,7 @@ export const CATEGORIE: Categoria[] = [
         titolo: 'Componibile vuol dire sulle tue misure',
         testo:
           'Larghezze, profondità e altezze si combinano modulo per modulo: la composizione arriva al centimetro della tua parete, non alla misura più vicina del catalogo. Le finiture si coordinano con la cucina se le stanze sono aperte l’una sull’altra.',
-        foto: 'soggiorno-composizione',
+        foto: 'soggiorno-libreria',
       },
     ],
     correlate: ['tavoli-sedie'],
@@ -146,7 +146,7 @@ export const CATEGORIE: Categoria[] = [
         titolo: 'Poltrone relax elettriche',
         testo:
           'Schienale e poggiapiedi si regolano con un motore, e alcuni modelli aiutano ad alzarsi. È un acquisto che si fa per stare comodi tutti i giorni: ti aiutiamo a scegliere misura e meccanismo in base a chi la userà.',
-        foto: 'poltrona-relax',
+        foto: 'poltrona-multipla',
       },
     ],
     marchi: ['biel-divani', 'vitarelax'],

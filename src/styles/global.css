@@ -432,8 +432,12 @@ body.menu-aperto .barra-mobile { display: none; }
 }
 .hero-home h1 { margin: 0 0 1.5rem; font-size: var(--t-display-home); }
 .hero-home__sottotitolo { margin: 0 0 2.25rem; max-width: 46ch; font-size: 1.18rem; line-height: 1.6; color: var(--inchiostro-tenue); }
-.hero-home__foto { aspect-ratio: 4 / 5; overflow: hidden; background: var(--sabbia); }
-.hero-home__foto img { width: 100%; height: 100%; object-fit: cover; }
+/* 4/3 e non 4/5: le foto di catalogo sono orizzontali (3:2) e un box
+   verticale ne tagliava quasi metà. */
+.hero-home__foto { aspect-ratio: 4 / 3; overflow: hidden; background: var(--sabbia); }
+/* Ritaglio verso sinistra: il 4/3 toglie una fascia a destra, dove i
+   cataloghi stampano il marchio, che così non resta tagliato a metà. */
+.hero-home__foto img { width: 100%; height: 100%; object-fit: cover; object-position: left center; }
 @media (min-width: 780px) {
   .hero-home { grid-template-columns: 1.05fr 0.95fr; gap: 3.5rem; }
 }
@@ -563,7 +567,9 @@ body.menu-aperto .barra-mobile { display: none; }
   overflow: hidden;
   background: var(--sabbia);
 }
-.carosello-reparti__slide img { width: 100%; height: 100%; object-fit: cover; }
+/* object-position in alto: il 16/9 toglie una fascia bassa, che è dove i
+   cataloghi stampano il loro marchio — così non viene tagliato a metà. */
+.carosello-reparti__slide img { width: 100%; height: 100%; object-fit: cover; object-position: center top; }
 .carosello-reparti__segnaposto {
   position: absolute;
   top: 0;
@@ -746,14 +752,14 @@ body.menu-aperto .barra-mobile { display: none; }
 .card-marchio__placca {
   position: absolute;
   left: 0;
-  bottom: 0;
+  top: 0;
   display: flex;
   align-items: center;
   justify-content: center;
   min-width: 7.5rem;
   padding: 0.7rem 1rem;
   background: #fff;
-  border-top: 1px solid var(--bordo);
+  border-bottom: 1px solid var(--bordo);
   border-right: 1px solid var(--bordo);
 }
 .card-marchio__placca img { max-height: 26px; max-width: 110px; width: auto; height: auto; object-fit: contain; }

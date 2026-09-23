@@ -76,17 +76,12 @@ const tel = `tel:${NEGOZIO.telefono.replaceAll(' ', '')}`;
     </div>
   </section>
 
-  <section class="sezione contenitore" id="dove-siamo">
-    <div class="testa-sezione">
+  <section class="sezione contenitore">
+    <div class="dove-siamo">
       <div>
         <p class="eyebrow">Dove siamo</p>
         <h2>Sulla strada del lago, a Sale Marasino</h2>
-      </div>
-      <p class="testa-sezione__appoggio">Siamo sulla strada che costeggia il lago, con parcheggio davanti al negozio. Passa in negozio, oppure chiamaci per fissare un appuntamento: così ti dedichiamo il tempo che serve.</p>
-    </div>
-    <div class="scheda-negozio">
-      <div class="scheda-negozio__info">
-        <p class="scheda-negozio__indirizzo">
+        <p class="dove-siamo__indirizzo">
           {NEGOZIO.indirizzo.via}<br />
           {NEGOZIO.indirizzo.cap} {NEGOZIO.indirizzo.comune} ({NEGOZIO.indirizzo.provincia})
         </p>
@@ -101,11 +96,11 @@ const tel = `tel:${NEGOZIO.telefono.replaceAll(' ', '')}`;
         </div>
       </div>
       <iframe
-        class="scheda-negozio__mappa"
+        class="dove-siamo__mappa"
         src={NEGOZIO.mapsEmbedUrl}
-        title={`Mappa: ${NEGOZIO.nome}`}
+        title={`Mappa: ${NEGOZIO.nome}, ${NEGOZIO.indirizzo.via}, ${NEGOZIO.indirizzo.comune}`}
         width="720"
-        height="460"
+        height="495"
         loading="lazy"
         referrerpolicy="no-referrer-when-downgrade"
       ></iframe>

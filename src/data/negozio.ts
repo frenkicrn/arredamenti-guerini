@@ -20,6 +20,8 @@ export const NEGOZIO = {
     'https://www.google.com/maps?q=Arredamenti+Guerini+Via+Provinciale+51+Sale+Marasino&output=embed',
   mapsDirectionsUrl:
     'https://www.google.com/maps/dir/?api=1&destination=Arredamenti+Guerini+Sale+Marasino',
+  mapsSearchUrl:
+    'https://www.google.com/maps/search/?api=1&query=Arredamenti+Guerini+Via+Provinciale+51+Sale+Marasino',
   orari: [
     { giorni: 'Lunedì', orario: 'Chiuso' },
     { giorni: 'Martedì – Sabato', orario: '9:00–12:00 · 15:00–19:00' },

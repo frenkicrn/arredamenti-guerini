@@ -3,11 +3,16 @@ import Layout from '../layouts/Layout.astro';
 import Breadcrumb from '../components/Breadcrumb.astro';
 import FormContatti from '../components/FormContatti.astro';
 import Faq from '../components/Faq.astro';
+import CtaFinale from '../components/CtaFinale.astro';
 import { NEGOZIO } from '../data/negozio';
 import { FAQ } from '../data/faq';
 
 const tel = `tel:${NEGOZIO.telefono.replaceAll(' ', '')}`;
 const telVisibile = NEGOZIO.telefono.replace('+39 ', '');
+// Gli orari di apertura da una parte, i giorni di chiusura accorpati dall'altra.
+const aperture = NEGOZIO.orari.filter((o) => o.orario.toLowerCase() !== 'chiuso');
+const chiusure = NEGOZIO.orari.filter((o) => o.orario.toLowerCase() === 'chiuso');
+
 const faqJsonLd = {
   '@context': 'https://schema.org',
   '@type': 'FAQPage',
@@ -21,55 +26,74 @@ const faqJsonLd = {
 <Layout
   titoloCompleto
   titolo="Contatti e orari · Arredamenti Guerini, Sale Marasino (BS)"
-  descrizione="Richiedi un preventivo o vieni in negozio a Sale Marasino: telefono, indicazioni, orari di apertura e risposte alle domande frequenti."
+  descrizione="Telefono, indirizzo e orari di Arredamenti Guerini a Sale Marasino (BS), il modulo per richiedere un preventivo e le domande frequenti."
 >
-  <section class="sezione contenitore">
+  <section class="sezione--contatti contenitore" id="dove-siamo">
     <Breadcrumb voci={[{ nome: 'Home', href: '/' }, { nome: 'Contatti' }]} />
-    <h1>Scrivici, o passa a trovarci</h1>
-    <p class="intro">Rispondiamo noi, dal negozio. Se ci racconti la stanza fissiamo il rilievo misure e ti prepariamo il preventivo.</p>
+    <h1>Contatti</h1>
+    <p class="sottotitolo">Passa in negozio a Sale Marasino o chiamaci negli orari di apertura.</p>
 
-    <div class="griglia-contatti">
+    <div class="info-negozio">
       <div>
-        <p class="eyebrow">Richiedi un preventivo</p>
-        <h2>Raccontaci la stanza</h2>
-        <p class="griglia-contatti__nota">Più cose ci scrivi (la stanza, le misure se le hai, i tempi), più il primo preventivo sarà vicino alla realtà.</p>
-        <FormContatti />
+        <p class="etichetta">Telefono</p>
+        <a class="info-negozio__telefono" href={tel}>{telVisibile}</a>
       </div>
 
-      <aside class="scheda-contatti" id="dove-siamo">
-        <p class="eyebrow">Dove siamo</p>
-        <dl class="dati-contatto">
-          <div>
-            <dt>Indirizzo</dt>
-            <dd>
-              <a href={NEGOZIO.mapsDirectionsUrl} rel="noopener">
-                {NEGOZIO.indirizzo.via}<br />
-                {NEGOZIO.indirizzo.cap} {NEGOZIO.indirizzo.comune} ({NEGOZIO.indirizzo.provincia})
-              </a>
-            </dd>
-          </div>
-          <div>
-            <dt>Telefono</dt>
-            <dd><a class="dati-contatto__telefono" href={tel}>{telVisibile}</a></dd>
-          </div>
-          <div>
-            <dt>Orari</dt>
-            <dd>
-              Martedì – Sabato<br />
-              9:00–12:00 · 15:00–19:00
-              <span class="dati-contatto__nota">Lunedì e domenica chiuso</span>
-            </dd>
-          </div>
-        </dl>
-      </aside>
+      <div>
+        <p class="etichetta">Indirizzo</p>
+        <a class="info-negozio__indirizzo" href={NEGOZIO.mapsSearchUrl} target="_blank" rel="noopener">
+          <span class="info-negozio__via">
+            {NEGOZIO.indirizzo.via}<br />
+            {NEGOZIO.indirizzo.cap} {NEGOZIO.indirizzo.comune} ({NEGOZIO.indirizzo.provincia})
+          </span>
+          <span class="info-negozio__maps">Apri in Maps ↗</span>
+        </a>
+      </div>
+
+      <div>
+        <p class="etichetta">Orari</p>
+        {aperture.map((o) => (
+          <p class="info-negozio__orario">
+            {o.giorni}<br />
+            <span class="info-negozio__ore">{o.orario}</span>
+          </p>
+        ))}
+        {chiusure.length > 0 && (
+          <p class="info-negozio__orario info-negozio__orario--chiuso">
+            {chiusure.map((o, i) => (i === 0 ? o.giorni : o.giorni.toLowerCase())).join(' e ')}<br />
+            <span class="info-negozio__ore">Chiuso</span>
+          </p>
+        )}
+      </div>
+
+      <div>
+        <p class="etichetta">Social</p>
+        <p class="info-negozio__social">
+          <a href={NEGOZIO.facebook} target="_blank" rel="noopener">Facebook ↗</a>
+          {NEGOZIO.instagram && <a href={NEGOZIO.instagram} target="_blank" rel="noopener">Instagram ↗</a>}
+        </p>
+      </div>
     </div>
   </section>
 
-  <section class="sezione--stretta sezione--ultima contenitore">
-    <div class="testa-riga testa-riga--sola">
-      <h2>Domande frequenti</h2>
+  <section class="fascia-form">
+    <div class="contenitore fascia-form__riga">
+      <div>
+        <p class="etichetta etichetta--form">Richiedi un preventivo</p>
+        <h2>Scrivici</h2>
+        <p class="fascia-form__testo">Raccontaci la stanza: ti richiamiamo per fissare il rilievo misure e preparare il preventivo.</p>
+      </div>
+      <div class="riquadro-form">
+        <FormContatti />
+      </div>
     </div>
+  </section>
+
+  <section class="contenitore">
+    <h2 class="titolo-faq">Domande frequenti</h2>
     <Faq voci={FAQ} />
     <script type="application/ld+json" set:html={JSON.stringify(faqJsonLd)} />
   </section>
+
+  <CtaFinale />
 </Layout>

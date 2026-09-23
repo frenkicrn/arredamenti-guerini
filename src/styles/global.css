@@ -129,6 +129,17 @@ a:hover { color: var(--inchiostro); }
 .eyebrow--firma::before { width: 48px; height: 2px; }
 .centrato .eyebrow { justify-content: center; }
 
+/* Etichetta maiuscola senza filetto: intesta le colonne di dati
+   (contatti) dove l'occhiello di sezione sarebbe troppo. */
+.etichetta {
+  margin: 0 0 0.5rem;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--etichetta);
+}
+
 /* Utilità */
 .centrato { text-align: center; }
 .spazio-sopra { margin-top: var(--spazio-3); }
@@ -473,24 +484,20 @@ body.menu-aperto .barra-mobile { display: none; }
   white-space: nowrap;
 }
 
-/* ---------- Scheda negozio ----------
-   Un solo pannello con mappa e dati, usato in Home ("Dove siamo") e in
-   Contatti: tiene insieme indirizzo, orari e azioni invece di lasciarli
-   galleggiare in colonne separate. */
-.scheda-negozio {
-  display: grid;
+/* ---------- Dove siamo (Home) ----------
+   Testo a sinistra, mappa a destra: niente card attorno agli orari. */
+.dove-siamo { display: grid; gap: var(--spazio-3); align-items: start; }
+.dove-siamo h2 { margin: 0 0 1.25rem; font-size: clamp(2rem, 3.2vw, 2.7rem); line-height: 1.08; }
+.dove-siamo__indirizzo { margin: 0 0 1.75rem; font-size: 1.12rem; font-weight: 500; line-height: 1.4; }
+.dove-siamo__mappa {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 11;
   border: 1px solid var(--bordo);
-  background: var(--superficie);
-  overflow: hidden;
+  background: var(--sabbia);
 }
-.scheda-negozio__mappa { display: block; width: 100%; height: 100%; min-height: 300px; border: none; background: var(--sabbia); }
-.scheda-negozio__info { padding: 2rem 2.25rem; display: grid; gap: 1.5rem; align-content: center; }
-.scheda-negozio__indirizzo { margin: 0; font-family: var(--font-display); font-size: 1.6rem; font-weight: 400; line-height: 1.25; }
-.scheda-negozio .lista-orari { margin: 0; }
-.scheda-negozio .azioni { margin: 0; }
-@media (min-width: 900px) {
-  .scheda-negozio { grid-template-columns: 0.85fr 1.15fr; }
-  .scheda-negozio__mappa { border-left: 1px solid var(--bordo); }
+@media (min-width: 1025px) {
+  .dove-siamo { grid-template-columns: 0.9fr 1.1fr; gap: 3rem; }
 }
 
 
@@ -1002,71 +1009,108 @@ dialog.lightbox p { margin: 0; padding: 0.85rem 1rem; text-align: center; font-f
 .lightbox-chiudi:hover { background: var(--inchiostro); }
 
 /* ---------- Form ---------- */
-.form-contatti { display: grid; gap: 1.1rem; }
+.form-contatti { display: grid; gap: 1.4rem; }
+.form-contatti__riga { display: grid; gap: 1.4rem; }
+@media (min-width: 721px) {
+  .form-contatti__riga { grid-template-columns: 1fr 1fr; }
+}
 .form-contatti label {
   display: grid;
-  gap: 0.4rem;
-  font-size: 0.78rem;
+  gap: 0.45rem;
+  font-size: 0.72rem;
   font-weight: 600;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--inchiostro-tenue);
 }
 .form-contatti input,
 .form-contatti textarea {
   font: inherit;
-  font-size: 1rem;
+  font-size: 1.05rem;
   font-weight: 400;
   letter-spacing: 0;
   text-transform: none;
-  padding: 0.8rem 0.9rem;
+  width: 100%;
+  padding: 0.85rem 1rem;
   border: 1px solid var(--bordo);
   border-radius: var(--raggio);
   background: var(--superficie);
   color: var(--inchiostro);
 }
 .form-contatti textarea { resize: vertical; }
-.form-contatti .bottone { justify-self: start; border: none; }
+.form-contatti .bottone { justify-self: start; border: none; padding: 0.95rem 1.8rem; }
 .form-contatti input:focus,
 .form-contatti textarea:focus { border-color: var(--noce); outline: 2px solid var(--noce); outline-offset: 0; }
 .form-contatti .honeypot { position: absolute; left: -9999px; }
 .form-contatti .esito { font-weight: 700; }
 
-/* ---------- Contatti ---------- */
-.griglia-contatti { display: grid; gap: var(--spazio-4); align-items: start; margin-top: var(--spazio-4); }
-.griglia-contatti h2 { margin: 0 0 0.75rem; font-size: 2rem; }
-.griglia-contatti__nota { margin: 0 0 1.75rem; max-width: 46ch; color: var(--inchiostro-tenue); }
+/* ---------- Contatti ----------
+   Tre zone separate: info negozio, fascia crema con il form, FAQ. */
+.sezione--contatti { padding-top: 3.5rem; }
+.sezione--contatti h1 { margin: 0 0 1rem; line-height: 1.05; }
+.sottotitolo { margin: 0 0 3.5rem; max-width: 52ch; font-size: 1.12rem; color: var(--inchiostro-tenue); }
 
-/* Scheda contatti: niente mappa, solo dati. Etichetta piccola sopra,
-   valore sotto, un filetto fra un gruppo e l'altro. */
-.scheda-contatti { padding: 2rem 2.25rem; background: var(--superficie); border: 1px solid var(--bordo); }
-.dati-contatto { margin: 0; display: grid; }
-.dati-contatto > div { padding: 1.35rem 0; border-top: 1px solid var(--sabbia); }
-.dati-contatto > div:first-of-type { padding-top: 0; border-top: none; }
-.dati-contatto > div:last-of-type { padding-bottom: 0; }
-.dati-contatto dt {
-  margin-bottom: 0.4rem;
-  font-size: 0.72rem;
-  font-weight: 600;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--etichetta);
+.info-negozio {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--spazio-4);
+  padding-top: 2rem;
+  border-top: 1px solid var(--inchiostro);
 }
-.dati-contatto dd { margin: 0; font-size: 1.08rem; line-height: 1.5; }
-/* Indirizzo e telefono aprono Maps e il telefono: sottolineatura tenue
-   perché si capisca che si toccano, senza il peso di un link pieno. */
-.dati-contatto dd a {
+.info-negozio .etichetta { margin: 0 0 0.9rem; }
+.info-negozio__telefono {
+  font-family: var(--font-display);
+  font-size: 1.75rem;
+  line-height: 1.1;
   color: var(--inchiostro);
-  text-decoration: underline;
-  text-decoration-color: var(--bordo);
-  text-underline-offset: 4px;
+  text-decoration: none;
 }
-.dati-contatto dd a:hover { color: var(--noce-testo); text-decoration-color: currentColor; }
-.dati-contatto__telefono { font-family: var(--font-display); font-size: 1.9rem; }
-.dati-contatto__nota { display: block; margin-top: 0.35rem; color: var(--inchiostro-tenue); font-size: var(--t-testo-2); }
-@media (min-width: 900px) {
-  .griglia-contatti { grid-template-columns: 0.9fr 1.1fr; gap: 3.5rem; }
+.info-negozio__telefono:hover { color: var(--noce-testo); }
+.info-negozio__indirizzo { display: block; text-decoration: none; color: var(--inchiostro); }
+.info-negozio__via { display: block; font-size: 1.08rem; font-weight: 500; line-height: 1.5; }
+.info-negozio__indirizzo:hover .info-negozio__via { color: var(--noce-testo); }
+.info-negozio__maps {
+  display: inline-block;
+  margin-top: 0.6rem;
+  font-size: 0.86rem;
+  font-weight: 600;
+  color: var(--noce-testo);
+  border-bottom: 1px solid var(--noce);
 }
-.lista-orari { list-style: none; padding: 0; margin: 1rem 0 1.5rem; border-top: 1px solid var(--bordo); }
-.lista-orari li { display: flex; justify-content: space-between; gap: 1rem; padding: 0.55rem 0; border-bottom: 1px solid var(--bordo); font-size: var(--t-testo-2); }
+.info-negozio__orario { margin: 0; font-size: 1.08rem; line-height: 1.5; }
+.info-negozio__orario--chiuso { margin-top: 0.6rem; }
+.info-negozio__ore { color: var(--inchiostro-tenue); }
+.info-negozio__social { margin: 0; display: grid; gap: 0.35rem; justify-items: start; font-size: 1.08rem; }
+.info-negozio__social a { color: var(--inchiostro); text-decoration: none; }
+.info-negozio__social a:hover { color: var(--noce-testo); }
+@media (min-width: 721px) {
+  .info-negozio { grid-template-columns: repeat(2, 1fr); }
+}
+@media (min-width: 1025px) {
+  .info-negozio { grid-template-columns: repeat(4, 1fr); gap: 2.5rem; }
+}
+
+/* Fascia del form: a tutta larghezza, staccata dalle info */
+.fascia-form { background: var(--sabbia); margin-top: 6rem; }
+.fascia-form__riga { display: grid; gap: var(--spazio-4); align-items: start; padding-block: 5rem; }
+.fascia-form h2 { margin: 0 0 1.25rem; font-size: clamp(2rem, 3.2vw, 2.7rem); line-height: 1.08; }
+.fascia-form__testo { margin: 0; max-width: 34ch; font-size: 1.05rem; line-height: 1.65; color: var(--inchiostro-tenue); }
+.etichetta--form { letter-spacing: 0.18em; color: var(--inchiostro-tenue); }
+.riquadro-form { background: var(--carta); border-radius: var(--raggio); padding: 2.5rem; }
+@media (max-width: 720px) {
+  .riquadro-form { padding: 1.5rem; }
+}
+@media (min-width: 1025px) {
+  .fascia-form__riga { grid-template-columns: 0.4fr 0.6fr; gap: 4rem; }
+}
+
+.titolo-faq {
+  margin: 5rem 0 var(--spazio-3);
+  padding-bottom: 1.25rem;
+  border-bottom: 1px solid var(--inchiostro);
+  font-size: var(--t-display-2-minore);
+}
+
+.lista-orari { list-style: none; padding: 0; margin: 0 0 1.75rem; border-top: 1px solid var(--bordo); }
+.lista-orari li { display: flex; justify-content: space-between; gap: 1rem; padding: 0.65rem 0; border-bottom: 1px solid var(--sabbia); font-size: 0.97rem; }
 .lista-orari li span:first-child { color: var(--inchiostro-tenue); }

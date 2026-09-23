@@ -40,16 +40,24 @@ generate da `src/data/categorie.ts`.
 
 ## Dati in attesa dal cliente
 
-- [ ] Chiave Web3Forms (vedi sotto) al posto di `INSERIRE_CHIAVE_WEB3FORMS`
-- [ ] Email e WhatsApp reali (oggi placeholder in `src/data/negozio.ts`; il sito
-      non li mostra, usa telefono e modulo)
+- [ ] WhatsApp reale (oggi placeholder in `src/data/negozio.ts`; il sito non lo
+      mostra, usa telefono e modulo)
 - [ ] Profilo Instagram (in `src/data/negozio.ts`, vuoto = link non mostrato)
-- [ ] Coordinate geografiche per il JSON-LD (`geo`)
-- [ ] Immagine og:image per le condivisioni social
-- [ ] Favicon definitiva ricavata dal logo (oggi `public/favicon.svg` è generica)
+- [ ] Logo in alta risoluzione o vettoriale: `src/assets/logo-guerini.png` è di
+      236x97 px e il solo simbolo della casetta misura 54x48, quindi
+      `apple-touch-icon.png` (180x180) nasce da un ingrandimento 3,5x ed è
+      morbido. Con l'originale si rigenerano icone e og:image più nitide.
 - [ ] Foto proprie del negozio e dello showroom (oggi si usano foto di catalogo
       dei marchi)
 - [ ] Il rilievo misure/sopralluogo è gratuito? (oggi il sito non lo dichiara)
+
+## Immagini generate
+
+`public/og-image.jpg` (anteprima social) e le due favicon non si modificano a
+mano: si rigenerano con `sharp` dal logo e dalla foto hero. L'og:image è la foto
+`src/assets/prodotti/cucina-madeleine-a.jpg` ritagliata a 1200x630 con la
+targhetta del logo in basso a sinistra; le icone sono il simbolo della casetta
+ritagliato dal logo su fondo crema.
 
 ## Form contatti (Web3Forms)
 

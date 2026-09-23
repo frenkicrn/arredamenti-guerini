@@ -15,6 +15,8 @@ interface Props {
 }
 const { titolo, descrizione, titoloCompleto = false } = Astro.props;
 const titoloPagina = titoloCompleto ? titolo : `${titolo} · Arredamenti Guerini`;
+// I social vogliono un URL assoluto: un percorso relativo non viene risolto.
+const ogImage = new URL('/og-image.jpg', Astro.site).href;
 
 const jsonLd = {
   '@context': 'https://schema.org',
@@ -32,6 +34,14 @@ const jsonLd = {
     addressRegion: NEGOZIO.indirizzo.provincia,
     addressCountry: 'IT',
   },
+  geo: {
+    '@type': 'GeoCoordinates',
+    latitude: 45.702246,
+    longitude: 10.108486,
+  },
+  hasMap: NEGOZIO.mapsSearchUrl,
+  image: new URL('/og-image.jpg', Astro.site).href,
+  areaServed: ['Sale Marasino', 'Lago d\u2019Iseo', 'Franciacorta', 'Brescia'],
   sameAs: [NEGOZIO.facebook, NEGOZIO.instagram].filter(Boolean),
   openingHoursSpecification: [
     {
@@ -61,8 +71,15 @@ const jsonLd = {
     <meta property="og:type" content="website" />
     <meta property="og:locale" content="it_IT" />
     <meta property="og:url" content={Astro.url.href} />
+    <meta property="og:site_name" content="Arredamenti Guerini" />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Cucina in showroom e logo Arredamenti Guerini" />
+    <meta name="twitter:card" content="summary_large_image" />
     <link rel="canonical" href={Astro.url.href} />
-    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="/favicon.png" type="image/png" sizes="32x32" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <link rel="sitemap" href="/sitemap-index.xml" />
     <script is:inline>document.documentElement.classList.add('js');</script>
     <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />

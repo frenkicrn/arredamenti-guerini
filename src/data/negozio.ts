@@ -29,5 +29,5 @@ export const NEGOZIO = {
   ],
   consegna:
     'Consegna a partire da 1 mese · alcuni articoli in pronta consegna',
-  web3formsKey: 'INSERIRE_CHIAVE_WEB3FORMS', // DA CONFERMARE COL CLIENTE
+  web3formsKey: '3e961115-6e34-4505-a2db-42592415962c', // DA CONFERMARE COL CLIENTE
 };

@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://arredamenti-guerini.pages.dev/sitemap-index.xml
+Sitemap: https://arredamentiguerini.it/sitemap-index.xml

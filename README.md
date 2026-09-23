@@ -58,23 +58,28 @@ generate da `src/data/categorie.ts`.
 2. Incollare la chiave in `src/data/negozio.ts` → `web3formsKey`.
 3. Testare un invio reale dalla pagina /contatti/ del sito pubblicato.
 
-## Deploy su Cloudflare Pages (gratuito)
+## Deploy su Cloudflare (Worker)
 
-1. Pubblicare questo repository su GitHub.
-2. Su https://dash.cloudflare.com → Workers & Pages → Create → Pages →
-   Connect to Git → selezionare il repo.
-3. Impostazioni build: framework preset **Astro**, build command `npm run build`,
-   output directory `dist`.
-4. Serve Node ≥ 24 (con npm ≥ 11: il lockfile è generato da npm 11 e npm 10
-   non lo accetta). Il file .nvmrc nel repo lo imposta già; se il build
-   fallisce, impostare la variabile d'ambiente NODE_VERSION=24 nelle
-   impostazioni del progetto Pages.
-5. Ogni push su `main` pubblica automaticamente. URL gratuito: `<progetto>.pages.dev`.
+Il sito sta su un Worker di Cloudflare, collegato a questo repo: ogni push su
+`main` ricostruisce e pubblica da solo.
 
-## Dominio .it (quando si è pronti)
+- Serve Node ≥ 24 (con npm ≥ 11: il lockfile è generato da npm 11 e npm 10 non
+  lo accetta). `.nvmrc` lo imposta già; se il build fallisce, impostare
+  `NODE_VERSION=24` fra le variabili d'ambiente del progetto.
+- Nel container di build Cloudflare **aggiunge da sé** `@astrojs/cloudflare`,
+  che nel repo non c'è. Attenzione quindi alla versione di Astro: se l'adapter
+  richiede una versione più recente di quella in `package.json`, il build
+  fallisce su "Building static entrypoints" con un errore di rolldown. È già
+  successo con astro 7.2.2 e adapter 14.3.3; risolto passando ad astro 7.3.4.
+- Con l'adapter l'output finisce in `dist/client`, non in `dist`.
 
-1. Registrare il dominio (es. arredamentiguerini.it) su un registrar (~10-15 €/anno).
-2. In Cloudflare: aggiungere il sito, puntare i nameserver del registrar a Cloudflare.
-3. In Pages → Custom domains → aggiungere il dominio (SSL automatico).
-4. Aggiornare `site` in `astro.config.mjs` e la riga `Sitemap:` in `public/robots.txt`
-   con il dominio definitivo, poi fare push.
+## Dominio
+
+Il dominio ufficiale è **arredamentiguerini.it**, senza `www`. È quello che
+compare in `site` (`astro.config.mjs`) e nella riga `Sitemap:` di
+`public/robots.txt`: da lì derivano sitemap, URL canonici e dati strutturati,
+quindi vanno tenuti allineati.
+
+Sul Worker sono agganciati sia `arredamentiguerini.it` sia
+`www.arredamentiguerini.it`, con una redirect rule che manda il www al dominio
+nudo: serve ad avere un solo indirizzo indicizzabile.

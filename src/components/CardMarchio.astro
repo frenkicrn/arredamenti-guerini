@@ -1,5 +1,8 @@
 ---
-// CardMarchio.astro — compatta (link cliccabile: nome + prodotti) o estesa (logo, descrizione, categorie)
+// CardMarchio.astro — compatta (nome + prodotti), solo logo (Home) o estesa
+// (logo, descrizione, reparti). Il marchio in sé non è un link: portava al
+// suo primo reparto, una destinazione arbitraria. Si naviga dai tag dei
+// reparti nella scheda estesa, che dicono dove si va.
 import { Image } from 'astro:assets';
 import type { ImageMetadata } from 'astro';
 import type { Marchio } from '../data/marchi';
@@ -14,7 +17,6 @@ interface Props {
 }
 const { marchio, estesa = false, soloLogo = false } = Astro.props;
 const categorie = CATEGORIE.filter((c) => marchio.categorie.includes(c.slug));
-const primaCategoria = categorie[0];
 
 const immaginiMarchio = import.meta.glob<{ default: ImageMetadata }>('../assets/marchi/*.{png,jpg,jpeg,webp}', { eager: true });
 const trova = (suffisso: string) => {
@@ -53,16 +55,16 @@ const foto = trova('-foto.');
     </ul>
   </article>
 ) : soloLogo ? (
-  <a class="tessera-marchio" href={primaCategoria ? `/prodotti/${primaCategoria.slug}/` : '/marchi/'}>
+  <div class="tessera-marchio">
     {logo ? (
       <Image src={logo} alt={marchio.nome} widths={[200, 400]} sizes="200px" loading="lazy" />
     ) : (
       <span>{marchio.nome}</span>
     )}
-  </a>
+  </div>
 ) : (
-  <a class="card-marchio" href={primaCategoria ? `/prodotti/${primaCategoria.slug}/` : '/marchi/'}>
+  <div class="card-marchio">
     <h3>{marchio.nome}</h3>
     <p class="marchio">{marchio.prodotti}</p>
-  </a>
+  </div>
 )}

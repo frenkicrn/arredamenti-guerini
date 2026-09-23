@@ -493,38 +493,7 @@ body.menu-aperto .barra-mobile { display: none; }
   .scheda-negozio__mappa { border-left: 1px solid var(--bordo); }
 }
 
-/* Variante a colonna stretta (Contatti): mappa sopra, dati sotto. */
-.scheda-negozio--verticale { grid-template-columns: 1fr; }
-@media (min-width: 900px) {
-  .scheda-negozio--verticale { grid-template-columns: 1fr; }
-  .scheda-negozio--verticale .scheda-negozio__mappa { border-left: none; }
-}
-.scheda-negozio--verticale .scheda-negozio__mappa { border-bottom: 1px solid var(--bordo); min-height: 280px; }
-.scheda-negozio--verticale .scheda-negozio__info { gap: 1.25rem; }
 
-/* Righe etichetta/valore dentro la scheda */
-.scheda-negozio__voci { margin: 0; display: grid; }
-.scheda-negozio__voci > div {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  gap: 1.5rem;
-  padding: 0.9rem 0;
-  border-bottom: 1px solid var(--sabbia);
-}
-.scheda-negozio__voci > div:first-child { padding-top: 0; }
-.scheda-negozio__voci > div:last-child { border-bottom: none; padding-bottom: 0; }
-.scheda-negozio__voci dt {
-  font-size: 0.72rem;
-  font-weight: 600;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--etichetta);
-  white-space: nowrap;
-}
-.scheda-negozio__voci dd { margin: 0; text-align: right; line-height: 1.5; }
-.scheda-negozio__voci .telefono { font-family: var(--font-display); font-size: 1.5rem; text-decoration: none; color: var(--inchiostro); }
-.scheda-negozio__voci .telefono:hover { color: var(--noce-testo); }
 
 /* ---------- Intestazione a due colonne (pagina reparto) ----------
    Testo + foto (o segnaposto "Foto in arrivo") affiancati, 4/3. */
@@ -710,10 +679,8 @@ body.menu-aperto .barra-mobile { display: none; }
   gap: 1rem;
   padding: 0.5rem 0;
   border-bottom: 1px solid var(--sabbia);
-  text-decoration: none;
   color: inherit;
 }
-.card-marchio:hover { border-bottom-color: var(--noce); }
 .card-marchio h3 { margin: 0; font-size: 1.22rem; }
 .card-marchio .marchio {
   margin: 0;
@@ -739,13 +706,11 @@ body.menu-aperto .barra-mobile { display: none; }
      dentro al file e così non si vede lo stacco. */
   background: #fff;
   border: 1px solid var(--bordo);
-  text-decoration: none;
   color: var(--inchiostro);
   font-family: var(--font-display);
   font-size: 1.15rem;
   text-align: center;
 }
-.tessera-marchio:hover { border-color: var(--noce); }
 /* I loghi sono ritagliati al contenuto: l'altezza fa da vincolo principale,
    così i marchi quadrati e quelli larghi pesano otticamente allo stesso modo. */
 .tessera-marchio img { max-height: 60px; max-width: 80%; width: auto; height: auto; object-fit: contain; }
@@ -762,7 +727,6 @@ body.menu-aperto .barra-mobile { display: none; }
   border-bottom: none;
   padding: 1.5rem 0 0;
 }
-.card-marchio--estesa:hover { border-bottom-color: transparent; }
 /* Foto del marchio con la placca del logo appoggiata nell'angolo */
 .card-marchio__media {
   position: relative;
@@ -1072,6 +1036,34 @@ dialog.lightbox p { margin: 0; padding: 0.85rem 1rem; text-align: center; font-f
 .griglia-contatti { display: grid; gap: var(--spazio-4); align-items: start; margin-top: var(--spazio-4); }
 .griglia-contatti h2 { margin: 0 0 0.75rem; font-size: 2rem; }
 .griglia-contatti__nota { margin: 0 0 1.75rem; max-width: 46ch; color: var(--inchiostro-tenue); }
+
+/* Scheda contatti: niente mappa, solo dati. Etichetta piccola sopra,
+   valore sotto, un filetto fra un gruppo e l'altro. */
+.scheda-contatti { padding: 2rem 2.25rem; background: var(--superficie); border: 1px solid var(--bordo); }
+.dati-contatto { margin: 0; display: grid; }
+.dati-contatto > div { padding: 1.35rem 0; border-top: 1px solid var(--sabbia); }
+.dati-contatto > div:first-of-type { padding-top: 0; border-top: none; }
+.dati-contatto > div:last-of-type { padding-bottom: 0; }
+.dati-contatto dt {
+  margin-bottom: 0.4rem;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--etichetta);
+}
+.dati-contatto dd { margin: 0; font-size: 1.08rem; line-height: 1.5; }
+/* Indirizzo e telefono aprono Maps e il telefono: sottolineatura tenue
+   perché si capisca che si toccano, senza il peso di un link pieno. */
+.dati-contatto dd a {
+  color: var(--inchiostro);
+  text-decoration: underline;
+  text-decoration-color: var(--bordo);
+  text-underline-offset: 4px;
+}
+.dati-contatto dd a:hover { color: var(--noce-testo); text-decoration-color: currentColor; }
+.dati-contatto__telefono { font-family: var(--font-display); font-size: 1.9rem; }
+.dati-contatto__nota { display: block; margin-top: 0.35rem; color: var(--inchiostro-tenue); font-size: var(--t-testo-2); }
 @media (min-width: 900px) {
   .griglia-contatti { grid-template-columns: 0.9fr 1.1fr; gap: 3.5rem; }
 }

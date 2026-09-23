@@ -30,43 +30,38 @@ const faqJsonLd = {
 
     <div class="griglia-contatti">
       <div>
+        <p class="eyebrow">Richiedi un preventivo</p>
         <h2>Raccontaci la stanza</h2>
         <p class="griglia-contatti__nota">Più cose ci scrivi (la stanza, le misure se le hai, i tempi), più il primo preventivo sarà vicino alla realtà.</p>
         <FormContatti />
       </div>
 
-      <div class="scheda-negozio scheda-negozio--verticale" id="dove-siamo">
-        <iframe
-          class="scheda-negozio__mappa"
-          src={NEGOZIO.mapsEmbedUrl}
-          title={`Mappa: ${NEGOZIO.nome}`}
-          width="640"
-          height="300"
-          loading="lazy"
-          referrerpolicy="no-referrer-when-downgrade"
-        ></iframe>
-        <div class="scheda-negozio__info">
-          <dl class="scheda-negozio__voci">
-            <div>
-              <dt>Telefono</dt>
-              <dd><a class="telefono" href={tel}>{telVisibile}</a></dd>
-            </div>
-            <div>
-              <dt>In negozio</dt>
-              <dd>{NEGOZIO.indirizzo.via}<br />{NEGOZIO.indirizzo.cap} {NEGOZIO.indirizzo.comune} ({NEGOZIO.indirizzo.provincia})</dd>
-            </div>
-            {NEGOZIO.orari.map((o) => (
-              <div>
-                <dt>{o.giorni}</dt>
-                <dd>{o.orario}</dd>
-              </div>
-            ))}
-          </dl>
-          <div class="azioni">
-            <a class="bottone bottone--secondario" href={NEGOZIO.mapsDirectionsUrl} rel="noopener">Indicazioni stradali</a>
+      <aside class="scheda-contatti" id="dove-siamo">
+        <p class="eyebrow">Dove siamo</p>
+        <dl class="dati-contatto">
+          <div>
+            <dt>Indirizzo</dt>
+            <dd>
+              <a href={NEGOZIO.mapsDirectionsUrl} rel="noopener">
+                {NEGOZIO.indirizzo.via}<br />
+                {NEGOZIO.indirizzo.cap} {NEGOZIO.indirizzo.comune} ({NEGOZIO.indirizzo.provincia})
+              </a>
+            </dd>
           </div>
-        </div>
-      </div>
+          <div>
+            <dt>Telefono</dt>
+            <dd><a class="dati-contatto__telefono" href={tel}>{telVisibile}</a></dd>
+          </div>
+          <div>
+            <dt>Orari</dt>
+            <dd>
+              Martedì – Sabato<br />
+              9:00–12:00 · 15:00–19:00
+              <span class="dati-contatto__nota">Lunedì e domenica chiuso</span>
+            </dd>
+          </div>
+        </dl>
+      </aside>
     </div>
   </section>
 

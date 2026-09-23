@@ -13,7 +13,7 @@ export const NEGOZIO = {
   },
   telefono: '+39 030 986249',
   whatsapp: '+39 330 000 0000', // DA CONFERMARE COL CLIENTE
-  email: 'info@arredamentiguerini.it', // DA CONFERMARE COL CLIENTE
+  email: 'arredamentiguerini@gmail.com',
   facebook: 'https://www.facebook.com/arredamentiguerinisnc/',
   instagram: '', // DA CONFERMARE COL CLIENTE (vuoto = link non mostrato)
   mapsEmbedUrl:
